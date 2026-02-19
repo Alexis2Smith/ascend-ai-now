@@ -1,7 +1,7 @@
 # Ascend AI NOW — State of AI 2026
 
 **Executive thought leadership landing page for Ascend AI NOW**  
-*By Dr. Alexis S. Smith, DMin (AI Ethics & Governance) | www.AscendAINOW.com*
+*By Dr. Alexis S. Smith, DMin Digital Stewardship (AI Ethics & Governance) | www.AscendAINOW.com*
 
 ---
 
@@ -89,4 +89,4 @@ To update:
 
 ---
 
-© 2026 Ascend AI NOW · Dr. Alexis S. Smith, DMin · All rights reserved.
+© 2026 Ascend AI NOW · Dr. Alexis S. Smith, DMin in Digital Stewardship · All rights reserved.
