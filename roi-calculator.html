@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI ROI Calculator | Ascend AI NOW</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --royal:#1a4fff;--royal-light:#eef2ff;--royal-glow:rgba(26,79,255,.12);
+  --orange:#ff6a00;--orange-light:#fff0e6;
+  --ink:#0b1340;--text:#1a1a2e;--muted:#7a84a8;--mid:#4a4a6a;
+  --white:#fff;--off:#f8f9ff;--line:rgba(26,79,255,.1);
+  --green:#0d9966;--green-light:#e6f7f2;
+}
+html{scroll-behavior:smooth}
+body{padding-top:62px;font-family:'Nunito Sans',sans-serif;background:var(--off);color:var(--text);line-height:1.6;min-height:100vh}
+
+/* HEADER */
+.calc-header{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.calc-header::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,79,255,.2) 0%,transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(255,106,0,.1) 0%,transparent 60%);pointer-events:none}
+.brand{font-family:'Cormorant Garamond',serif;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;position:relative;z-index:1}
+.calc-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600;color:#fff;line-height:1.1;position:relative;z-index:1}
+.calc-header h1 em{font-style:italic;font-weight:300;color:var(--orange)}
+.calc-header p{font-size:.95rem;color:rgba(255,255,255,.55);max-width:560px;margin:.8rem auto 0;position:relative;z-index:1}
+
+/* PROGRESS STEPS */
+.steps-bar{background:var(--white);border-bottom:1px solid var(--line);padding:1.2rem 2rem;display:flex;justify-content:center;gap:0;position:sticky;top:0;z-index:100}
+.step-item{display:flex;align-items:center;gap:.5rem}
+.step-item:not(:last-child)::after{content:'';display:block;width:clamp(20px,4vw,60px);height:1px;background:var(--line);margin:0 .4rem}
+.step-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .3s}
+.step-dot.active{background:var(--royal);border-color:var(--royal);color:#fff}
+.step-dot.done{background:var(--green);border-color:var(--green);color:#fff}
+.step-label{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:none}
+@media(min-width:600px){.step-label{display:block}}
+.step-item.active .step-label{color:var(--royal)}
+.step-item.done .step-label{color:var(--green)}
+
+/* MAIN LAYOUT */
+.calc-body{padding-top:62px;max-width:780px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+
+/* PANELS */
+.panel{display:none;animation:fadeIn .35s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.panel-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.panel-sub{font-size:.9rem;color:var(--muted);margin-bottom:2rem}
+
+/* FORM ELEMENTS */
+.field{margin-bottom:1.5rem}
+.field label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.field input[type=number],.field select,.field input[type=text]{width:100%;height:44px;border:1px solid var(--line);border-radius:4px;background:var(--white);font-family:'Nunito Sans',sans-serif;font-size:.95rem;color:var(--ink);padding:0 1rem;transition:border-color .2s,box-shadow .2s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--royal);box-shadow:0 0 0 3px var(--royal-glow)}
+.field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a84a8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem}
+
+.range-wrap{display:flex;align-items:center;gap:1rem}
+.range-wrap input[type=range]{flex:1;height:4px;-webkit-appearance:none;appearance:none;background:var(--line);border-radius:2px;outline:none}
+.range-wrap input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--royal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(26,79,255,.3)}
+.range-wrap input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--royal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(26,79,255,.3)}
+.range-val{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--ink);min-width:70px;text-align:right}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+@media(max-width:500px){.two-col{grid-template-columns:1fr}}
+
+/* PROCESS CARDS */
+.process-list{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.2rem}
+.process-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.2rem 1.2rem 1rem;position:relative}
+.process-card .card-num{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--royal);margin-bottom:.8rem}
+.process-card .remove-btn{position:absolute;top:.8rem;right:.8rem;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:.2rem;transition:color .2s}
+.process-card .remove-btn:hover{color:#e24b4a}
+.process-card .field{margin-bottom:.9rem}
+.process-card .field:last-child{margin-bottom:0}
+.automation-row{display:grid;grid-template-columns:1fr auto;gap:.8rem;align-items:center}
+.auto-badge{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .7rem;border-radius:2px;white-space:nowrap}
+.auto-low{background:#fff3e0;color:#e65100}
+.auto-med{background:#e3f2fd;color:#1440e0}
+.auto-high{background:#e6f7f2;color:#0d9966}
+
+.add-btn{width:100%;padding:.75rem;border:1.5px dashed var(--line);border-radius:4px;background:none;font-family:'Nunito Sans',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.08em;color:var(--royal);cursor:pointer;transition:all .25s}
+.add-btn:hover{border-color:var(--royal);background:var(--royal-light)}
+
+/* NAV BUTTONS */
+.btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;gap:1rem}
+.btn-primary{font-family:'Nunito Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 2rem;background:var(--royal);color:#fff;border:none;border-radius:3px;cursor:pointer;transition:all .3s}
+.btn-primary:hover{background:#1440e0;transform:translateY(-1px);box-shadow:0 6px 20px var(--royal-glow)}
+.btn-secondary{font-family:'Nunito Sans',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 2rem;background:none;color:var(--muted);border:1.5px solid var(--line);border-radius:3px;cursor:pointer;transition:all .3s}
+.btn-secondary:hover{border-color:var(--muted);color:var(--ink)}
+.btn-orange{background:var(--orange)!important}
+.btn-orange:hover{background:#e85e00!important;box-shadow:0 6px 20px rgba(255,106,0,.25)!important}
+
+/* RESULTS */
+.results-header{text-align:center;margin-bottom:2.5rem}
+.results-header .eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--royal);margin-bottom:.5rem}
+.results-header h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--ink)}
+
+.hero-stat{background:var(--royal);color:#fff;border-radius:6px;padding:2rem;text-align:center;margin-bottom:1.5rem}
+.hero-stat .stat-label{font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:.5rem}
+.hero-stat .stat-value{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:700;color:#fff;line-height:1}
+.hero-stat .stat-sub{font-size:.85rem;color:rgba(255,255,255,.55);margin-top:.5rem}
+
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:560px){.stat-grid{grid-template-columns:1fr 1fr}}
+.stat-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.2rem 1rem;text-align:center}
+.stat-card .sc-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.stat-card .sc-value{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1}
+.stat-card .sc-unit{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+.stat-card.accent{border-top:3px solid var(--orange);background:var(--orange-light)}
+.stat-card.accent .sc-value{color:var(--orange)}
+
+/* BREAKDOWN */
+.breakdown{background:var(--white);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:1.5rem}
+.breakdown-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:1rem 1.2rem;border-bottom:1px solid var(--line);background:var(--off)}
+.breakdown-row{display:grid;grid-template-columns:1fr auto auto;gap:.5rem 1.5rem;align-items:center;padding:.9rem 1.2rem;border-bottom:1px solid var(--line)}
+.breakdown-row:last-child{border-bottom:none}
+.br-name{font-size:.9rem;font-weight:500;color:var(--ink)}
+.br-hours{font-size:.82rem;color:var(--muted)}
+.br-saving{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--green)}
+
+/* PROGRESS BAR SECTION */
+.gains-section{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.4rem;margin-bottom:1.5rem}
+.gains-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.gain-row{margin-bottom:1.1rem}
+.gain-row:last-child{margin-bottom:0}
+.gain-label-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.35rem}
+.gain-name{font-size:.88rem;font-weight:500;color:var(--ink)}
+.gain-pct{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--royal)}
+.bar-track{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:linear-gradient(to right,var(--royal),#5585ff);transition:width .8s ease}
+.bar-fill.orange{background:linear-gradient(to right,var(--orange),#ffaa33)}
+
+/* TIMELINE */
+.timeline{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.4rem;margin-bottom:1.5rem}
+.tl-title{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem}
+.tl-bars{display:flex;gap:.8rem;align-items:flex-end;height:100px}
+.tl-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.tl-bar{width:100%;border-radius:3px 3px 0 0;background:var(--royal-light);position:relative;transition:height .8s ease}
+.tl-bar.active-bar{background:var(--royal)}
+.tl-bar-val{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-weight:600;color:var(--ink);white-space:nowrap}
+.tl-bar-label{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* CTA BOX */
+.cta-box{background:var(--ink);border-radius:6px;padding:2rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 150%,rgba(26,79,255,.25) 0%,transparent 70%);pointer-events:none}
+.cta-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:#fff;margin-bottom:.5rem;position:relative;z-index:1}
+.cta-box p{font-size:.88rem;color:rgba(255,255,255,.5);margin-bottom:1.4rem;position:relative;z-index:1}
+.cta-box a{display:inline-block;font-family:'Nunito Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 2rem;background:var(--orange);color:#fff;text-decoration:none;border-radius:3px;transition:all .3s;position:relative;z-index:1}
+.cta-box a:hover{background:#e85e00;transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,106,0,.3)}
+
+.restart-row{text-align:center;margin-top:1rem}
+.restart-btn{background:none;border:none;font-size:.78rem;color:var(--muted);cursor:pointer;text-decoration:underline;font-family:'Nunito Sans',sans-serif;transition:color .2s}
+.restart-btn:hover{color:var(--royal)}
+
+/* DISCLAIMER */
+.disclaimer{font-size:.72rem;color:var(--muted);line-height:1.6;padding:1rem 1.2rem;background:var(--off);border:1px solid var(--line);border-radius:4px;margin-top:1rem}
+
+/* TOOLTIP */
+.tooltip-wrap{position:relative;display:inline-block;margin-left:.4rem;cursor:help}
+.tooltip-icon{width:14px;height:14px;border-radius:50%;background:var(--line);border:1px solid rgba(26,79,255,.2);display:inline-flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:var(--royal);vertical-align:middle;line-height:1}
+.tooltip-text{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--ink);color:rgba(255,255,255,.85);font-size:.7rem;line-height:1.5;padding:.5rem .8rem;border-radius:4px;white-space:nowrap;z-index:200;pointer-events:none}
+.tooltip-wrap:hover .tooltip-text{display:block}
+
+/* VALIDATION */
+.field .err{font-size:.7rem;color:#e24b4a;margin-top:.3rem;display:none}
+.field.invalid input,.field.invalid select{border-color:#e24b4a}
+.field.invalid .err{display:block}
+
+  /* ── SHARED SITE NAV ── */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(11,19,64,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,79,255,.15)}
+  .site-nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 20px rgba(11,19,64,.3)}
+  .sn-brand{display:flex;flex-direction:column;text-decoration:none}
+  .sn-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:1}
+  .sn-wordmark span{color:#ff6a00}
+  .sn-tagline{font-size:.5rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.15rem}
+  .sn-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
+  .sn-links a{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+  .sn-links a:hover,.sn-links a.active{color:#fff}
+  .sn-links .tool-link{color:#ff6a00}
+  .sn-links .tool-link:hover{color:#ffaa33}
+  .sn-cta{font-family:'Nunito Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.4rem;background:#1a4fff;color:#fff;text-decoration:none;border-radius:2px;transition:all .25s;white-space:nowrap}
+  .sn-cta:hover{background:#ff6a00}
+  body{padding-top:62px;padding-top:64px}
+  @media(max-width:768px){.site-nav{padding:.9rem 1.2rem}.sn-links{display:none}.site-nav.scrolled{padding:.7rem 1.2rem}}
+
+  
+  /* ── SHARED SITE NAV ── */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(11,19,64,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,79,255,.15);font-family:'Nunito Sans',sans-serif}
+  .site-nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 20px rgba(11,19,64,.3)}
+  .sn-brand{display:flex;flex-direction:column;text-decoration:none}
+  .sn-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:1}
+  .sn-wordmark span{color:#ff6a00}
+  .sn-tagline{font-size:.5rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.15rem}
+  .sn-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
+  .sn-links a{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+  .sn-links a:hover,.sn-links a.active{color:#fff}
+  .sn-links .tool-link{color:#ff6a00}
+  .sn-links .tool-link:hover{color:#ffaa33}
+  .sn-cta{font-family:'Nunito Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.4rem;background:#1a4fff;color:#fff;text-decoration:none;border-radius:2px;transition:all .25s;white-space:nowrap}
+  .sn-cta:hover{background:#ff6a00}
+  @media(max-width:768px){.site-nav{padding:.9rem 1.2rem}.sn-links{display:none}}
+  </style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="sn-brand">
+    <div class="sn-wordmark">Ascend AI <span>NOW</span></div>
+    <div class="sn-tagline">Network of Women &middot; The Urgency to Act NOW</div>
+  </a>
+  <ul class="sn-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="assessment.html" class="tool-link">&#9650; Assessment</a></li>
+    <li><a href="roi-calculator.html" class="tool-link active">&#9650; ROI Calculator</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:info@AscendAINOW.com" class="sn-cta">Book a Consultation</a>
+</nav>
+<script>
+(function(){var n=document.getElementById('siteNav');window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>40);});})();
+</script>
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="sn-brand">
+    <div class="sn-wordmark">Ascend AI <span>NOW</span></div>
+    <div class="sn-tagline">Network of Women &middot; The Urgency to Act NOW</div>
+  </a>
+  <ul class="sn-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="assessment.html" class="tool-link">&#9650; Assessment</a></li>
+    <li><a href="roi-calculator.html" class="tool-link active">&#9650; ROI Calculator</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:info@AscendAINOW.com" class="sn-cta">Book a Consultation</a>
+</nav>
+<script>
+(function(){
+  var nav=document.getElementById('siteNav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);});
+})();
+</script>
+
+
+<div class="calc-header">
+  <a href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;display:block;margin-bottom:.4rem;text-align:center">&larr; AscendAINOW.com</a>
+    <a href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;display:block;margin-bottom:.4rem;text-align:center">&larr; AscendAINOW.com</a>
+    <div class="brand">Ascend AI NOW &middot; Free Tool</div>
+  <h1>Your AI <em>ROI Calculator</em></h1>
+  <p>Discover how much time and money your organization could save by implementing AI-powered solutions.</p>
+</div>
+
+<div class="steps-bar" id="stepsBar">
+  <div class="step-item active" id="si1">
+    <div class="step-dot active" id="sd1">1</div>
+    <span class="step-label">Organization</span>
+  </div>
+  <div class="step-item" id="si2">
+    <div class="step-dot" id="sd2">2</div>
+    <span class="step-label">Processes</span>
+  </div>
+  <div class="step-item" id="si3">
+    <div class="step-dot" id="sd3">3</div>
+    <span class="step-label">Cost Inputs</span>
+  </div>
+  <div class="step-item" id="si4">
+    <div class="step-dot" id="sd4">4</div>
+    <span class="step-label">Results</span>
+  </div>
+</div>
+
+<div class="calc-body">
+
+  <!-- PANEL 1: ORG INFO -->
+  <div class="panel active" id="panel1">
+    <div class="panel-title">Tell us about your organization</div>
+    <div class="panel-sub">We&rsquo;ll tailor the savings estimate to your sector and scale.</div>
+
+    <div class="field" id="f-industry">
+      <label>Industry / Sector</label>
+      <select id="industry">
+        <option value="">Select your industry&hellip;</option>
+        <option value="healthcare">Healthcare &amp; Medical</option>
+        <option value="education-k12">K&ndash;12 Education</option>
+        <option value="education-higher">Higher Education</option>
+        <option value="nonprofit">Nonprofit / Association</option>
+        <option value="government">Government / Public Sector</option>
+        <option value="service">Professional Services</option>
+        <option value="finance">Financial Services</option>
+        <option value="other">Other</option>
+      </select>
+      <div class="err">Please select your industry.</div>
+    </div>
+
+    <div class="field">
+      <label>Team size (number of employees involved in the processes we&rsquo;ll measure)</label>
+      <div class="range-wrap">
+        <input type="range" id="teamSize" min="1" max="500" step="1" value="25">
+        <span class="range-val" id="teamSizeVal">25</span>
+      </div>
+    </div>
+
+    <div class="field" id="f-orgname">
+      <label>Organization name <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:.8rem;color:var(--muted)">(optional &mdash; for your results report)</span></label>
+      <input type="text" id="orgName" placeholder="e.g. Riverside Medical Center">
+    </div>
+
+    <div class="btn-row">
+      <span></span>
+      <button class="btn-primary" onclick="goTo(2)">Next: Add Processes &rarr;</button>
+    </div>
+  </div>
+
+  <!-- PANEL 2: PROCESSES -->
+  <div class="panel" id="panel2">
+    <div class="panel-title">Which manual processes take the most time?</div>
+    <div class="panel-sub">Add up to 6 processes. Be specific &mdash; the more accurate your hours, the more accurate your savings estimate.</div>
+
+    <div class="process-list" id="processList"></div>
+    <button class="add-btn" id="addBtn" onclick="addProcess()">+ Add another process</button>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="goTo(1)">&larr; Back</button>
+      <button class="btn-primary" onclick="goTo(3)">Next: Cost Inputs &rarr;</button>
+    </div>
+  </div>
+
+  <!-- PANEL 3: COST -->
+  <div class="panel" id="panel3">
+    <div class="panel-title">Now let&rsquo;s talk numbers</div>
+    <div class="panel-sub">These inputs power your annual savings projection. All data stays in your browser &mdash; nothing is stored or sent.</div>
+
+    <div class="field">
+      <label>
+        Average hourly wage (fully loaded)
+        <span class="tooltip-wrap">
+          <span class="tooltip-icon">?</span>
+          <span class="tooltip-text">Include salary + benefits + overhead &mdash; typically 1.25&ndash;1.4&times; base salary</span>
+        </span>
+      </label>
+      <div class="range-wrap">
+        <input type="range" id="wage" min="15" max="250" step="1" value="45">
+        <span class="range-val" id="wageVal">$45/hr</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>
+        Expected AI adoption timeline
+        <span class="tooltip-wrap">
+          <span class="tooltip-icon">?</span>
+          <span class="tooltip-text">How quickly your team realistically adopts the new AI tools and processes</span>
+        </span>
+      </label>
+      <select id="timeline">
+        <option value="3">Fast (3 months)</option>
+        <option value="6" selected>Moderate (6 months)</option>
+        <option value="9">Gradual (9 months)</option>
+        <option value="12">Conservative (12 months)</option>
+      </select>
+    </div>
+
+    <div class="two-col">
+      <div class="field">
+        <label>
+          AI implementation budget estimate
+          <span class="tooltip-wrap">
+            <span class="tooltip-icon">?</span>
+            <span class="tooltip-text">Rough estimate of tools, training &amp; advisory costs in Year 1</span>
+          </span>
+        </label>
+        <select id="implCost">
+          <option value="5000">Under $5,000</option>
+          <option value="15000" selected>$5,000 &ndash; $25,000</option>
+          <option value="50000">$25,000 &ndash; $75,000</option>
+          <option value="100000">$75,000 &ndash; $150,000</option>
+          <option value="200000">$150,000+</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Projection horizon</label>
+        <select id="horizon">
+          <option value="1">1 year</option>
+          <option value="3" selected>3 years</option>
+          <option value="5">5 years</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="goTo(2)">&larr; Back</button>
+      <button class="btn-primary btn-orange" onclick="calculate()">Calculate My Savings &rarr;</button>
+    </div>
+  </div>
+
+  <!-- PANEL 4: RESULTS -->
+  <div class="panel" id="panel4">
+    <div class="results-header">
+      <div class="eyebrow" id="res-orgLabel">Your AI ROI Report</div>
+      <h2>Here&rsquo;s what AI implementation could mean for <span id="res-orgName">your organization</span></h2>
+    </div>
+
+    <div class="hero-stat">
+      <div class="stat-label">Projected Net Savings Over <span id="res-horizonLabel">3 Years</span></div>
+      <div class="stat-value" id="res-netSavings">$0</div>
+      <div class="stat-sub">After estimated implementation costs</div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="sc-label">Hours Saved / Year</div>
+        <div class="sc-value" id="res-hoursSaved">0</div>
+        <div class="sc-unit">staff hours annually</div>
+      </div>
+      <div class="stat-card">
+        <div class="sc-label">Annual Cost Savings</div>
+        <div class="sc-value" id="res-annualSaving">$0</div>
+        <div class="sc-unit">at full adoption</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="sc-label">ROI</div>
+        <div class="sc-value" id="res-roi">0%</div>
+        <div class="sc-unit">return on investment</div>
+      </div>
+    </div>
+
+    <div class="breakdown">
+      <div class="breakdown-title">Savings by Process</div>
+      <div id="res-breakdown"></div>
+    </div>
+
+    <div class="gains-section">
+      <div class="gains-title">Efficiency Gains by Category</div>
+      <div id="res-gains"></div>
+    </div>
+
+    <div class="timeline" id="timelineSection">
+      <div class="tl-title">Projected Cumulative Savings</div>
+      <div class="tl-bars" id="res-timeline"></div>
+    </div>
+
+    
+<div style="background:#fff;border:1px solid rgba(26,79,255,.12);border-left:3px solid #1a4fff;border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+  <div>
+    <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a4fff;margin-bottom:.25rem">Also Try</div>
+    <div style="font-size:.92rem;font-weight:600;color:#0b1340">Check your overall AI readiness score</div>
+  </div>
+  <a href="assessment.html" style="font-family:'Nunito Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.4rem;background:#1a4fff;color:#fff;text-decoration:none;border-radius:3px;white-space:nowrap">AI Assessment &rarr;</a>
+</div>
+
+
+<div style="background:#fff;border:1px solid rgba(26,79,255,.12);border-left:3px solid #1a4fff;border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+  <div><div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1a4fff;margin-bottom:.25rem">Also Try</div>
+  <div style="font-size:.92rem;font-weight:600;color:#0b1340">Check your overall AI readiness score</div></div>
+  <a href="assessment.html" style="font-family:'Nunito Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.4rem;background:#1a4fff;color:#fff;text-decoration:none;border-radius:3px;white-space:nowrap">AI Assessment &rarr;</a>
+</div>
+<div class="cta-box">
+      <h3>Ready to make these numbers real?</h3>
+      <p>Dr. Alexis S. Smith and the Ascend AI NOW team can build you a custom implementation roadmap &mdash; no jargon, just a clear plan grounded in your reality.</p>
+      <a href="mailto:info@AscendAINOW.com">Book a Free Strategy Call</a>
+      <p style="font-size:.75rem;color:rgba(255,255,255,.4);margin-top:.8rem">(910) 227-9073 &nbsp;&middot;&nbsp; info@AscendAINOW.com &nbsp;&middot;&nbsp; AscendAINOW.com</p>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> These estimates are based on industry benchmarks and the inputs you provided. Actual savings will vary based on your specific technology stack, workforce dynamics, change management effectiveness, and AI solution selection. Ascend AI NOW recommends a formal assessment before making investment decisions.
+    </div>
+
+    <div class="restart-row">
+      <button class="restart-btn" onclick="restart()">&#8635; Start over with new inputs</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var processCount = 0;
+var maxProcesses = 6;
+
+var INDUSTRY_AUTOMATION = {
+  'healthcare': {rate: 0.52, label: 'Healthcare'},
+  'education-k12': {rate: 0.48, label: 'K-12 Education'},
+  'education-higher': {rate: 0.50, label: 'Higher Education'},
+  'nonprofit': {rate: 0.55, label: 'Nonprofit'},
+  'government': {rate: 0.44, label: 'Government'},
+  'service': {rate: 0.58, label: 'Professional Services'},
+  'finance': {rate: 0.56, label: 'Financial Services'},
+  'other': {rate: 0.50, label: 'Organization'}
+};
+
+var PROCESS_TEMPLATES = [
+  {name: 'Data entry & reporting', auto: 0.72},
+  {name: 'Document review & filing', auto: 0.65},
+  {name: 'Scheduling & calendar management', auto: 0.60},
+  {name: 'Email triage & drafting', auto: 0.55},
+  {name: 'Compliance & audit prep', auto: 0.50},
+  {name: 'Customer/patient intake', auto: 0.62},
+  {name: 'Invoice & billing processing', auto: 0.70},
+  {name: 'Research & information gathering', auto: 0.58},
+  {name: 'Training & onboarding admin', auto: 0.52},
+  {name: 'Meeting notes & follow-ups', auto: 0.68}
+];
+
+function formatCurrency(n) {
+  if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+  return '$' + Math.round(n);
+}
+
+function formatNumber(n) {
+  return Math.round(n).toLocaleString();
+}
+
+function addProcess() {
+  if (processCount >= maxProcesses) return;
+  var idx = processCount;
+  processCount++;
+  var template = PROCESS_TEMPLATES[idx % PROCESS_TEMPLATES.length];
+  var autoRate = template.auto;
+  var autoBadge = autoRate >= 0.65 ? '<span class="auto-badge auto-high">High automation potential</span>' :
+                  autoRate >= 0.50 ? '<span class="auto-badge auto-med">Moderate automation potential</span>' :
+                  '<span class="auto-badge auto-low">Lower automation potential</span>';
+
+  var html = '<div class="process-card" id="pc' + idx + '">' +
+    '<div class="card-num">Process ' + processCount + '</div>' +
+    (idx > 0 ? '<button class="remove-btn" onclick="removeProcess(' + idx + ')" title="Remove">&times;</button>' : '') +
+    '<div class="field">' +
+      '<label>Process name</label>' +
+      '<input type="text" id="pname' + idx + '" value="' + template.name + '" placeholder="e.g. Data entry & reporting">' +
+    '</div>' +
+    '<div class="two-col">' +
+      '<div class="field">' +
+        '<label>Hours per week (per employee)</label>' +
+        '<input type="number" id="phours' + idx + '" value="5" min="0.5" max="60" step="0.5">' +
+      '</div>' +
+      '<div class="field">' +
+        '<label>AI automation potential' +
+          '<span class="tooltip-wrap"><span class="tooltip-icon">?</span><span class="tooltip-text">How repetitive and rule-based is this task?</span></span>' +
+        '</label>' +
+        '<select id="pauto' + idx + '" onchange="updateAutoBadge(' + idx + ')">' +
+          '<option value="0.70"' + (autoRate >= 0.65 ? ' selected' : '') + '>Very high (70%) &mdash; Repetitive data tasks</option>' +
+          '<option value="0.55"' + (autoRate >= 0.50 && autoRate < 0.65 ? ' selected' : '') + '>Moderate (55%) &mdash; Semi-structured tasks</option>' +
+          '<option value="0.40"' + (autoRate < 0.50 ? ' selected' : '') + '>Lower (40%) &mdash; Judgment-heavy tasks</option>' +
+        '</select>' +
+      '</div>' +
+    '</div>' +
+    '<div class="automation-row">' +
+      '<small style="font-size:.78rem;color:var(--muted)">Estimated efficiency gain from AI assistance on this process</small>' +
+      '<div id="pbadge' + idx + '">' + autoBadge + '</div>' +
+    '</div>' +
+  '</div>';
+
+  var list = document.getElementById('processList');
+  var div = document.createElement('div');
+  div.innerHTML = html;
+  list.appendChild(div.firstChild);
+
+  if (processCount >= maxProcesses) {
+    document.getElementById('addBtn').style.display = 'none';
+  }
+}
+
+function removeProcess(idx) {
+  var el = document.getElementById('pc' + idx);
+  if (el) el.parentNode.removeChild(el);
+  document.getElementById('addBtn').style.display = 'block';
+  processCount--;
+  renumberCards();
+}
+
+function renumberCards() {
+  var cards = document.querySelectorAll('.process-card');
+  cards.forEach(function(c, i) {
+    var num = c.querySelector('.card-num');
+    if (num) num.textContent = 'Process ' + (i + 1);
+  });
+}
+
+function updateAutoBadge(idx) {
+  var sel = document.getElementById('pauto' + idx);
+  var val = parseFloat(sel.value);
+  var badge = document.getElementById('pbadge' + idx);
+  if (!badge) return;
+  var html = val >= 0.65 ? '<span class="auto-badge auto-high">High automation potential</span>' :
+             val >= 0.50 ? '<span class="auto-badge auto-med">Moderate automation potential</span>' :
+             '<span class="auto-badge auto-low">Lower automation potential</span>';
+  badge.innerHTML = html;
+}
+
+function goTo(step) {
+  if (step === 2) {
+    var industry = document.getElementById('industry').value;
+    if (!industry) {
+      var f = document.getElementById('f-industry');
+      f.classList.add('invalid');
+      return;
+    }
+    document.getElementById('f-industry').classList.remove('invalid');
+    if (processCount === 0) addProcess();
+  }
+  if (step === 3) {
+    if (processCount === 0) { alert('Please add at least one process.'); return; }
+  }
+
+  document.querySelectorAll('.panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('panel' + step).classList.add('active');
+
+  for (var i = 1; i <= 4; i++) {
+    var dot = document.getElementById('sd' + i);
+    var item = document.getElementById('si' + i);
+    dot.classList.remove('active', 'done');
+    item.classList.remove('active', 'done');
+    if (i < step) { dot.classList.add('done'); dot.innerHTML = '&#10003;'; item.classList.add('done'); }
+    else if (i === step) { dot.classList.add('active'); dot.textContent = i; item.classList.add('active'); }
+    else { dot.textContent = i; }
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function calculate() {
+  var industry = document.getElementById('industry').value || 'other';
+  var teamSize = parseInt(document.getElementById('teamSize').value);
+  var wage = parseInt(document.getElementById('wage').value);
+  var timeline = parseInt(document.getElementById('timeline').value);
+  var implCost = parseInt(document.getElementById('implCost').value);
+  var horizon = parseInt(document.getElementById('horizon').value);
+  var orgName = document.getElementById('orgName').value.trim();
+
+  var industryData = INDUSTRY_AUTOMATION[industry] || INDUSTRY_AUTOMATION['other'];
+  var baseRate = industryData.rate;
+
+  var processes = [];
+  var cards = document.querySelectorAll('.process-card');
+  cards.forEach(function(card, i) {
+    var nameEl = card.querySelector('[id^="pname"]');
+    var hoursEl = card.querySelector('[id^="phours"]');
+    var autoEl = card.querySelector('[id^="pauto"]');
+    if (!nameEl || !hoursEl || !autoEl) return;
+    var name = nameEl.value || 'Process ' + (i + 1);
+    var hoursPerWeek = parseFloat(hoursEl.value) || 5;
+    var autoRate = parseFloat(autoEl.value) || 0.55;
+    processes.push({ name: name, hoursPerWeek: hoursPerWeek, autoRate: autoRate });
+  });
+
+  var totalWeeklyHours = 0;
+  processes.forEach(function(p) { totalWeeklyHours += p.hoursPerWeek; });
+
+  var annualHoursPerPerson = totalWeeklyHours * 52;
+  var adoptionRamp = (12 - timeline) / 12;
+  var avgAutoRate = 0;
+  processes.forEach(function(p) { avgAutoRate += p.autoRate; });
+  avgAutoRate = avgAutoRate / processes.length;
+
+  var effectiveRate = avgAutoRate * (0.85 + adoptionRamp * 0.15);
+  var hoursSavedPerPerson = annualHoursPerPerson * effectiveRate;
+  var totalHoursSaved = hoursSavedPerPerson * teamSize;
+  var annualSavings = totalHoursSaved * wage;
+
+  var cumulativeSavings = 0;
+  var yearData = [];
+  for (var y = 1; y <= Math.max(horizon, 3); y++) {
+    var rampFactor = y === 1 ? (1 - timeline / 24) : 1;
+    var yearSaving = annualSavings * rampFactor;
+    var yearCost = y === 1 ? implCost : implCost * 0.15;
+    var yearNet = yearSaving - yearCost;
+    cumulativeSavings += yearNet;
+    yearData.push({ year: y, saving: yearSaving, cost: yearCost, net: yearNet, cumulative: cumulativeSavings });
+  }
+
+  var projNetSavings = 0;
+  for (var j = 0; j < horizon; j++) { projNetSavings += yearData[j] ? yearData[j].net : 0; }
+  var totalInvestment = implCost + (horizon - 1) * implCost * 0.15;
+  var roi = totalInvestment > 0 ? Math.round((projNetSavings / totalInvestment) * 100) : 0;
+
+  document.getElementById('res-orgLabel').textContent = orgName ? orgName + ' — AI ROI Report' : industryData.label + ' — AI ROI Report';
+  document.getElementById('res-orgName').textContent = orgName || 'your organization';
+  document.getElementById('res-horizonLabel').textContent = horizon + ' Year' + (horizon > 1 ? 's' : '');
+  document.getElementById('res-netSavings').textContent = formatCurrency(projNetSavings);
+  document.getElementById('res-hoursSaved').textContent = formatNumber(totalHoursSaved);
+  document.getElementById('res-annualSaving').textContent = formatCurrency(annualSavings);
+  document.getElementById('res-roi').textContent = roi + '%';
+
+  var breakdownHtml = '';
+  processes.forEach(function(p) {
+    var saved = p.hoursPerWeek * 52 * teamSize * p.autoRate * wage;
+    var hrsSaved = Math.round(p.hoursPerWeek * 52 * teamSize * p.autoRate);
+    breakdownHtml += '<div class="breakdown-row">' +
+      '<span class="br-name">' + p.name + '</span>' +
+      '<span class="br-hours">' + formatNumber(hrsSaved) + ' hrs/yr</span>' +
+      '<span class="br-saving">' + formatCurrency(saved) + '/yr</span>' +
+    '</div>';
+  });
+  document.getElementById('res-breakdown').innerHTML = breakdownHtml;
+
+  var productivity = Math.round(effectiveRate * 100);
+  var focusTime = Math.min(Math.round(productivity * 0.7), 85);
+  var errorReduction = Math.min(Math.round(productivity * 1.1), 90);
+  var throughput = Math.min(Math.round(productivity * 0.85), 80);
+
+  var gainsHtml =
+    makeGainRow('Productivity gain', productivity, false) +
+    makeGainRow('High-value focus time freed', focusTime, true) +
+    makeGainRow('Error & rework reduction', errorReduction, false) +
+    makeGainRow('Process throughput increase', throughput, true);
+  document.getElementById('res-gains').innerHTML = gainsHtml;
+
+  var maxCum = Math.max.apply(null, yearData.map(function(d) { return d.cumulative; }));
+  var tlHtml = '';
+  var showYears = Math.min(horizon, 5);
+  for (var k = 0; k < showYears; k++) {
+    var d = yearData[k];
+    if (!d) continue;
+    var barH = maxCum > 0 ? Math.round((d.cumulative / maxCum) * 80) : 8;
+    var isPos = d.cumulative >= 0;
+    tlHtml += '<div class="tl-col">' +
+      '<div class="tl-bar-val">' + formatCurrency(d.cumulative) + '</div>' +
+      '<div class="tl-bar ' + (isPos ? 'active-bar' : '') + '" style="height:' + Math.max(barH, 8) + 'px"></div>' +
+      '<div class="tl-bar-label">Year ' + d.year + '</div>' +
+    '</div>';
+  }
+  document.getElementById('res-timeline').innerHTML = tlHtml;
+
+  goTo(4);
+}
+
+function makeGainRow(label, pct, isOrange) {
+  return '<div class="gain-row">' +
+    '<div class="gain-label-row">' +
+      '<span class="gain-name">' + label + '</span>' +
+      '<span class="gain-pct">' + pct + '%</span>' +
+    '</div>' +
+    '<div class="bar-track"><div class="bar-fill' + (isOrange ? ' orange' : '') + '" style="width:' + pct + '%"></div></div>' +
+  '</div>';
+}
+
+function restart() {
+  processCount = 0;
+  document.getElementById('processList').innerHTML = '';
+  document.getElementById('addBtn').style.display = 'block';
+  document.getElementById('orgName').value = '';
+  document.getElementById('industry').value = '';
+  document.getElementById('teamSize').value = 25;
+  document.getElementById('teamSizeVal').textContent = 25;
+  document.getElementById('wage').value = 45;
+  document.getElementById('wageVal').textContent = '$45/hr';
+  goTo(1);
+}
+
+document.getElementById('teamSize').addEventListener('input', function() {
+  document.getElementById('teamSizeVal').textContent = this.value;
+});
+document.getElementById('wage').addEventListener('input', function() {
+  document.getElementById('wageVal').textContent = '$' + this.value + '/hr';
+});
+document.getElementById('industry').addEventListener('change', function() {
+  if (this.value) document.getElementById('f-industry').classList.remove('invalid');
+});
+</script>
+</body>
+</html>

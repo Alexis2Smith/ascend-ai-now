@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Readiness Assessment | Ascend AI NOW</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --royal:#1a4fff;--royal-d:#1440e0;--royal-light:#eef2ff;--royal-glow:rgba(26,79,255,.12);
+  --orange:#ff6a00;--orange-light:#fff0e6;--orange-d:#e85e00;
+  --ink:#0b1340;--text:#1a1a2e;--mid:#4a4a6a;--muted:#7a84a8;
+  --white:#fff;--off:#f8f9ff;--line:rgba(26,79,255,.1);
+  --green:#0d9966;--green-light:#e6f7f2;--green-d:#0a7a52;
+  --amber:#d48c00;--amber-light:#fff8e1;
+  --score-explorer:#e24b4a;--score-learner:#e8920a;--score-ready:#1a4fff;--score-strategist:#0d9966;
+}
+html{scroll-behavior:smooth}
+body{padding-top:62px;font-family:'Nunito Sans',sans-serif;background:var(--off);color:var(--text);line-height:1.6;min-height:100vh}
+
+/* ── HEADER ── */
+.hdr{background:var(--ink);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,79,255,.18) 0%,transparent 55%),radial-gradient(ellipse at 80% 60%,rgba(255,106,0,.1) 0%,transparent 55%);pointer-events:none}
+.hdr-brand{font-family:'Cormorant Garamond',serif;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;position:relative;z-index:1}
+.hdr h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;color:#fff;line-height:1.05;position:relative;z-index:1}
+.hdr h1 em{font-style:italic;font-weight:300;color:var(--orange)}
+.hdr p{font-size:.92rem;color:rgba(255,255,255,.5);max-width:520px;margin:.8rem auto 0;position:relative;z-index:1}
+.hdr-meta{display:flex;justify-content:center;gap:2rem;margin-top:1.4rem;position:relative;z-index:1}
+.hdr-meta span{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:.4rem}
+.hdr-meta span::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--orange)}
+
+/* ── PROGRESS ── */
+.prog-wrap{background:var(--white);border-bottom:1px solid var(--line);padding:1.2rem 2rem;position:sticky;top:0;z-index:100}
+.prog-inner{max-width:680px;margin:0 auto}
+.prog-labels{display:flex;justify-content:space-between;gap:.2rem;margin-bottom:.5rem;overflow:hidden}
+.prog-label{font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:color .3s;white-space:nowrap}
+.prog-label.active{color:var(--royal)}
+.prog-track{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(to right,var(--royal),var(--orange));border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.prog-count{font-size:.7rem;color:var(--muted);margin-top:.5rem;text-align:right}
+
+/* ── BODY ── */
+.body-wrap{max-width:680px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+/* ── PANELS ── */
+.panel{display:none;animation:up .35s ease both}
+.panel.active{display:block}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── INTRO ── */
+.intro-card{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:2.5rem;text-align:center;margin-bottom:1.5rem}
+.intro-icon{width:56px;height:56px;border-radius:50%;background:var(--royal-light);border:1.5px solid rgba(26,79,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:1.5rem}
+.intro-card h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--ink);margin-bottom:.7rem}
+.intro-card p{font-size:.92rem;color:var(--mid);line-height:1.7;max-width:460px;margin:0 auto}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.8rem 0}
+@media(max-width:480px){.pillars{grid-template-columns:1fr}}
+.pillar{background:var(--off);border:1px solid var(--line);border-radius:6px;padding:1rem;text-align:center}
+.pillar-icon{font-size:1.3rem;margin-bottom:.4rem}
+.pillar-label{font-size:.75rem;font-weight:700;color:var(--ink)}
+.pillar-sub{font-size:.68rem;color:var(--muted);margin-top:.15rem}
+
+/* ── QUESTION ── */
+.q-num{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--royal);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.q-num::before{content:'';display:inline-block;width:20px;height:1.5px;background:var(--royal)}
+.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3vw,1.7rem);font-weight:600;color:var(--ink);line-height:1.25;margin-bottom:.5rem}
+.q-sub{font-size:.85rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.6}
+.options{display:flex;flex-direction:column;gap:.75rem}
+.opt{position:relative}
+.opt input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.opt label{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;background:var(--white);border:1.5px solid var(--line);border-radius:6px;cursor:pointer;transition:all .2s;line-height:1.4}
+.opt label:hover{border-color:rgba(26,79,255,.3);background:var(--royal-light)}
+.opt input:checked + label{border-color:var(--royal);background:var(--royal-light)}
+.opt-marker{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);flex-shrink:0;margin-top:.1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:.65rem;font-weight:700;color:transparent}
+.opt input:checked + label .opt-marker{background:var(--royal);border-color:var(--royal);color:#fff}
+.opt-content{}
+.opt-title{font-size:.92rem;font-weight:600;color:var(--ink)}
+.opt-desc{font-size:.78rem;color:var(--muted);margin-top:.15rem}
+
+/* ── NAV ── */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;gap:1rem}
+.btn-back{font-family:'Nunito Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.8rem 1.6rem;background:none;color:var(--muted);border:1.5px solid var(--line);border-radius:3px;cursor:pointer;transition:all .25s}
+.btn-back:hover{border-color:var(--muted);color:var(--ink)}
+.btn-next{font-family:'Nunito Sans',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 2rem;background:var(--royal);color:#fff;border:none;border-radius:3px;cursor:pointer;transition:all .3s}
+.btn-next:hover{background:var(--royal-d);transform:translateY(-1px);box-shadow:0 6px 20px var(--royal-glow)}
+.btn-next:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-submit{background:var(--orange)}
+.btn-submit:hover{background:var(--orange-d);box-shadow:0 6px 20px rgba(255,106,0,.25)}
+
+/* ── RESULTS ── */
+.score-hero{border-radius:8px;padding:2.5rem;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.score-hero.explorer{background:linear-gradient(135deg,#fff5f5,#fff);border:1.5px solid #fcc}
+.score-hero.learner{background:linear-gradient(135deg,#fffbf0,#fff);border:1.5px solid #fde68a}
+.score-hero.ready{background:linear-gradient(135deg,var(--royal-light),#fff);border:1.5px solid rgba(26,79,255,.25)}
+.score-hero.strategist{background:linear-gradient(135deg,var(--green-light),#fff);border:1.5px solid rgba(13,153,102,.25)}
+.score-tier{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
+.score-hero.explorer .score-tier{color:var(--score-explorer)}
+.score-hero.learner .score-tier{color:var(--score-learner)}
+.score-hero.ready .score-tier{color:var(--score-ready)}
+.score-hero.strategist .score-tier{color:var(--score-strategist)}
+.score-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--ink);line-height:1;margin-bottom:.5rem}
+.score-desc{font-size:.9rem;color:var(--mid);max-width:440px;margin:0 auto .8rem;line-height:1.65}
+.score-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem 1rem;border-radius:20px}
+.score-hero.explorer .score-badge{background:#fee2e2;color:#c0392b}
+.score-hero.learner .score-badge{background:#fef3c7;color:#92400e}
+.score-hero.ready .score-badge{background:var(--royal-light);color:var(--royal)}
+.score-hero.strategist .score-badge{background:var(--green-light);color:var(--green-d)}
+
+.score-meter{margin:1.5rem auto 0;max-width:360px}
+.meter-track{height:10px;background:rgba(0,0,0,.06);border-radius:5px;overflow:hidden;margin-bottom:.4rem}
+.meter-fill{height:100%;border-radius:5px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.score-hero.explorer .meter-fill{background:var(--score-explorer)}
+.score-hero.learner .meter-fill{background:var(--score-learner)}
+.score-hero.ready .meter-fill{background:var(--score-ready)}
+.score-hero.strategist .meter-fill{background:var(--score-strategist)}
+.meter-labels{display:flex;justify-content:space-between;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* ── DIMENSION CARDS ── */
+.dims{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:480px){.dims{grid-template-columns:1fr}}
+.dim-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.1rem}
+.dim-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.dim-score-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.dim-name{font-size:.9rem;font-weight:600;color:var(--ink)}
+.dim-pts{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700}
+.dim-bar{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.dim-bar-fill{height:100%;border-radius:3px;transition:width .9s ease}
+
+/* ── NEXT STEPS ── */
+.steps-section{background:var(--white);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:1.5rem}
+.steps-header{background:var(--ink);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:.8rem}
+.steps-header-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.steps-header-text h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:#fff}
+.steps-header-text p{font-size:.75rem;color:rgba(255,255,255,.45)}
+.steps-list{padding:0}
+.step-item{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:1.3rem 1.5rem;border-bottom:1px solid var(--line);align-items:start}
+.step-item:last-child{border-bottom:none}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--royal-light);border:1px solid rgba(26,79,255,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--royal);flex-shrink:0;margin-top:.1rem}
+.step-num.orange{background:var(--orange-light);border-color:rgba(255,106,0,.2);color:var(--orange)}
+.step-num.green{background:var(--green-light);border-color:rgba(13,153,102,.2);color:var(--green-d)}
+.step-priority{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .6rem;border-radius:2px;display:inline-block;margin-bottom:.35rem}
+.pri-immediate{background:#fee2e2;color:#c0392b}
+.pri-short{background:var(--orange-light);color:var(--orange-d)}
+.pri-medium{background:var(--royal-light);color:var(--royal-d)}
+.step-title{font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.step-desc{font-size:.82rem;color:var(--mid);line-height:1.6}
+.step-action{font-size:.75rem;font-weight:600;color:var(--royal);margin-top:.4rem;display:flex;align-items:center;gap:.3rem}
+.step-action::before{content:'→';font-size:.8rem}
+
+/* ── CTA & DOWNLOAD ── */
+.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:480px){.result-actions{grid-template-columns:1fr}}
+.action-card{border-radius:6px;padding:1.5rem;text-align:center}
+.action-card.primary{background:var(--ink)}
+.action-card.secondary{background:var(--white);border:1px solid var(--line)}
+.ac-icon{font-size:1.4rem;margin-bottom:.6rem}
+.ac-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.ac-title.light{color:#fff}
+.ac-desc{font-size:.78rem;color:var(--mid);margin-bottom:1rem;line-height:1.5}
+.ac-desc.light{color:rgba(255,255,255,.45)}
+.btn-dl,.btn-consult{display:block;font-family:'Nunito Sans',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.8rem 1.2rem;border-radius:3px;cursor:pointer;border:none;transition:all .3s;text-decoration:none}
+.btn-dl{background:var(--royal);color:#fff}
+.btn-dl:hover{background:var(--royal-d)}
+.btn-consult{background:var(--orange);color:#fff}
+.btn-consult:hover{background:var(--orange-d)}
+
+.restart-row{text-align:center;margin-top:.5rem}
+.restart-btn{background:none;border:none;font-size:.78rem;color:var(--muted);cursor:pointer;text-decoration:underline;font-family:'Nunito Sans',sans-serif}
+.restart-btn:hover{color:var(--royal)}
+
+/* ── VALIDATION ── */
+.val-msg{display:none;font-size:.75rem;color:#e24b4a;margin-top:1rem;padding:.7rem 1rem;background:#fee2e2;border-radius:4px;border-left:3px solid #e24b4a}
+.val-msg.show{display:block}
+
+  /* ── SHARED SITE NAV ── */
+  .site-nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(11,19,64,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,79,255,.15);font-family:'Nunito Sans',sans-serif}
+  .site-nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 20px rgba(11,19,64,.3)}
+  .sn-brand{display:flex;flex-direction:column;text-decoration:none}
+  .sn-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:1}
+  .sn-wordmark span{color:#ff6a00}
+  .sn-tagline{font-size:.5rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.15rem}
+  .sn-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
+  .sn-links a{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+  .sn-links a:hover,.sn-links a.active{color:#fff}
+  .sn-links .tool-link{color:#ff6a00}
+  .sn-links .tool-link:hover{color:#ffaa33}
+  .sn-cta{font-family:'Nunito Sans',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.6rem 1.4rem;background:#1a4fff;color:#fff;text-decoration:none;border-radius:2px;transition:all .25s;white-space:nowrap}
+  .sn-cta:hover{background:#ff6a00}
+  @media(max-width:768px){.site-nav{padding:.9rem 1.2rem}.sn-links{display:none}}
+  </style>
+</head>
+<body>
+<nav class="site-nav" id="siteNav">
+  <a href="index.html" class="sn-brand">
+    <div class="sn-wordmark">Ascend AI <span>NOW</span></div>
+    <div class="sn-tagline">Network of Women &middot; The Urgency to Act NOW</div>
+  </a>
+  <ul class="sn-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="assessment.html" class="tool-link active">&#9650; Assessment</a></li>
+    <li><a href="roi-calculator.html" class="tool-link">&#9650; ROI Calculator</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:info@AscendAINOW.com" class="sn-cta">Book a Consultation</a>
+</nav>
+<script>
+(function(){var n=document.getElementById('siteNav');window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>40);});})();
+</script>
+<div class="hdr">
+  <a href="index.html" style="font-family:'Cormorant Garamond',serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);text-decoration:none;display:block;margin-bottom:.4rem">&larr; AscendAINOW.com</a>
+  <div class="hdr-brand">Ascend AI NOW &middot; Free Assessment</div>
+  <h1><em>AI Readiness</em> Assessment</h1>
+  <p>8 targeted questions. Personalized score. Actionable roadmap &mdash; downloadable in minutes.</p>
+  <div class="hdr-meta">
+    <span>8 Questions</span>
+    <span>~4 Minutes</span>
+    <span>Free Report</span>
+  </div>
+</div>
+
+<div class="prog-wrap" id="progWrap" style="display:none">
+  <div class="prog-inner">
+    <div class="prog-labels" id="progLabels"></div>
+    <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-count" id="progCount"></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- INTRO -->
+  <div class="panel active" id="panel-intro">
+    <div class="intro-card">
+      <div class="intro-icon">&#9881;</div>
+      <h2>Is your organization ready for AI?</h2>
+      <p>This assessment evaluates your infrastructure, team capabilities, governance readiness, and strategic alignment to give you a precise AI readiness score and a personalized action plan.</p>
+      <div class="pillars">
+        <div class="pillar"><div class="pillar-icon">&#127959;</div><div class="pillar-label">Infrastructure</div><div class="pillar-sub">Data &amp; systems</div></div>
+        <div class="pillar"><div class="pillar-icon">&#128101;</div><div class="pillar-label">People</div><div class="pillar-sub">Skills &amp; culture</div></div>
+        <div class="pillar"><div class="pillar-icon">&#9878;</div><div class="pillar-label">Governance</div><div class="pillar-sub">Policy &amp; risk</div></div>
+        <div class="pillar"><div class="pillar-icon">&#127919;</div><div class="pillar-label">Strategy</div><div class="pillar-sub">Goals &amp; vision</div></div>
+        <div class="pillar"><div class="pillar-icon">&#128200;</div><div class="pillar-label">Readiness</div><div class="pillar-sub">Budget &amp; buy-in</div></div>
+        <div class="pillar"><div class="pillar-icon">&#128196;</div><div class="pillar-label">Report</div><div class="pillar-sub">Downloadable plan</div></div>
+      </div>
+    </div>
+    <div class="nav-row">
+      <span></span>
+      <button class="btn-next" onclick="startAssessment()">Begin Assessment &rarr;</button>
+    </div>
+  </div>
+
+  <!-- QUESTIONS rendered by JS -->
+  <div id="questionsContainer"></div>
+
+  <!-- RESULTS -->
+  <div class="panel" id="panel-results">
+    <div id="res-hero" class="score-hero"></div>
+    <div class="dims" id="res-dims"></div>
+    <div class="steps-section">
+      <div class="steps-header">
+        <div class="steps-header-icon">&#9654;</div>
+        <div class="steps-header-text">
+          <h3>Your Personalized AI Roadmap</h3>
+          <p>Prioritized next steps based on your assessment responses</p>
+        </div>
+      </div>
+      <div class="steps-list" id="res-steps"></div>
+    </div>
+    <div class="result-actions">
+      <div class="action-card secondary">
+        <div class="ac-icon">&#128196;</div>
+        <div class="ac-title">Download Your Report</div>
+        <div class="ac-desc">Opens your full report in a new tab &mdash; use your browser&rsquo;s Print &rarr; Save as PDF to save it.</div>
+        <button class="btn-dl" onclick="downloadReport()">Open &amp; Print Report</button>
+      </div>
+      <div class="action-card primary">
+        <div class="ac-icon">&#128222;</div>
+        <div class="ac-title light">Talk to Dr. Smith</div>
+        <div class="ac-desc light">Get a personalized AI implementation strategy for your organization.</div>
+        <a class="btn-consult" href="mailto:info@AscendAINOW.com">Book a Free Consultation</a>
+      </div>
+    </div>
+    
+<div style="background:#fff;border:1px solid rgba(26,79,255,.12);border-left:3px solid #ff6a00;border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+  <div><div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#ff6a00;margin-bottom:.25rem">Also Try</div>
+  <div style="font-size:.92rem;font-weight:600;color:#0b1340">Calculate your potential AI cost savings</div></div>
+  <a href="roi-calculator.html" style="font-family:'Nunito Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.7rem 1.4rem;background:#ff6a00;color:#fff;text-decoration:none;border-radius:3px;white-space:nowrap">ROI Calculator &rarr;</a>
+</div>
+<div class="restart-row">
+      <button class="restart-btn" onclick="restart()">&#8635; Retake the assessment</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+var QUESTIONS = [
+  {
+    id: 'goal',
+    dimension: 'Strategy',
+    text: 'What is your primary goal for AI implementation?',
+    sub: 'Select the option that best describes your organization\'s driving motivation.',
+    options: [
+      {label: 'Cut costs and operational overhead', desc: 'Reduce manual labor and operational expenses through automation', score: 2},
+      {label: 'Automate repetitive, time-consuming tasks', desc: 'Free staff from manual data entry, reporting, scheduling, and admin work', score: 3},
+      {label: 'Improve decision-making with data insights', desc: 'Use AI to surface trends, risks, and opportunities from your data', score: 4},
+      {label: 'Enhance service delivery and outcomes', desc: 'Use AI to improve patient care, student success, or customer experience', score: 3}
+    ]
+  },
+  {
+    id: 'data',
+    dimension: 'Infrastructure',
+    text: 'How would you describe your current data infrastructure?',
+    sub: 'AI is only as good as the data it learns from. Honest answers here help the most.',
+    options: [
+      {label: 'Mostly paper-based or spreadsheets', desc: 'Limited digital systems; data is fragmented or hard to access', score: 1},
+      {label: 'Digital systems, but siloed and inconsistent', desc: 'Multiple platforms that don\'t talk to each other; data quality varies', score: 2},
+      {label: 'Integrated systems with decent data quality', desc: 'Systems are connected but may have gaps in completeness or consistency', score: 3},
+      {label: 'Clean, well-organized data ready for AI', desc: 'Centralized, high-quality data with strong documentation and access controls', score: 4}
+    ]
+  },
+  {
+    id: 'team',
+    dimension: 'People',
+    text: 'What is your team\'s current technology capability level?',
+    sub: 'Consider the staff who would work alongside or manage AI tools day-to-day.',
+    options: [
+      {label: 'Minimal — we struggle with basic digital tools', desc: 'Most staff are not comfortable with technology beyond basic software', score: 1},
+      {label: 'Basic — we use standard software competently', desc: 'Staff handle everyday tools well but have no analytics or AI experience', score: 2},
+      {label: 'Moderate — some staff use data and reporting tools', desc: 'We have tech-savvy staff who analyze data and manage systems', score: 3},
+      {label: 'Advanced — we have dedicated IT or data professionals', desc: 'We employ or contract data analysts, IT architects, or tech specialists', score: 4}
+    ]
+  },
+  {
+    id: 'governance',
+    dimension: 'Governance',
+    text: 'How mature is your AI governance and data policy framework?',
+    sub: 'Governance determines whether AI deployment is safe, compliant, and accountable.',
+    options: [
+      {label: 'No formal AI or data policies exist', desc: 'We have not yet addressed data privacy, AI ethics, or usage guidelines', score: 1},
+      {label: 'We\'re aware of the need but nothing is formalized', desc: 'Conversations have started but no documented policies are in place', score: 2},
+      {label: 'Data policies exist but not AI-specific governance', desc: 'We have HIPAA, FERPA, or general data policies but no AI framework', score: 3},
+      {label: 'Documented AI governance and compliance processes', desc: 'Formal AI ethics policy, risk frameworks, and accountability structures exist', score: 4}
+    ]
+  },
+  {
+    id: 'leadership',
+    dimension: 'Strategy',
+    text: 'How would you describe executive leadership buy-in for AI?',
+    sub: 'Leadership commitment is the single biggest predictor of successful AI adoption.',
+    options: [
+      {label: 'Leadership is skeptical or largely unaware', desc: 'AI has not made it onto the executive agenda in a meaningful way', score: 1},
+      {label: 'Some interest but no formal commitment', desc: 'Leadership is curious but hasn\'t allocated budget or dedicated resources', score: 2},
+      {label: 'Supportive and has approved exploratory efforts', desc: 'Leadership has greenlighted pilots or discovery work with some funding', score: 3},
+      {label: 'Fully committed with dedicated AI strategy and budget', desc: 'AI is a board-level priority with clear ownership and dedicated resources', score: 4}
+    ]
+  },
+  {
+    id: 'culture',
+    dimension: 'People',
+    text: 'How prepared is your workforce for AI-driven change?',
+    sub: 'The best technology fails without the people change management that supports it.',
+    options: [
+      {label: 'Significant resistance expected; limited change capacity', desc: 'Prior change initiatives have met strong resistance; morale is a concern', score: 1},
+      {label: 'Some resistance; willing to learn with proper support', desc: 'Staff are cautious but will adapt with clear communication and training', score: 2},
+      {label: 'Generally open to change and learning new tools', desc: 'Team is curious about AI and has embraced technology changes before', score: 3},
+      {label: 'Culture of continuous learning; team seeks new capabilities', desc: 'Staff actively pursue professional development; innovation is celebrated', score: 4}
+    ]
+  },
+  {
+    id: 'budget',
+    dimension: 'Readiness',
+    text: 'What describes your organization\'s readiness to invest in AI?',
+    sub: 'This helps calibrate the scale and timeline of your recommended roadmap.',
+    options: [
+      {label: 'No dedicated budget; would need to make the case', desc: 'Any AI investment would require a formal business case and new approval', score: 1},
+      {label: 'Small budget available for tools and limited consulting', desc: 'Some discretionary funding available, roughly under $25,000 for year one', score: 2},
+      {label: 'Moderate budget with leadership approval pathway', desc: 'Meaningful investment possible ($25K&ndash;$100K) with the right business case', score: 3},
+      {label: 'Significant budget allocated and ready to deploy', desc: 'Dedicated AI budget above $100K approved or easily approvable', score: 4}
+    ]
+  },
+  {
+    id: 'barrier',
+    dimension: 'Readiness',
+    text: 'What is your biggest current barrier to AI implementation?',
+    sub: 'Understanding your primary obstacle helps us prioritize your action plan.',
+    options: [
+      {label: 'We don\'t know where to start', desc: 'Lack of a clear framework or roadmap is the main blocker', score: 2},
+      {label: 'Data quality or infrastructure is not ready', desc: 'Our systems and data need work before AI can deliver value', score: 1},
+      {label: 'Concerns about compliance, risk, or ethics', desc: 'Regulatory environment or ethical concerns are slowing adoption', score: 2},
+      {label: 'Lack of internal expertise or trusted partners', desc: 'We need outside expertise to guide implementation and avoid mistakes', score: 3}
+    ]
+  }
+];
+
+var DIMENSIONS = ['Strategy','Infrastructure','People','Governance','Readiness'];
+var answers = {};
+var currentQ = 0;
+
+function startAssessment() {
+  renderQuestions();
+  document.getElementById('progWrap').style.display = 'block';
+  showQuestion(0);
+}
+
+function renderQuestions() {
+  var container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+  QUESTIONS.forEach(function(q, idx) {
+    var div = document.createElement('div');
+    div.className = 'panel';
+    div.id = 'panel-q' + idx;
+    var optsHtml = q.options.map(function(o, oi) {
+      return '<div class="opt">' +
+        '<input type="radio" name="q'+idx+'" id="q'+idx+'_'+oi+'" value="'+oi+'" onchange="selectAnswer('+idx+','+oi+','+o.score+')">' +
+        '<label for="q'+idx+'_'+oi+'">' +
+          '<div class="opt-marker">&#10003;</div>' +
+          '<div class="opt-content">' +
+            '<div class="opt-title">'+o.label+'</div>' +
+            (o.desc ? '<div class="opt-desc">'+o.desc+'</div>' : '') +
+          '</div>' +
+        '</label>' +
+      '</div>';
+    }).join('');
+    var isLast = idx === QUESTIONS.length - 1;
+    div.innerHTML =
+      '<div class="q-num">Question '+(idx+1)+' of '+QUESTIONS.length+' &nbsp;&middot;&nbsp; '+q.dimension+'</div>' +
+      '<h2 class="q-text">'+q.text+'</h2>' +
+      (q.sub ? '<p class="q-sub">'+q.sub+'</p>' : '') +
+      '<div class="options">'+optsHtml+'</div>' +
+      '<div class="val-msg" id="val'+idx+'">Please select an answer before continuing.</div>' +
+      '<div class="nav-row">' +
+        (idx > 0 ? '<button class="btn-back" onclick="prevQuestion('+idx+')">&#8592; Back</button>' : '<span></span>') +
+        '<button class="btn-next '+(isLast?'btn-submit':'')+'" id="btnNext'+idx+'" onclick="nextQuestion('+idx+')" disabled>' +
+          (isLast ? 'See My Results &#9654;' : 'Next Question &#8594;') +
+        '</button>' +
+      '</div>';
+    container.appendChild(div);
+  });
+  updateDimLabels();
+}
+
+function updateDimLabels() {
+  var shortLabels = {Strategy:'Strategy', Infrastructure:'Infra', People:'People', Governance:'Governance', Readiness:'Readiness'};
+  var dims = QUESTIONS.map(function(q, i) {
+    return i < 4 ? (shortLabels[q.dimension] || q.dimension) : null;
+  }).filter(Boolean).concat(['Results']);
+  var container = document.getElementById('progLabels');
+  container.innerHTML = dims.map(function(d,i) {
+    return '<span class="prog-label" id="pl'+i+'">'+d+'</span>';
+  }).join('');
+}
+
+function showQuestion(idx) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  var panel = document.getElementById('panel-q'+idx);
+  if (panel) panel.classList.add('active');
+  currentQ = idx;
+  updateProgress(idx);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProgress(idx) {
+  var pct = Math.round(((idx) / QUESTIONS.length) * 100);
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progCount').textContent = 'Question ' + (idx+1) + ' of ' + QUESTIONS.length;
+  document.querySelectorAll('.prog-label').forEach(function(l,i){
+    l.classList.remove('active');
+    if (i === Math.min(Math.floor(idx/2), 4)) l.classList.add('active');
+  });
+}
+
+function selectAnswer(qIdx, optIdx, score) {
+  answers[qIdx] = {optIdx: optIdx, score: score, question: QUESTIONS[qIdx]};
+  var btn = document.getElementById('btnNext'+qIdx);
+  if (btn) btn.disabled = false;
+  document.getElementById('val'+qIdx).classList.remove('show');
+}
+
+function nextQuestion(idx) {
+  if (!answers[idx] && answers[idx] === undefined) {
+    document.getElementById('val'+idx).classList.add('show');
+    return;
+  }
+  if (idx >= QUESTIONS.length - 1) {
+    showResults();
+  } else {
+    showQuestion(idx + 1);
+  }
+}
+
+function prevQuestion(idx) {
+  showQuestion(idx - 1);
+}
+
+function showResults() {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('panel-results').classList.add('active');
+  document.getElementById('progFill').style.width = '100%';
+  document.getElementById('progCount').textContent = 'Assessment Complete';
+  renderResults();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function renderResults() {
+  var totalScore = 0;
+  var maxScore = QUESTIONS.length * 4;
+  Object.values(answers).forEach(function(a){ totalScore += a.score; });
+  var pct = Math.round((totalScore / maxScore) * 100);
+
+  var tier, tierClass, tierDesc;
+  if (pct <= 37) {
+    tier = 'AI Explorer'; tierClass = 'explorer';
+    tierDesc = 'Your organization is at the beginning of the AI journey. The foundation needs strengthening before AI can deliver sustainable value. The good news: starting with governance and data infrastructure now puts you ahead of most.';
+  } else if (pct <= 56) {
+    tier = 'AI Learner'; tierClass = 'learner';
+    tierDesc = 'You have meaningful foundations in place but gaps in key areas are slowing progress. With targeted investments in data quality, governance, or workforce readiness, you could be deploying AI solutions within 6&ndash;12 months.';
+  } else if (pct <= 78) {
+    tier = 'AI Ready'; tierClass = 'ready';
+    tierDesc = 'Your organization has solid infrastructure and cultural readiness for AI. You are well-positioned to move from exploration to implementation. The priority now is selecting the right solutions and ensuring governance keeps pace.';
+  } else {
+    tier = 'AI Strategist'; tierClass = 'strategist';
+    tierDesc = 'You are operating at a high level of AI readiness. The focus should shift from preparation to optimization &mdash; scaling solutions, measuring ROI, and building competitive advantage through advanced AI capabilities.';
+  }
+
+  var heroEl = document.getElementById('res-hero');
+  heroEl.className = 'score-hero ' + tierClass;
+  heroEl.innerHTML =
+    '<div class="score-tier">Your AI Readiness Tier</div>' +
+    '<div class="score-name">'+tier+'</div>' +
+    '<div class="score-desc">'+tierDesc+'</div>' +
+    '<div class="score-badge">Score: '+totalScore+' / '+maxScore+' &nbsp;&middot;&nbsp; '+pct+'%</div>' +
+    '<div class="score-meter">' +
+      '<div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>' +
+      '<div class="meter-labels"><span>Explorer</span><span>Learner</span><span>Ready</span><span>Strategist</span></div>' +
+    '</div>';
+  setTimeout(function(){ var m = document.getElementById('meterFill'); if(m) m.style.width = pct+'%'; }, 100);
+
+  var dimScores = {};
+  DIMENSIONS.forEach(function(d){ dimScores[d] = {score:0, max:0}; });
+  QUESTIONS.forEach(function(q, idx){
+    if (answers[idx]) {
+      dimScores[q.dimension].score += answers[idx].score;
+      dimScores[q.dimension].max += 4;
+    }
+  });
+
+  var dimColors = {Strategy:'#1a4fff',Infrastructure:'#ff6a00',People:'#0d9966',Governance:'#d48c00',Readiness:'#7c3aed'};
+  var dimsEl = document.getElementById('res-dims');
+  dimsEl.innerHTML = DIMENSIONS.map(function(d){
+    var ds = dimScores[d];
+    if (!ds || ds.max === 0) return '';
+    var p = Math.round((ds.score/ds.max)*100);
+    var color = dimColors[d]||'#1a4fff';
+    return '<div class="dim-card">' +
+      '<div class="dim-label">'+d+'</div>' +
+      '<div class="dim-score-row">' +
+        '<span class="dim-name">'+getDimLabel(d,p)+'</span>' +
+        '<span class="dim-pts" style="color:'+color+'">'+p+'%</span>' +
+      '</div>' +
+      '<div class="dim-bar"><div class="dim-bar-fill" style="width:0%;background:'+color+'" data-pct="'+p+'"></div></div>' +
+    '</div>';
+  }).join('');
+  setTimeout(function(){
+    document.querySelectorAll('.dim-bar-fill').forEach(function(el){
+      el.style.width = el.dataset.pct + '%';
+    });
+  }, 200);
+
+  var steps = generateSteps(tierClass, dimScores, answers);
+  var stepsEl = document.getElementById('res-steps');
+  stepsEl.innerHTML = steps.map(function(s, i){
+    var numClass = i === 0 ? 'orange' : (i < 2 ? '' : 'green');
+    var priClass = i === 0 ? 'pri-immediate' : (i < 2 ? 'pri-short' : 'pri-medium');
+    var priLabel = i === 0 ? 'Immediate Priority' : (i < 2 ? 'Short-term (1&ndash;3 mo)' : 'Medium-term (3&ndash;6 mo)');
+    return '<div class="step-item">' +
+      '<div class="step-num '+numClass+'">'+(i+1)+'</div>' +
+      '<div>' +
+        '<span class="step-priority '+priClass+'">'+priLabel+'</span>' +
+        '<div class="step-title">'+s.title+'</div>' +
+        '<div class="step-desc">'+s.desc+'</div>' +
+        '<div class="step-action">'+s.action+'</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function getDimLabel(dim, pct) {
+  var labels = {
+    Strategy: pct<50?'Needs Direction':pct<75?'Emerging':'Clear Vision',
+    Infrastructure: pct<50?'Foundational Work Needed':pct<75?'Building Up':'Well-Structured',
+    People: pct<50?'Capacity Gaps':pct<75?'Developing':'High Capability',
+    Governance: pct<50?'Policy Gaps':pct<75?'Partial Framework':'Mature Framework',
+    Readiness: pct<50?'Early Stage':pct<75?'Positioned':'Fully Ready'
+  };
+  return labels[dim] || '';
+}
+
+function generateSteps(tier, dimScores, answers) {
+  var steps = [];
+  var weakest = Object.entries(dimScores).filter(function(e){ return e[1].max > 0; })
+    .sort(function(a,b){ return (a[1].score/a[1].max) - (b[1].score/b[1].max) })[0];
+  var barrierAns = answers[7];
+  var goalAns = answers[0];
+
+  if (tier === 'explorer') {
+    steps.push({
+      title: 'Commission an AI Readiness Discovery Workshop',
+      desc: 'Before investing in tools, your organization needs a structured assessment of data systems, team capabilities, and governance gaps. A facilitated discovery session with an experienced AI advisor will create a clear baseline and prevent costly missteps.',
+      action: 'Book a complimentary strategy call with Dr. Alexis S. Smith to map your baseline'
+    });
+    steps.push({
+      title: 'Establish Foundational Data Governance',
+      desc: 'Identify your 3&ndash;5 most critical data assets. Document their sources, owners, and quality standards. Even basic data cataloging at this stage dramatically accelerates future AI readiness. Start with the data that drives your most important decisions.',
+      action: 'Assign a data steward and create a simple data inventory spreadsheet within 30 days'
+    });
+    steps.push({
+      title: 'Launch AI Literacy Program for Leadership and Staff',
+      desc: 'Fear of the unknown is the #1 barrier to AI adoption. A structured AI literacy curriculum &mdash; even a series of 4&ndash;6 workshops &mdash; builds the shared language and confidence needed for successful implementation.',
+      action: 'Schedule AI literacy sessions with the Ascend AI NOW Workforce Enablement framework'
+    });
+    steps.push({
+      title: 'Identify and Document One High-Value Automation Opportunity',
+      desc: 'Pick a single repetitive process that consumes significant staff time. Document it fully: inputs, steps, outputs, who does it, how long it takes. This becomes your first AI pilot candidate and helps build the internal business case.',
+      action: 'Use the Ascend AI NOW Process Mapping template to document your first AI use case'
+    });
+  } else if (tier === 'learner') {
+    steps.push({
+      title: 'Close Your Weakest Readiness Gap First: ' + (weakest ? weakest[0] : 'Governance'),
+      desc: 'Your assessment reveals ' + (weakest ? weakest[0].toLowerCase() : 'governance') + ' as your most significant gap. Addressing this dimension specifically &mdash; before scaling other efforts &mdash; will unlock the most value. Targeted investment here prevents larger problems during implementation.',
+      action: 'Schedule a focused advisory session on your ' + (weakest ? weakest[0].toLowerCase() : 'governance') + ' gaps with Ascend AI NOW'
+    });
+    steps.push({
+      title: 'Design and Run a 90-Day AI Pilot Program',
+      desc: 'You have enough foundation to begin a structured pilot. Choose one process with clear before/after metrics &mdash; ideally involving 5&ndash;15 staff members. A well-scoped pilot builds confidence, demonstrates ROI, and surfaces implementation challenges safely.',
+      action: 'Work with Ascend AI NOW to scope, staff, and measure your first AI pilot'
+    });
+    steps.push({
+      title: 'Draft Your AI Governance Policy Framework',
+      desc: 'Even at pilot stage, governance protects you. Create a one-page AI Use Policy covering: what AI tools are approved, data handling requirements, human oversight requirements, and a process for flagging concerns. This is non-negotiable in healthcare and education.',
+      action: 'Request the Ascend AI NOW Digital Stewardship Framework&trade; template to accelerate policy drafting'
+    });
+    steps.push({
+      title: 'Secure Formal Leadership Commitment and Budget Allocation',
+      desc: 'A board or executive presentation that translates your AI pilot results into 3-year ROI projections is the gateway to meaningful resources. Use your pilot data, industry benchmarks, and the Ascend AI NOW ROI Calculator to build an irresistible business case.',
+      action: 'Book a leadership briefing session to present AI strategy to your executive team'
+    });
+  } else if (tier === 'ready') {
+    steps.push({
+      title: 'Select and Implement Your Core AI Solution Stack',
+      desc: 'You are ready to move from pilots to production. Prioritize 2&ndash;3 AI solutions that address your highest-volume processes. Evaluate vendors against your governance requirements first, then technical fit. Avoid platform sprawl &mdash; depth in fewer tools outperforms breadth across many.',
+      action: 'Engage Ascend AI NOW for a vendor evaluation and selection workshop tailored to your sector'
+    });
+    steps.push({
+      title: 'Build Your Internal AI Center of Excellence',
+      desc: 'At this readiness level, you need an internal owner for AI strategy. This doesn&rsquo;t require a new hire &mdash; a cross-functional team of 3&ndash;5 champions from IT, operations, and leadership can serve this function. Define their charter, meet monthly, and report to the executive team quarterly.',
+      action: 'Define your AI CoE charter and identify internal champions with support from Ascend AI NOW'
+    });
+    steps.push({
+      title: 'Implement Continuous AI Performance Measurement',
+      desc: 'Establish KPIs for every AI deployment before go-live: time saved, error rates, user adoption, cost per transaction. Review monthly. AI tools that aren&rsquo;t measured tend to drift from their original purpose and underdeliver on promises made during procurement.',
+      action: 'Adopt the Ascend AI NOW AI Performance Dashboard framework for ongoing monitoring'
+    });
+    steps.push({
+      title: 'Plan Your Next-Generation Capability: Predictive Analytics',
+      desc: 'With strong data infrastructure and early AI wins, your next frontier is predictive intelligence &mdash; anticipating needs before they arise. In healthcare: patient risk stratification. In education: at-risk student identification. In services: churn prediction and capacity planning.',
+      action: 'Schedule a strategic planning session to map your 12&ndash;18 month AI roadmap'
+    });
+  } else {
+    steps.push({
+      title: 'Scale Proven AI Deployments Across the Enterprise',
+      desc: 'You are no longer in pilot mode. Identify your top 2&ndash;3 AI implementations that have demonstrated clear ROI and expand them to additional departments, sites, or use cases. Documented playbooks from early deployments dramatically reduce scale-up time and cost.',
+      action: 'Conduct an AI scaling readiness review with Ascend AI NOW to prioritize expansion targets'
+    });
+    steps.push({
+      title: 'Elevate AI Governance to Board-Level Strategic Oversight',
+      desc: 'At your maturity level, AI governance must evolve from a policy document to an active oversight function. Quarterly board-level AI risk reviews, an external AI ethics advisory panel, and public-facing AI use disclosures are emerging best practices in your peer organizations.',
+      action: 'Engage Dr. Alexis S. Smith as Fractional CAIO to lead enterprise AI governance elevation'
+    });
+    steps.push({
+      title: 'Invest in Proprietary AI Models and Competitive Moats',
+      desc: 'Organizations at your stage can begin building proprietary advantage: custom fine-tuned models on your own data, proprietary workflows that competitors can&rsquo;t replicate, and AI-enhanced services that command premium pricing or mission outcomes. This is where AI becomes a true differentiator.',
+      action: 'Commission a custom AI opportunity assessment to identify your highest-value proprietary AI plays'
+    });
+    steps.push({
+      title: 'Publish Your AI Ethics and Transparency Report',
+      desc: 'Industry leaders are increasingly expected to publicly demonstrate responsible AI practices. An annual AI Transparency Report signals to stakeholders, funders, and the public that your AI use is ethical, governed, and human-centered. This positions Ascend AI NOW clients as sector leaders.',
+      action: 'Partner with Ascend AI NOW to develop and publish your inaugural AI Transparency Report'
+    });
+  }
+  return steps;
+}
+
+function downloadReport() {
+  var totalScore = 0;
+  var maxScore = QUESTIONS.length * 4;
+  Object.values(answers).forEach(function(a){ totalScore += a.score; });
+  var pct = Math.round((totalScore / maxScore) * 100);
+  var tier = pct<=37?'AI Explorer':pct<=56?'AI Learner':pct<=78?'AI Ready':'AI Strategist';
+  var today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  var answerRows = QUESTIONS.map(function(q, idx){
+    var a = answers[idx];
+    if (!a) return '';
+    return '<tr><td style="padding:8px 12px;border-bottom:1px solid #eef2ff;font-size:13px;color:#4a4a6a;vertical-align:top;width:40%">'+q.text+'</td>' +
+      '<td style="padding:8px 12px;border-bottom:1px solid #eef2ff;font-size:13px;color:#0b1340;font-weight:600;vertical-align:top">'+q.options[a.optIdx].label+'</td>' +
+      '<td style="padding:8px 12px;border-bottom:1px solid #eef2ff;font-size:13px;color:#1a4fff;font-weight:700;text-align:center;vertical-align:top">'+a.score+'/4</td></tr>';
+  }).join('');
+
+  var stepsEl = document.getElementById('res-steps');
+  var stepsItems = stepsEl ? stepsEl.querySelectorAll('.step-item') : [];
+  var stepsHtml = Array.from(stepsItems).map(function(s, i){
+    var title = s.querySelector('.step-title') ? s.querySelector('.step-title').textContent : '';
+    var desc = s.querySelector('.step-desc') ? s.querySelector('.step-desc').textContent : '';
+    var action = s.querySelector('.step-action') ? s.querySelector('.step-action').textContent : '';
+    var colors = ['#ff6a00','#1a4fff','#1a4fff','#0d9966'];
+    return '<div style="display:flex;gap:12px;margin-bottom:20px;align-items:flex-start">' +
+      '<div style="width:30px;height:30px;border-radius:50%;background:'+colors[i]+';color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;margin-top:2px">'+(i+1)+'</div>' +
+      '<div><div style="font-size:14px;font-weight:700;color:#0b1340;margin-bottom:4px">'+title+'</div>' +
+      '<div style="font-size:12px;color:#4a4a6a;line-height:1.6;margin-bottom:4px">'+desc+'</div>' +
+      '<div style="font-size:11px;color:#1a4fff;font-weight:600">&rarr; '+action+'</div></div></div>';
+  }).join('');
+
+  var reportHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AI Readiness Report &mdash; Ascend AI NOW</title>' +
+    '<style>@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Nunito+Sans:wght@400;600;700&display=swap");' +
+    'body{padding-top:62px;font-family:"Nunito Sans",sans-serif;background:#fff;color:#1a1a2e;margin:0;padding:0}' +
+    '@media print{body{padding-top:62px;-webkit-print-color-adjust:exact;print-color-adjust:exact}}</style>' +
+    '</head><body>' +
+    '<div style="background:#0b1340;padding:40px;text-align:center">' +
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#ff6a00;margin-bottom:8px">ASCEND AI NOW</div>' +
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:32px;font-weight:600;color:#fff">AI Readiness Assessment Report</div>' +
+      '<div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:6px">Generated on '+today+'</div>' +
+    '</div>' +
+    '<div style="background:'+( pct>78?'#e6f7f2':pct>56?'#eef2ff':pct>37?'#fffbf0':'#fff5f5' )+';padding:32px;text-align:center;border-bottom:3px solid '+(pct>78?'#0d9966':pct>56?'#1a4fff':pct>37?'#d48c00':'#e24b4a')+'">' +
+      '<div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:'+(pct>78?'#0a7a52':pct>56?'#1440e0':pct>37?'#92400e':'#c0392b')+';margin-bottom:6px">YOUR READINESS TIER</div>' +
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:42px;font-weight:700;color:#0b1340">'+tier+'</div>' +
+      '<div style="font-size:22px;font-weight:700;color:'+(pct>78?'#0d9966':pct>56?'#1a4fff':pct>37?'#d48c00':'#e24b4a')+';margin:8px 0">Score: '+totalScore+' / '+maxScore+' ('+pct+'%)</div>' +
+    '</div>' +
+    '<div style="padding:32px;max-width:680px;margin:0 auto">' +
+      '<h2 style="font-family:\'Cormorant Garamond\',serif;font-size:20px;font-weight:600;color:#0b1340;margin:0 0 16px">Your Responses</h2>' +
+      '<table style="width:100%;border-collapse:collapse;margin-bottom:32px;border:1px solid #eef2ff"><thead>' +
+      '<tr><th style="padding:10px 12px;background:#eef2ff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7a84a8;text-align:left">Question</th>' +
+      '<th style="padding:10px 12px;background:#eef2ff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7a84a8;text-align:left">Your Answer</th>' +
+      '<th style="padding:10px 12px;background:#eef2ff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7a84a8;text-align:center">Score</th></tr></thead>' +
+      '<tbody>'+answerRows+'</tbody></table>' +
+      '<h2 style="font-family:\'Cormorant Garamond\',serif;font-size:20px;font-weight:600;color:#0b1340;margin:0 0 16px">Your Personalized AI Roadmap</h2>' +
+      stepsHtml +
+      '<div style="background:#0b1340;border-radius:8px;padding:24px;text-align:center;margin-top:32px">' +
+        '<div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:6px">Ready to turn this roadmap into reality?</div>' +
+        '<div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:12px">Dr. Alexis S. Smith, D.Min. &mdash; Founder & CEO, Ascend AI NOW</div>' +
+        '<div style="font-size:13px;color:#ff6a00;font-weight:600">info@AscendAINOW.com &nbsp;&middot;&nbsp; (910) 227-9073 &nbsp;&middot;&nbsp; www.AscendAINOW.com</div>' +
+      '</div>' +
+      '<div style="font-size:11px;color:#aaa;margin-top:24px;line-height:1.6;border-top:1px solid #eee;padding-top:16px">This report is generated based on self-reported assessment responses. Results are indicative and should be validated through a formal advisory engagement. &copy; 2025 Ascend AI NOW LLC. All rights reserved.</div>' +
+    '</div></body></html>';
+
+  try {
+    var blob = new Blob([reportHtml], {type: 'text/html;charset=utf-8'});
+    var blobUrl = URL.createObjectURL(blob);
+    var dlLink = document.createElement('a');
+    dlLink.href = blobUrl;
+    dlLink.download = 'Ascend-AI-NOW-Readiness-Report.html';
+    dlLink.style.display = 'none';
+    document.body.appendChild(dlLink);
+    dlLink.click();
+    document.body.removeChild(dlLink);
+    setTimeout(function(){ URL.revokeObjectURL(blobUrl); }, 2000);
+  } catch(e) {
+    alert('Download ready! Right-click the button and choose Save As, or copy the report text below.\n\nError details: ' + e.message);
+    console.error('Download error:', e);
+  }
+}
+
+function restart() {
+  answers = {};
+  currentQ = 0;
+  document.getElementById('progWrap').style.display = 'none';
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('acti
