@@ -150,6 +150,8 @@ label.q{display:block;font:600 15px "Source Sans 3";color:#fff;margin-bottom:10p
 .tier .who{font-size:14px;color:var(--muted);margin-bottom:12px}
 .tier ul{padding-left:20px;margin:0 0 18px;flex:1}
 .tier li{margin-bottom:6px}
+.tier .paynote{font-size:14px;line-height:1.6;margin:12px 0 0;text-align:center}
+.secure-note{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
 .fit{background:var(--orange-soft);color:#8A4207;font-weight:600;border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:15px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 .note{font-size:13.5px;color:var(--muted);margin-top:14px}
@@ -556,13 +558,15 @@ var LEVELS = [
   {max:5.01, name:"Leading", head:"You are leading on responsible AI.", desc:"Governance is proactive and continuous. Focus on scaling what works and sharing your model with peers."}
 ];
 var TIERS = [
-  {key:"snapshot", name:"Readiness Snapshot", price:"$2,500", who:"For organizations at the Unaware or Aware level",
+  {key:"snapshot", name:"Readiness Snapshot", price:"$2,500", pay:"https://buy.stripe.com/cNi8wPgSRayp4fT7S5c7u03", who:"For organizations at the Unaware or Aware level",
    items:["Full 50-control AI Power Gap™ Readiness Index","Evidence review of your current state","Executive briefing with your top 5 risks"]},
-  {key:"roadmap", name:"Assessment and Roadmap", price:"$5,000", who:"For organizations at the Developing level",
+  {key:"roadmap", name:"Assessment and Roadmap", price:"$5,000", pay:"https://buy.stripe.com/3cI00j7ihfSJ8w90pDc7u04", who:"For organizations at the Developing level",
    items:["Everything in the Readiness Snapshot","Stakeholder interviews across your {org}","A sequenced 90-day governance roadmap"]},
-  {key:"executive", name:"Executive Engagement", price:"$7,500", who:"For Established and Leading organizations",
+  {key:"executive", name:"Executive Engagement", price:"$7,500", pay:"", who:"For Established and Leading organizations",
    items:["Everything in Assessment and Roadmap","Board-ready report and presentation to {gov}","Fractional Chief Artificial Intelligence Officer support"]}
 ];
+var PAY_INVOICE = "https://buy.stripe.com/9B614n6ed9ul9Ad8W9c7u05";
+function quoteLink(tr){ return "mailto:assessments@ascendainow.com?subject=" + encodeURIComponent("Quote or invoice request: " + tr.name + " (" + tr.price + ")" + (LEAD && LEAD.org ? ", " + LEAD.org : "")); }
 var COMPARE = [
   ["Indicators or controls assessed", "15, self-reported", "50, evidence-reviewed", "50, evidence-reviewed", "50, evidence-reviewed"],
   ["Facilitated by Dr. Alexis S. Smith", 0, 1, 1, 1],
@@ -741,9 +745,15 @@ function renderTiers(name){
     t += '<div class="tier'+(f?" featured":"")+'">'+(f?'<span class="badge" style="align-self:flex-start">Recommended for you</span>':'') +
          '<h3 style="margin-top:8px">'+esc(tr.name)+'</h3><div class="price">'+tr.price+'</div><div class="who">'+esc(tr.who)+'</div>' +
          '<ul>'+tr.items.map(function(x){ return '<li>'+esc(fill(x))+'</li>'; }).join("")+'</ul>' +
-         '<a class="btn '+(f?"btn-primary":"btn-ghost")+'" style="justify-content:center" href="'+CALENDLY+'" target="_blank" rel="noopener">Discuss This Engagement</a></div>';
+         (tr.pay
+           ? '<a class="btn '+(f?"btn-primary":"btn-blue")+'" style="justify-content:center" href="'+tr.pay+'" target="_blank" rel="noopener">Pay by Card: '+tr.price+'</a>' +
+             '<a class="btn btn-ghost" style="justify-content:center;margin-top:10px" href="'+CALENDLY+'" target="_blank" rel="noopener">Discuss This Engagement</a>'
+           : '<a class="btn '+(f?"btn-primary":"btn-blue")+'" style="justify-content:center" href="'+CALENDLY+'" target="_blank" rel="noopener">Discuss This Engagement</a>') +
+         '<p class="paynote"><a href="'+quoteLink(tr)+'">Need a quote, invoice, or purchase order?</a><br><a href="'+PAY_INVOICE+'" target="_blank" rel="noopener">Already invoiced? Pay your invoice</a></p></div>';
   });
-  $("tiers").innerHTML = t;
+  $("tiers").innerHTML = t + "";
+  var sn = document.getElementById("secureNote"); if (!sn){ sn = document.createElement("p"); sn.id = "secureNote"; sn.className = "secure-note"; $("tiers").insertAdjacentElement("afterend", sn); }
+  sn.textContent = "Card payments are processed securely by Stripe; Ascend AI NOW, LLC never sees your card number. Districts may also pay by invoice or purchase order.";
   $("fitLine").textContent = (name ? name + ", based" : "Based") + " on your " + R.level.name + " readiness level and your " + STAGES[R.constraint].name + " constraint, the " + tierObj().name + " is the strongest next step.";
 }
 
@@ -904,10 +914,14 @@ function buildPdf(){
   /* Recommended engagement with what it adds */
   text("Recommended next step: " + tier.name + "  |  " + tier.price, M, y, {size:13, bold:true, color:NAVY}); y += 8;
   var tl = tier.items.map(function(x){ return fill(x); });
-  var th = 30 + tl.length * 14;
+  var th = 46 + tl.length * 14;
   doc.setDrawColor.apply(doc, BLUE); doc.setLineWidth(1.5); doc.roundedRect(M, y, W - 2*M, th, 8, 8, "S"); doc.setLineWidth(0.75);
-  text(tier.who + ". Delivers a polished, board-ready report built on 50 evidence-reviewed controls.", M + 14, y + 17, {size:9, color:MUTED});
+  text(tier.who + ". Board-ready report built on 50 evidence-reviewed controls.", M + 14, y + 17, {size:9, color:MUTED});
   tl.forEach(function(x, i){ doc.setFillColor.apply(doc, BLUE); doc.circle(M + 22, y + 30 + i*14, 1.8, "F"); text(x, M + 30, y + 33 + i*14, {size:9.5}); });
+  doc.setTextColor.apply(doc, ORANGE); doc.setFont("helvetica","bold"); doc.setFontSize(9.5);
+  var py = y + 36 + tl.length * 14;
+  if (tier.pay) { doc.textWithLink("Pay by card (secure Stripe checkout)", M + 14, py, {url: tier.pay}); doc.setTextColor.apply(doc, BLUE); doc.textWithLink("Request a quote or invoice", M + 230, py, {url: quoteLink(tier)}); }
+  else { doc.textWithLink("Book a call to scope this engagement", M + 14, py, {url: CALENDLY}); doc.setTextColor.apply(doc, BLUE); doc.textWithLink("Request a quote or invoice", M + 230, py, {url: quoteLink(tier)}); }
   y += th + 14;
 
   /* Signature */
