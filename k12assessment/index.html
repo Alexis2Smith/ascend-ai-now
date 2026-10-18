@@ -560,10 +560,10 @@ var LEVELS = [
 var TIERS = [
   {key:"snapshot", name:"Readiness Snapshot", price:"$2,500", pay:"https://buy.stripe.com/cNi8wPgSRayp4fT7S5c7u03", who:"For organizations at the Unaware or Aware level",
    items:["Full 50-control AI Power Gap™ Readiness Index","Evidence review of your current state","Executive briefing with your top 5 risks"]},
-  {key:"roadmap", name:"Assessment and Roadmap", price:"$5,000", pay:"https://buy.stripe.com/3cI00j7ihfSJ8w90pDc7u04", who:"For organizations at the Developing level",
+  {key:"roadmap", name:"AI Power Gap™ Readiness Assessment", price:"$5,000", pay:"https://buy.stripe.com/3cI00j7ihfSJ8w90pDc7u04", who:"For organizations at the Developing level",
    items:["Everything in the Readiness Snapshot","Stakeholder interviews across your {org}","A sequenced 90-day governance roadmap"]},
   {key:"executive", name:"Executive Engagement", price:"$7,500", pay:"", who:"For Established and Leading organizations",
-   items:["Everything in Assessment and Roadmap","Board-ready report and presentation to {gov}","Fractional Chief Artificial Intelligence Officer support"]}
+   items:["Everything in AI Power Gap™ Readiness Assessment","Board-ready report and presentation to {gov}","Fractional Chief Artificial Intelligence Officer support"]}
 ];
 var PAY_INVOICE = "https://buy.stripe.com/9B614n6ed9ul9Ad8W9c7u05";
 function quoteLink(tr){ return "mailto:assessments@ascendainow.com?subject=" + encodeURIComponent("Quote or invoice request: " + tr.name + " (" + tr.price + ")" + (LEAD && LEAD.org ? ", " + LEAD.org : "")); }
@@ -724,7 +724,7 @@ function showResults(){
 
 function renderCompare(){
   var recIdx = {snapshot:2, roadmap:3, executive:4}[R.tier];
-  var hd = ["What you receive","Free Diagnostic","Readiness Snapshot","Assessment and Roadmap","Executive Engagement"];
+  var hd = ["What you receive","Free Diagnostic","Readiness Snapshot","AI Power Gap™ Readiness Assessment","Executive Engagement"];
   var pr = ["","$0","$2,500","$5,000","$7,500"];
   var h = '<thead><tr>' + hd.map(function(x,i){ return '<th scope="col" class="'+(i===recIdx?"rec":"")+'">'+esc(x)+(i?'<small>'+pr[i]+'</small>':'')+'</th>'; }).join("") + '</tr></thead><tbody>';
   COMPARE.forEach(function(row){
