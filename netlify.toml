@@ -14,3 +14,9 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# Toolkit files: keep the PDFs out of search results so visitors come through the /toolkit form
+[[headers]]
+  for = "/toolkit/files/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
