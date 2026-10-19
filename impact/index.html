@@ -76,10 +76,25 @@
     .academy-pathway+.academy-pathway{border-left:1px solid rgba(191,215,255,.2)}
     .academy-pathway p{margin:0 0 15px;color:#d3dbee}
     .academy-pathway .pathway-label{margin:0 0 8px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .academic-foundation{position:relative;isolation:isolate;overflow:hidden;padding:74px clamp(24px,9vw,136px);background:radial-gradient(ellipse at 85% 20%,rgba(40,108,255,.22),transparent 38%),linear-gradient(125deg,#050918,#0b1b3b 68%,#071026);color:#fff}
+    .academic-foundation::after{position:absolute;z-index:-1;top:-42%;right:-7%;width:min(54vw,650px);aspect-ratio:1;border:1px solid rgba(131,202,255,.2);border-radius:50%;box-shadow:0 0 0 32px rgba(131,202,255,.03),0 0 0 76px rgba(131,202,255,.02);content:"";pointer-events:none}
+    .academic-foundation-inner{position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,7vw,96px);align-items:center;max-width:1280px;margin:0 auto}
+    .academic-foundation .section-label{color:#ffad69}
+    .academic-foundation h2{max-width:560px;color:#fff;font-size:clamp(40px,5.3vw,66px)}
+    .academic-foundation-copy>p:not(.section-label){max-width:580px;margin:20px 0;color:#d7e2f5;font-size:17px}
+    .academic-credential{display:grid;gap:4px;margin:26px 0;padding:16px 18px;border-left:3px solid var(--orange);background:rgba(255,255,255,.06)}
+    .academic-credential strong{color:#fff;font-size:14px}
+    .academic-credential span{color:#b9c9e2;font-size:13px}
+    .academic-principles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .academic-principle{min-height:132px;padding:19px;border:1px solid rgba(131,202,255,.22);background:rgba(7,20,47,.78)}
+    .academic-principle h3{margin:0 0 8px;color:#8bdfff;font-size:24px}
+    .academic-principle p{margin:0;color:#d7e2f5;font-size:13px;line-height:1.55}
     .notice{line-height:1.6}
     :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
     @media(max-width:1020px){.site-nav{flex-wrap:wrap;gap:8px 12px;padding-right:clamp(16px,5vw,32px);padding-left:clamp(16px,5vw,32px)}.brand{margin-right:auto}.brand img{width:72px;height:72px}.nav-menu-toggle{display:inline-flex;align-items:center;justify-content:center;order:1}.nav-cta{order:2;padding:9px 10px;font-size:11px}.nav-links{display:none;order:3;flex:0 0 100%;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:0 0 8px}.nav-links.open{display:flex}.nav-links a{display:block;padding:10px 0;border-top:1px solid rgba(255,255,255,.16)}.hero{padding-top:48px}.metric-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:720px){.hero{grid-template-columns:1fr;min-height:0;padding-top:44px}.hero-image{justify-self:start;width:min(70%,300px)}h1{font-size:46px}h2{font-size:38px}.section{padding-top:54px;padding-bottom:54px}.feature-grid,.policy-band{grid-template-columns:1fr}.metric-list{grid-template-columns:repeat(2,minmax(0,1fr))}.academy-callout,.footer{align-items:flex-start;flex-direction:column}.academy-callout{display:flex}.academy-pathway{width:100%}.academy-pathway+.academy-pathway{border-top:1px solid rgba(191,215,255,.2);border-left:0}}
+    @media(max-width:900px){.academic-foundation-inner{grid-template-columns:1fr;gap:30px}}
+    @media(max-width:720px){.hero{grid-template-columns:1fr;min-height:0;padding-top:44px}.hero-image{justify-self:start;width:min(70%,300px)}h1{font-size:46px}h2{font-size:38px}.section{padding-top:54px;padding-bottom:54px}.feature-grid,.policy-band{grid-template-columns:1fr}.metric-list{grid-template-columns:repeat(2,minmax(0,1fr))}.academy-callout,.footer{align-items:flex-start;flex-direction:column}.academy-callout{display:flex}.academy-pathway{width:100%}.academy-pathway+.academy-pathway{border-top:1px solid rgba(191,215,255,.2);border-left:0}.academic-foundation{padding:54px 24px}.academic-foundation h2{font-size:40px}.academic-principles{grid-template-columns:1fr 1fr}.academic-principle{min-height:0;padding:15px}.academic-principle h3{font-size:21px}}
+    @media(max-width:460px){.academic-principles{grid-template-columns:1fr}}
   </style>
   <link rel="stylesheet" href="../assets/site-experience.css">
   <script src="../assets/site-experience.js" defer></script>
@@ -185,6 +200,39 @@
         </article>
       </div>
       <p class="notice">The AI Power Gap Academy on Skool is Dr. Smith's independent instruction. It is separate from Carolina Christian College / Carolina TIUA academic programs. No college-issued credential or third-party certificate is implied by the independent Academy link.</p>
+    </section>
+
+    <section class="academic-foundation" id="academic-foundation" aria-labelledby="academic-foundation-title">
+      <div class="academic-foundation-inner">
+        <div class="academic-foundation-copy" data-reveal>
+          <p class="section-label">Academic foundation</p>
+          <h2 id="academic-foundation-title">Scholarship That Advances AI Governance</h2>
+          <p>Dr. Alexis S. Smith's academic work strengthens the research and executive practice behind Ascend AI NOW, grounding its approach in digital stewardship, AI ethics, and responsible innovation.</p>
+          <p class="academic-credential">
+            <strong>Doctorate in Digital Stewardship, AI Ethics &amp; Governance</strong>
+            <span>Carolina Christian College</span>
+          </p>
+          <a class="button" href="../framework/">Explore the five-stage framework</a>
+        </div>
+        <div class="academic-principles" aria-label="Academic foundation themes">
+          <article class="academic-principle experience-card" data-reveal>
+            <h3>Doctoral research</h3>
+            <p>Media ministry and peer-to-peer file sharing in K–12 Christian settings.</p>
+          </article>
+          <article class="academic-principle experience-card" data-reveal>
+            <h3>Applied leadership</h3>
+            <p>Connecting scholarship with executive practice and responsible implementation.</p>
+          </article>
+          <article class="academic-principle experience-card" data-reveal>
+            <h3>Ethics &amp; governance</h3>
+            <p>Human-centered and accountable approaches to digital stewardship and AI.</p>
+          </article>
+          <article class="academic-principle experience-card" data-reveal>
+            <h3>Impact focused</h3>
+            <p>Advancing equitable access, education, and opportunity.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
     <section class="section" id="novara">
