@@ -175,7 +175,8 @@ body{padding-top:62px;font-family:'Nunito Sans',sans-serif;background:var(--off)
   /* ── SHARED SITE NAV ── */
   .site-nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(11,19,64,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(26,79,255,.15);font-family:'Nunito Sans',sans-serif}
   .site-nav.scrolled{padding:.8rem 3rem;box-shadow:0 2px 20px rgba(11,19,64,.3)}
-  .sn-brand{display:flex;flex-direction:column;text-decoration:none}
+  .sn-brand{display:flex;align-items:center;text-decoration:none}
+  .sn-logo{display:block;width:112px;height:112px;object-fit:contain;margin:-24px 0;background:#fff}
   .sn-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:1}
   .sn-wordmark span{color:#ff6a00}
   .sn-tagline{font-size:.5rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.15rem}
@@ -191,9 +192,8 @@ body{padding-top:62px;font-family:'Nunito Sans',sans-serif;background:var(--off)
 </head>
 <body>
 <nav class="site-nav" id="siteNav">
-  <a href="index.html" class="sn-brand">
-    <div class="sn-wordmark">Ascend AI <span>NOW</span></div>
-    <div class="sn-tagline">Network of Women &middot; The Urgency to Act NOW</div>
+  <a href="index.html" class="sn-brand" aria-label="Ascend AI NOW home">
+    <img class="sn-logo" src="assets/ascend-ai-now-logo.png" alt="Ascend AI NOW">
   </a>
   <ul class="sn-links">
     <li><a href="index.html#about">About</a></li>
