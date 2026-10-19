@@ -29,7 +29,7 @@ ascend-ai-now/
 ├── impact/index.html          # Youth, Workforce & Global Impact
 ├── framework/index.html       # Five-stage interactive framework
 ├── research/index.html        # Research & Insights
-├── assets/                    # URL-free logo derivative and published portrait
+├── assets/                    # Brand assets, shared navigation styles and behavior
 ├── index_old.html             # Older page containing the supplied embedded logo source
 ├── netlify.toml               # Netlify deployment configuration
 └── README.md                  # Project notes and implementation plan
@@ -105,6 +105,8 @@ To update:
 - Added the SkillBanc NOVARA Nigeria project and October 3, 2026 Demo Day appearance. Outcomes are attributed to the project's October 2026 presentation and are not described as independently verified or solely owned by Ascend AI NOW.
 - Added the October 2026 AI Power Gap Intel editorial, “Acknowledged Does Not Equal Controlled,” with deployment-control questions and an explicit caveat about illustrative graphics.
 - Added `/impact/`, `/framework/`, and `/research/` static directory routes, linked from the homepage and each other. The Framework page presents all five approved original graphics without cropping or redesign and has keyboard-operable tabs. Its Scale stage includes five interactive measurement domains, an illustrative executive dashboard, and a Measure AI Impact consultation link.
+- Added shared responsive navigation and cinematic interior-page styling across the homepage, Framework, Services, Assessments, Academy, Research, and Impact destinations. The shared menu supports keyboard dismissal and focus restoration, while motion respects reduced-motion preferences.
+- Added interactive industry exploration and native service-detail disclosures without removing the existing service descriptions. Assessment and calculator forms, scoring, and result behavior remain intact.
 - Added the DAFITC Education Day description, global AI education, E-Rate advocacy context, and collaboration calls to action. Attendance is labeled an estimate; the FCC letter is not described as filed; college instruction and the independent Skool Academy are distinguished.
 - Left assessment logic, forms, Stripe links, email links, and PDF/report generation behavior unchanged. No production deployment was performed.
 

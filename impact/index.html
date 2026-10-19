@@ -63,31 +63,57 @@
     .cta-links{display:flex;flex-wrap:wrap;gap:10px}
     .footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(24px,5vw,72px);background:#080e2d;color:#c2cbe0;font-size:12px}
     .footer img{width:80px;height:80px;object-fit:contain;background:#fff}
+    .impact-routebar{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+    .impact-routebar a{display:inline-flex;min-height:42px;align-items:center;padding:9px 13px;border:1px solid rgba(191,215,255,.32);background:rgba(255,255,255,.04);color:#eef4ff;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;transition:background .2s,border-color .2s,transform .2s}
+    .impact-routebar a:hover{transform:translateY(-3px);border-color:#ff8a4b;background:rgba(255,106,0,.15)}
+    .section{position:relative}
+    .feature{padding:25px;background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);box-shadow:0 12px 34px rgba(7,19,47,.06)}
+    .feature.accent{border-top-color:var(--orange)}
+    .feature.cyan{border-top-color:var(--cyan)}
+    .academy-callout{position:relative;overflow:hidden;border:1px solid rgba(136,183,255,.24);background:linear-gradient(120deg,#101e3b,#071126)}
+    .academy-callout{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+    .academy-pathway{padding:22px 24px}
+    .academy-pathway+.academy-pathway{border-left:1px solid rgba(191,215,255,.2)}
+    .academy-pathway p{margin:0 0 15px;color:#d3dbee}
+    .academy-pathway .pathway-label{margin:0 0 8px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .notice{line-height:1.6}
     :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
     @media(max-width:1020px){.site-nav{flex-wrap:wrap;gap:8px 12px;padding-right:clamp(16px,5vw,32px);padding-left:clamp(16px,5vw,32px)}.brand{margin-right:auto}.brand img{width:72px;height:72px}.nav-menu-toggle{display:inline-flex;align-items:center;justify-content:center;order:1}.nav-cta{order:2;padding:9px 10px;font-size:11px}.nav-links{display:none;order:3;flex:0 0 100%;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:0 0 8px}.nav-links.open{display:flex}.nav-links a{display:block;padding:10px 0;border-top:1px solid rgba(255,255,255,.16)}.hero{padding-top:48px}.metric-list{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:720px){.hero{grid-template-columns:1fr;min-height:0;padding-top:44px}.hero-image{justify-self:start;width:min(70%,300px)}h1{font-size:46px}h2{font-size:38px}.section{padding-top:54px;padding-bottom:54px}.feature-grid,.policy-band{grid-template-columns:1fr}.metric-list{grid-template-columns:repeat(2,minmax(0,1fr))}.academy-callout,.footer{align-items:flex-start;flex-direction:column}}
+    @media(max-width:720px){.hero{grid-template-columns:1fr;min-height:0;padding-top:44px}.hero-image{justify-self:start;width:min(70%,300px)}h1{font-size:46px}h2{font-size:38px}.section{padding-top:54px;padding-bottom:54px}.feature-grid,.policy-band{grid-template-columns:1fr}.metric-list{grid-template-columns:repeat(2,minmax(0,1fr))}.academy-callout,.footer{align-items:flex-start;flex-direction:column}.academy-callout{display:flex}.academy-pathway{width:100%}.academy-pathway+.academy-pathway{border-top:1px solid rgba(191,215,255,.2);border-left:0}}
   </style>
+  <link rel="stylesheet" href="../assets/site-experience.css">
+  <script src="../assets/site-experience.js" defer></script>
 </head>
-<body>
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="brand" href="../index.html" aria-label="Ascend AI NOW home"><img src="../assets/ascend-ai-now-logo.png" alt="Ascend AI NOW"></a>
-    <ul class="nav-links" id="primaryNavLinks">
+<body class="has-interior-nav">
+  <nav class="experience-nav" data-site-nav aria-label="Primary navigation">
+    <a class="experience-brand" href="../index.html" aria-label="Ascend AI NOW home"><img class="experience-logo-transparent" src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW"></a>
+    <ul class="experience-links" id="primaryNavLinks" data-menu-links>
       <li><a href="../index.html#services">Services</a></li>
       <li><a href="../framework/">Framework</a></li>
-      <li><a href="../research/">Research &amp; Insights</a></li>
-      <li><a href="#academy">Academy &amp; Certifications</a></li>
-      <li><a href="../k12assessment/">Assessment</a></li>
+      <li><a href="../assessment.html">Assessments</a></li>
+      <li><a href="../k12assessment/">K-12 Diagnostic</a></li>
+      <li><a href="../roi-calculator.html">ROI Calculator</a></li>
+      <li><a href="#academy">Academy</a></li>
+      <li><a href="../research/">Research</a></li>
+      <li><a href="../impact/" aria-current="page">Impact</a></li>
     </ul>
-    <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
-    <a class="nav-cta" href="mailto:info@AscendAINOW.com?subject=Executive%20advisory%20inquiry">Executive advisory</a>
+    <button class="experience-menu-toggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+    <a class="experience-cta" href="mailto:info@AscendAINOW.com?subject=Executive%20advisory%20inquiry">Executive advisory</a>
   </nav>
 
   <main>
-    <header class="hero">
+    <header class="hero page-hero">
       <div>
         <p class="eyebrow">Youth, Workforce &amp; Global Impact</p>
         <h1>Closing the AI Power Gap&trade; Means Creating Opportunity</h1>
         <p class="hero-copy">Responsible AI must create opportunities for learning, leadership, digital ownership, and sustainable innovation.</p>
+        <nav class="impact-routebar" aria-label="Explore impact pathways">
+          <a href="#youth">Youth pathways</a>
+          <a href="#global-education">Global learning</a>
+          <a href="#novara">Workforce development</a>
+          <a href="#digital-equity">Digital equity</a>
+          <a href="#academy">Independent Academy</a>
+        </nav>
       </div>
       <img class="hero-image" src="../assets/founder-portrait.jpg" alt="Dr. Alexis S. Smith, Founder and CEO of Ascend AI NOW">
     </header>
@@ -98,7 +124,7 @@
         <h2>Education Day: access through experience</h2>
       </div>
       <div class="feature-grid">
-        <article class="feature accent">
+        <article class="feature accent experience-card" data-reveal>
           <time class="date" datetime="2026-08-26">August 26, 2026</time>
           <h3>Department of the Air Force Information Technology &amp; Cyberpower Conference</h3>
           <p><strong>Education Day</strong> brought local high school students into direct contact with technology and career pathways. Dr. Alexis S. Smith hosted and organized the Education Day experience.</p>
@@ -110,7 +136,7 @@
           </ul>
           <p class="notice">The program was described as serving approximately 200–500 students. This is a program estimate, not verified final attendance. Dr. Smith's event role is not presented as official representation of the Department of the Air Force.</p>
         </article>
-        <article class="feature cyan">
+        <article class="feature cyan experience-card" data-reveal>
           <p class="section-label">Opportunity by design</p>
           <h3>Meet students where technology becomes tangible</h3>
           <p>Hands-on exposure, candid career conversations, and welcoming access to working professionals can help young people connect classroom learning with future roles in technology.</p>
@@ -126,7 +152,7 @@
         <p class="lead">Dr. Smith's original curriculum and teaching connect responsible AI governance with practical skills in content, data, and digital entrepreneurship.</p>
       </div>
       <div class="feature-grid">
-        <article class="feature">
+        <article class="feature experience-card" data-reveal>
           <p class="section-label">Four-week workforce certificate curriculum</p>
           <h3>AI Content Creation, Prompt Engineering &amp; Digital Monetization</h3>
           <p>Curriculum and instruction attributed to Carolina Christian College / Carolina TIUA and the SWIM Workforce Initiative.</p>
@@ -137,7 +163,7 @@
             <li>Capstone projects that bring the learning together.</li>
           </ul>
         </article>
-        <article class="feature accent">
+        <article class="feature accent experience-card" data-reveal>
           <p class="section-label">Six-week course &middot; Twelve instructional sessions</p>
           <h3>MA 326: Data Literacy in the Age of Artificial Intelligence</h3>
           <p>Data foundations, multilingual data quality, storytelling, dashboards, bias, governance, and practical application.</p>
@@ -145,11 +171,18 @@
         </article>
       </div>
       <div class="academy-callout" id="academy">
-        <div>
-          <h3>Academy &amp; Certifications</h3>
-          <p>College-attributed curriculum and independent Academy classes are distinct learning pathways.</p>
-        </div>
-        <a class="button" href="https://www.skool.com/ai-power-gap" target="_blank" rel="noopener">AI Power Gap Academy on Skool</a>
+        <article class="academy-pathway" data-reveal>
+          <p class="pathway-label">Independent Ascend AI NOW instruction</p>
+          <h3>AI Power Gap Academy</h3>
+          <p>Explore Dr. Smith's independent AI governance and learning pathway.</p>
+          <a class="button" href="https://www.skool.com/ai-power-gap" target="_blank" rel="noopener">Explore Academy on Skool</a>
+        </article>
+        <article class="academy-pathway" data-reveal>
+          <p class="pathway-label">Separate academic programs</p>
+          <h3>College curriculum</h3>
+          <p>Carolina Christian College / Carolina TIUA programs and the SWIM Workforce Initiative are distinct from the independent Academy.</p>
+          <p>No college-issued credential or third-party certificate is implied by Academy instruction.</p>
+        </article>
       </div>
       <p class="notice">The AI Power Gap Academy on Skool is Dr. Smith's independent instruction. It is separate from Carolina Christian College / Carolina TIUA academic programs. No college-issued credential or third-party certificate is implied by the independent Academy link.</p>
     </section>
@@ -160,7 +193,7 @@
         <h2>SkillBanc NOVARA</h2>
         <p class="lead">An eight-week entrepreneurial workforce initiative focused on practical digital ownership, technology infrastructure, professional branding, and entrepreneurship.</p>
       </div>
-      <article class="feature accent">
+      <article class="feature accent experience-card" data-reveal>
         <time class="date" datetime="2026-10">October 2026 Demo Day</time>
         <p>Dr. Alexis S. Smith served as a strategic advisor and partner in collaboration with SkillBanc NOVARA and its initiative collaborators.</p>
         <div class="metric-list" aria-label="Project outcomes reported in the initiative's presentation">
@@ -208,25 +241,5 @@
     <span>© 2026 Ascend AI NOW, LLC</span>
     <a href="../index.html">Home</a>
   </footer>
-  <script>
-    var navToggle=document.getElementById('navMenuToggle');
-    var primaryNavLinks=document.getElementById('primaryNavLinks');
-    function closeNav(restoreFocus){
-      navToggle.setAttribute('aria-expanded','false');
-      primaryNavLinks.classList.remove('open');
-      if(restoreFocus)navToggle.focus();
-    }
-    navToggle.addEventListener('click',function(){
-      var isOpen=navToggle.getAttribute('aria-expanded')==='true';
-      navToggle.setAttribute('aria-expanded',String(!isOpen));
-      primaryNavLinks.classList.toggle('open',!isOpen);
-    });
-    primaryNavLinks.addEventListener('click',function(event){
-      if(event.target.closest('a'))closeNav(false);
-    });
-    document.addEventListener('keydown',function(event){
-      if(event.key==='Escape'&&navToggle.getAttribute('aria-expanded')==='true')closeNav(true);
-    });
-  </script>
 </body>
 </html>

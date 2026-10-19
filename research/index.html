@@ -48,33 +48,45 @@
     .related a:nth-child(2){background:var(--blue)}
     .footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px clamp(24px,5vw,72px);background:#080e2d;color:#c2cbe0;font-size:12px}
     .footer img{width:80px;height:80px;object-fit:contain;background:#fff}
+    main{max-width:1320px;margin:0 auto}
+    .article{max-width:none;margin-bottom:22px;padding:30px clamp(20px,4vw,48px);border:1px solid var(--line);border-left:3px solid var(--blue);background:#fff;box-shadow:0 14px 38px rgba(7,19,47,.06)}
+    .article:first-child{border-left-color:var(--orange)}
+    .article h2{max-width:900px}
+    .article-copy{max-width:900px}
+    .caveat{line-height:1.65}
+    .related{padding-top:8px}
     :focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
     @media(max-width:1080px){.site-nav{flex-wrap:wrap;gap:8px 12px;padding-right:clamp(16px,5vw,32px);padding-left:clamp(16px,5vw,32px)}.brand{margin-right:auto}.brand img{width:72px;height:72px}.nav-menu-toggle{display:inline-flex;align-items:center;justify-content:center;order:1}.nav-cta{order:2;padding:9px 10px;font-size:11px}.nav-links{display:none;order:3;flex:0 0 100%;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:0 0 8px}.nav-links.open{display:flex}.nav-links a{display:block;padding:10px 0;border-top:1px solid rgba(255,255,255,.16)}}
     @media(max-width:700px){h1{font-size:46px}h2{font-size:42px}blockquote{font-size:32px}.point-grid,.policy-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
   </style>
+  <link rel="stylesheet" href="../assets/site-experience.css">
+  <script src="../assets/site-experience.js" defer></script>
 </head>
-<body>
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="brand" href="../index.html" aria-label="Ascend AI NOW home"><img src="../assets/ascend-ai-now-logo.png" alt="Ascend AI NOW"></a>
-    <ul class="nav-links" id="primaryNavLinks">
+<body class="has-interior-nav">
+  <nav class="experience-nav" data-site-nav aria-label="Primary navigation">
+    <a class="experience-brand" href="../index.html" aria-label="Ascend AI NOW home"><img class="experience-logo-transparent" src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW"></a>
+    <ul class="experience-links" id="primaryNavLinks" data-menu-links>
       <li><a href="../index.html#services">Services</a></li>
       <li><a href="../framework/">Framework</a></li>
-      <li><a href="../impact/">Impact</a></li>
+      <li><a href="../assessment.html">Assessments</a></li>
+      <li><a href="../k12assessment/">K-12 Diagnostic</a></li>
+      <li><a href="../roi-calculator.html">ROI Calculator</a></li>
       <li><a href="../impact/#academy">Academy</a></li>
-      <li><a href="../k12assessment/">Assessment</a></li>
+      <li><a href="../research/" aria-current="page">Research</a></li>
+      <li><a href="../impact/">Impact</a></li>
     </ul>
-    <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
-    <a class="nav-cta" href="mailto:info@AscendAINOW.com?subject=Executive%20advisory%20inquiry">Executive advisory</a>
+    <button class="experience-menu-toggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+    <a class="experience-cta" href="mailto:info@AscendAINOW.com?subject=Executive%20advisory%20inquiry">Executive advisory</a>
   </nav>
 
-  <header class="hero">
+  <header class="hero page-hero">
     <p class="eyebrow">Research &amp; Insights</p>
     <h1>Evidence before scale. Accountability throughout.</h1>
     <p>Perspective on responsible AI governance, institutional readiness, digital equity, and the controls that make safeguards meaningful in practice.</p>
   </header>
 
   <main>
-    <article class="article" id="ai-power-gap-intel">
+    <article class="article" id="ai-power-gap-intel" data-reveal>
       <p class="article-label">AI Power Gap Intel</p>
       <h2>Acknowledged Does Not Equal Controlled</h2>
       <time datetime="2026-10">October 2026</time>
@@ -90,7 +102,7 @@
       <p class="caveat">This editorial asks what organizations should verify before deployment. Illustrative graphics are not proof of independently established incident details; no specific incident finding is asserted here.</p>
     </article>
 
-    <section class="article" id="digital-equity">
+    <section class="article" id="digital-equity" data-reveal>
       <p class="article-label">Digital equity &amp; policy advocacy</p>
       <h2>Connectivity, access, and stewardship</h2>
       <div class="policy-grid">
@@ -106,7 +118,7 @@
       <p class="caveat">The CoSN E-Rate carousel and founder-provided FCC comment letter were not included in the current repository. This summary does not reproduce their contents or assert filing status.</p>
     </section>
 
-    <section class="article" id="prototype">
+    <section class="article" id="prototype" data-reveal>
       <p class="article-label">Interview prototype</p>
       <h2>Business optimization conversation design</h2>
       <p class="article-copy">The Howard University business optimization interview presentation is an illustrative interview prototype. It is not a completed client engagement, and no client outcome is claimed.</p>
@@ -126,25 +138,5 @@
     <span>© 2026 Ascend AI NOW, LLC</span>
     <a href="../index.html">Home</a>
   </footer>
-  <script>
-    var navToggle=document.getElementById('navMenuToggle');
-    var primaryNavLinks=document.getElementById('primaryNavLinks');
-    function closeNav(restoreFocus){
-      navToggle.setAttribute('aria-expanded','false');
-      primaryNavLinks.classList.remove('open');
-      if(restoreFocus)navToggle.focus();
-    }
-    navToggle.addEventListener('click',function(){
-      var isOpen=navToggle.getAttribute('aria-expanded')==='true';
-      navToggle.setAttribute('aria-expanded',String(!isOpen));
-      primaryNavLinks.classList.toggle('open',!isOpen);
-    });
-    primaryNavLinks.addEventListener('click',function(event){
-      if(event.target.closest('a'))closeNav(false);
-    });
-    document.addEventListener('keydown',function(event){
-      if(event.key==='Escape'&&navToggle.getAttribute('aria-expanded')==='true')closeNav(true);
-    });
-  </script>
 </body>
 </html>

@@ -189,7 +189,7 @@ label.q{display:block;font:600 15px "Source Sans 3";color:#fff;margin-bottom:10p
   .top .brand small{display:none}
 }
 @media print{
-  .top,.hero,.assess,.gate,.actions,.tiers-wrap,.progress{display:none!important}
+  .experience-nav,.top,.hero,.assess,.gate,.actions,.tiers-wrap,.progress{display:none!important}
   body{background:#fff}
   .score-hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .sig{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -231,8 +231,10 @@ table.compare tbody tr:last-child td{border-bottom:0}
 .attrib{font-size:13.5px;color:var(--muted);margin-top:16px}
 @media (max-width:860px){ .scenario .sc-body,.preview{grid-template-columns:1fr} .scenario .sc-col+.sc-col{border-left:0;border-top:1px solid var(--line)} }
 </style>
+<link rel="stylesheet" href="../assets/site-experience.css">
+<script src="../assets/site-experience.js" defer></script>
 </head>
-<body>
+<body class="has-interior-nav">
 
 <!-- Netlify Forms detection forms (do not remove): Netlify reads these at deploy time -->
 <form name="ai-governance-diagnostic" data-netlify="true" netlify-honeypot="bot-field" hidden>
@@ -246,17 +248,24 @@ table.compare tbody tr:last-child td{border-bottom:0}
   <input name="stage_scores"><input name="recommended_tier"><input name="answers"><input name="completed_at">
 </form>
 
-<header class="top">
-  <div class="wrap">
-    <img src="../assets/ascend-ai-now-logo.png" alt="Ascend AI NOW logo">
-    <div class="brand">Ascend AI NOW&trade;<small>Closing the AI Power Gap&trade;</small></div>
-    <div class="spacer"></div>
-    <a class="cta" href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a Discovery Call</a>
-  </div>
-</header>
+<nav class="experience-nav" data-site-nav aria-label="Primary navigation">
+  <a class="experience-brand" href="../index.html" aria-label="Ascend AI NOW home"><img class="experience-logo-transparent" src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW"></a>
+  <ul class="experience-links" id="primaryNavLinks" data-menu-links>
+    <li><a href="../index.html#services">Services</a></li>
+    <li><a href="../framework/">Framework</a></li>
+    <li><a href="../assessment.html">Assessments</a></li>
+    <li><a href="../k12assessment/" aria-current="page">K-12 Diagnostic</a></li>
+    <li><a href="../roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="../impact/#academy">Academy</a></li>
+    <li><a href="../research/">Research</a></li>
+    <li><a href="../impact/">Impact</a></li>
+  </ul>
+  <button class="experience-menu-toggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+  <a class="experience-cta" href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a discovery call</a>
+</nav>
 
 <!-- INTRO -->
-<section class="hero" id="intro">
+<section class="hero page-hero" id="intro">
   <div class="wrap grid">
     <div>
       <div class="eyebrow">Free Directional Read &middot; About 5 Minutes</div>

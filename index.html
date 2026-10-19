@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site-experience.css">
   <style>
     :root {
       --white:       #ffffff;
@@ -423,6 +424,19 @@
     .digital-headquarters .mstep:hover .mstep-circle{background:#1b3159}
     .digital-headquarters .cta-label,.digital-headquarters .cta-contact,.digital-headquarters .cta-contact a{color:#becbe2}
     .digital-headquarters .btn-outline{border-color:#8dbbff;color:#eef5ff}
+    .industry-explorer{position:relative;z-index:2;max-width:1200px;margin:0 auto 2rem;padding:1.6rem;border:1px solid rgba(139,174,231,.2);background:linear-gradient(120deg,rgba(19,37,71,.95),rgba(8,16,35,.94))}
+    .industry-explorer h3{margin:0 0 1rem;color:#f6f8ff;font:600 1.5rem "Cormorant Garamond",serif}
+    .industry-options{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}
+    .industry-option{min-height:44px;padding:.6rem .9rem;border:1px solid rgba(153,189,255,.32);background:rgba(255,255,255,.03);color:#dbe7ff;font:800 .64rem "Nunito Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+    .industry-option:hover,.industry-option[aria-pressed="true"]{border-color:#ff8a4b;background:rgba(255,106,0,.16);transform:translateY(-2px)}
+    .industry-focus{min-height:3rem;color:#c1cde3;font-size:.87rem;line-height:1.6}
+    .industry-focus strong{display:block;margin-bottom:.2rem;color:#fff}
+    .svc-card.industry-match{border-color:rgba(255,138,75,.62);box-shadow:inset 0 3px #ff762c,0 12px 30px rgba(0,0,0,.18)}
+    .svc-details{margin-top:1.2rem;border-top:1px solid rgba(139,174,231,.2)}
+    .svc-details summary{display:flex;min-height:44px;align-items:center;justify-content:space-between;gap:12px;color:#a9d3ff;font-size:.67rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+    .svc-details summary::after{color:#ff8a4b;font-size:1.2rem;content:"+"}
+    .svc-details[open] summary::after{content:"−"}
+    .svc-details p{margin:0 0 .4rem;color:#bbc8df;font-size:.8rem;line-height:1.65}
     .digital-headquarters footer{background:#030712}
     .digital-headquarters .footer-links a{color:#bdc8dc}
     .digital-headquarters .footer-copy{color:#9ba8c2}
@@ -504,24 +518,27 @@
       .ticker-inner{animation:none}
     }
   </style>
+  <script src="assets/site-experience.js" defer></script>
 </head>
 <body class="digital-headquarters">
 
 <!-- NAV -->
-<nav id="mainNav" aria-label="Primary navigation">
-  <a class="nav-brand" href="#home" aria-label="Ascend AI NOW home">
-    <img class="nav-logo" src="assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW">
+<nav id="mainNav" class="experience-nav" data-site-nav aria-label="Primary navigation">
+  <a class="experience-brand" href="#home" aria-label="Ascend AI NOW home">
+    <img class="nav-logo experience-logo-transparent" src="assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW">
   </a>
-  <ul class="nav-links" id="primaryNavLinks">
-    <li><a href="framework/">Governance</a></li>
+  <ul class="experience-links" id="primaryNavLinks" data-menu-links>
+    <li><a href="#services" aria-current="page">Services</a></li>
+    <li><a href="framework/">Framework</a></li>
     <li><a href="assessment.html">Assessments</a></li>
-    <li><a href="research/">Research</a></li>
+    <li><a href="k12assessment/">K-12 Diagnostic</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
     <li><a href="impact/#academy">Academy</a></li>
+    <li><a href="research/">Research</a></li>
     <li><a href="impact/">Impact</a></li>
-    <li><a href="#services">Advisory</a></li>
   </ul>
-  <button class="nav-menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
-  <a href="mailto:info@AscendAINOW.com?subject=Executive%20AI%20governance%20consultation" class="nav-cta">Executive consultation</a>
+  <button class="experience-menu-toggle" id="menuToggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+  <a href="mailto:info@AscendAINOW.com?subject=Executive%20AI%20governance%20consultation" class="experience-cta">Executive consultation</a>
 </nav>
 
 <!-- HERO -->
@@ -754,38 +771,53 @@
     </div>
     <p class="svc-desc">Advisory engagements support accountable decisions from strategy and governance through implementation. Begin with an executive consultation to discuss your organization's context.</p>
   </div>
+  <div class="industry-explorer" data-reveal>
+    <h3>Explore advisory through your operating context</h3>
+    <div class="industry-options" role="group" aria-label="Explore services by industry">
+      <button class="industry-option" type="button" data-industry="healthcare" aria-pressed="true" aria-controls="industryFocus">Healthcare</button>
+      <button class="industry-option" type="button" data-industry="education" aria-pressed="false" aria-controls="industryFocus">Education</button>
+      <button class="industry-option" type="button" data-industry="government" aria-pressed="false" aria-controls="industryFocus">Government</button>
+      <button class="industry-option" type="button" data-industry="mission" aria-pressed="false" aria-controls="industryFocus">Mission-driven organizations</button>
+    </div>
+    <p class="industry-focus" id="industryFocus" aria-live="polite"><strong>Healthcare</strong>Explore governance and risk advisory, executive technology leadership, and architecture support in the context of your organization's needs.</p>
+  </div>
   <div class="svc-grid">
-    <div class="svc-card reveal reveal-d1">
+    <div class="svc-card reveal reveal-d1" data-service-industries="healthcare education government mission">
       <div class="svc-num">01</div>
       <div class="svc-title">AI Governance &amp; Risk Advisory</div>
       <p class="svc-body">End-to-end AI governance frameworks, risk assessments, policy development, and compliance readiness rooted in the Digital Stewardship Framework&trade;. Designed for healthcare, education, and regulated industries.</p>
       <div class="svc-tags"><span class="stag">Risk Frameworks</span><span class="stag">Policy Development</span><span class="stag">HIPAA Alignment</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Scope governance policies, risk review, compliance readiness, oversight, and escalation around the organization's AI uses and operating context.</p></details>
     </div>
-    <div class="svc-card reveal reveal-d2">
+    <div class="svc-card reveal reveal-d2" data-service-industries="healthcare education government mission">
       <div class="svc-num">02</div>
       <div class="svc-title">Fractional CTO &amp; CAIO Services</div>
       <p class="svc-body">Executive-level technology and AI leadership on a flexible engagement model. Strategic roadmaps, vendor evaluation, architecture oversight, and board-level advisory without the full-time overhead.</p>
       <div class="svc-tags"><span class="stag">Tech Roadmaps</span><span class="stag">Vendor Advisory</span><span class="stag">Board Reporting</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Support executive teams with strategic roadmaps, vendor evaluation, architecture oversight, and board-level AI guidance.</p></details>
     </div>
-    <div class="svc-card reveal reveal-d3">
+    <div class="svc-card reveal reveal-d3" data-service-industries="healthcare education government">
       <div class="svc-num">03</div>
       <div class="svc-title">Enterprise Technology Architecture</div>
       <p class="svc-body">Technology architecture and modernization informed by Dr. Smith's experience at Blue Cross Blue Shield of NC, with attention to security, integration, and organizational context.</p>
       <div class="svc-tags"><span class="stag">Infrastructure Design</span><span class="stag">AI Integration</span><span class="stag">Cloud Strategy</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Consider infrastructure, data flows, integrations, security, and human workflows when planning technology architecture and modernization.</p></details>
     </div>
   </div>
   <div class="svc-grid-row2">
-    <div class="svc-card reveal reveal-d1">
+    <div class="svc-card reveal reveal-d1" data-service-industries="healthcare education government mission">
       <div class="svc-num">04</div>
       <div class="svc-title">Workforce Enablement &amp; Change Management</div>
       <p class="svc-body">Change management and workforce enablement that support informed AI adoption, organizational learning, and sustained capability.</p>
       <div class="svc-tags"><span class="stag">Adoption Strategy</span><span class="stag">Training Design</span><span class="stag">Culture Alignment</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Connect workforce learning, communications, and adoption planning to roles, responsibilities, and organizational readiness.</p></details>
     </div>
-    <div class="svc-card reveal reveal-d2">
+    <div class="svc-card reveal reveal-d2" data-service-industries="education government">
       <div class="svc-num">05</div>
       <div class="svc-title">E-Rate &amp; Education Technology Strategy</div>
       <p class="svc-body">Navigate E-Rate funding, technology procurement, and AI-readiness for K&ndash;12 districts and higher education, informed by Dr. Smith's education technology leadership.</p>
       <div class="svc-tags"><span class="stag">E-Rate Compliance</span><span class="stag">K&ndash;12 Strategy</span><span class="stag">EdTech Planning</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Discuss E-Rate funding, technology procurement, and education technology strategy in relation to school and district priorities.</p></details>
     </div>
   </div>
 </section>
@@ -992,22 +1024,6 @@
 </footer>
 
 <script>
-  // Nav scroll
-  var navEl = document.getElementById('mainNav');
-  var menuToggle = document.getElementById('menuToggle');
-  var navLinks = document.getElementById('primaryNavLinks');
-  function closeMenu(){ menuToggle.setAttribute('aria-expanded','false'); navLinks.classList.remove('open'); }
-  menuToggle.addEventListener('click', function(){
-    var isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!isOpen));
-    navLinks.classList.toggle('open', !isOpen);
-  });
-  navLinks.addEventListener('click', function(event){ if (event.target.closest('a')) closeMenu(); });
-  document.addEventListener('keydown', function(event){ if (event.key === 'Escape') closeMenu(); });
-  window.addEventListener('scroll', function() {
-    navEl.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
   // Scroll reveals
   var reveals = document.querySelectorAll('.reveal');
   var revealObs = new IntersectionObserver(function(entries) {
@@ -1019,6 +1035,31 @@
     });
   }, { threshold: 0.12 });
   reveals.forEach(function(el) { revealObs.observe(el); });
+
+  var industryCopy = {
+    healthcare: {title:'Healthcare',copy:"Explore governance and risk advisory, executive technology leadership, and architecture support in the context of your organization's needs."},
+    education: {title:'Education',copy:'Explore governance, workforce learning, education technology strategy, and E-Rate planning for schools and higher education.'},
+    government: {title:'Government',copy:'Explore AI governance, executive oversight, technology architecture, and workforce readiness in public-sector contexts.'},
+    mission: {title:'Mission-driven organizations',copy:'Explore governance, advisory, and workforce enablement grounded in mission, accountability, and organizational capacity.'}
+  };
+  var industryButtons = document.querySelectorAll('[data-industry]');
+  var serviceCards = document.querySelectorAll('[data-service-industries]');
+  industryButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      var industry = button.dataset.industry;
+      var focus = industryCopy[industry];
+      if (!focus) return;
+      industryButtons.forEach(function(item) {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+      serviceCards.forEach(function(card) {
+        card.classList.toggle('industry-match', card.dataset.serviceIndustries.split(' ').includes(industry));
+      });
+      var focusPanel = document.getElementById('industryFocus');
+      focusPanel.innerHTML = '<strong>' + focus.title + '</strong>' + focus.copy;
+    });
+  });
+  document.querySelector('.industry-option[aria-pressed="true"]').click();
 
 </script>
 </body>
