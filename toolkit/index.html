@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free K-12 AI Governance Toolkit | Ascend AI NOW</title>
+<meta name="description" content="Free K-12 Artificial Intelligence (AI) governance toolkit from Dr. Alexis S. Smith: the Closing the AI Power Gap deck, the K-12 AI Policy Design Template, and the K-12 AI Stakeholder Engagement Guide.">
+<meta property="og:title" content="Free K-12 AI Governance Toolkit | Ascend AI NOW">
+<meta property="og:description" content="A board-ready AI policy template, a 12-week stakeholder engagement guide, and the DLAC Ignite 2026 deck.">
+<meta property="og:image" content="https://ascendainow.com/toolkit/files/ascend-closing-the-ai-power-gap-dlac-2026-cover.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0E2865; --navy-2:#173A8A; --blue:#4169E1; --blue-soft:#EAF0FD; --orange:#FF6600; --orange-soft:#FFF1E6;
+  --ink:#1F2933; --muted:#5B6675; --line:#DCE3F0; --bg:#F5F7FB; --card:#FFFFFF;
+  --radius:14px; --shadow:0 1px 2px rgba(14,40,101,.06),0 8px 24px rgba(14,40,101,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Source Sans 3",system-ui,-apple-system,Segoe UI,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Montserrat,system-ui,Arial,sans-serif;color:var(--navy);line-height:1.2;margin:0}
+a{color:var(--blue)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.top{background:var(--navy);color:#fff}
+.top .wrap{display:flex;align-items:center;gap:14px;padding:14px 20px}
+.top img{width:84px;height:84px;object-fit:contain;background:#fff}
+.top .brand{font-family:Montserrat;font-weight:700}
+.top .brand small{display:block;font:400 13px "Source Sans 3";color:#B9C6E4}
+.top .spacer{flex:1}
+.top a.cta{color:#fff;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px;font-size:15px;white-space:nowrap}
+.top a.cta:hover{background:rgba(255,255,255,.1)}
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 75%);color:#fff;padding:52px 0 60px}
+.eyebrow{font:700 13px Montserrat;letter-spacing:1.4px;text-transform:uppercase;color:var(--orange)}
+.hero h1{color:#fff;font-size:clamp(30px,4.4vw,46px);margin:12px 0 14px}
+.hero h1 span{color:var(--orange)}
+.hero p.lead{color:#D5DEF2;font-size:19px;max-width:640px;margin:0}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:-34px 0 28px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.rc .thumb{background:#E9EEF8;height:190px;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;padding:16px 14px 0}
+.rc .thumb img{width:78%;box-shadow:0 6px 18px rgba(14,40,101,.18);border-radius:4px 4px 0 0;display:block}
+.rc .thumb.wide{align-items:center;padding:14px}
+.rc .thumb.wide img{width:100%;border-radius:4px}
+.rc .body{padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
+.rc .tag{font:700 11.5px Montserrat;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.rc h3{font-size:17px;margin-bottom:6px}
+.rc p{margin:0 0 12px;color:var(--muted);font-size:15.5px;flex:1}
+.rc .dl{display:none}
+.unlocked .rc .dl{display:inline-flex}
+.rc .locked{font-size:14px;color:var(--muted)}
+.unlocked .rc .locked{display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:13px 24px;font:700 15.5px Montserrat;text-decoration:none;cursor:pointer}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:hover{background:#E05A00}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-blue:hover{background:#2F55C8}
+.btn-ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
+.btn-ghost:hover{border-color:var(--navy)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:22px}
+.gate h2{font-size:24px;margin-bottom:6px}
+.gate .sub{color:var(--muted);margin:0 0 18px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-grid label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:15px;color:var(--navy)}
+.form-grid input,.form-grid select{font:inherit;font-weight:400;font-size:16px;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+.form-grid input:focus,.form-grid select:focus{outline:3px solid rgba(65,105,225,.25);border-color:var(--blue)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--muted);margin:4px 0 18px}
+.consent input{margin-top:4px;width:18px;height:18px;flex:none;accent-color:var(--blue)}
+.err{background:#FDECEC;color:#9B1C1C;border-radius:8px;padding:10px 12px;margin-top:12px;font-size:15px}
+.fine{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+.done h2{font-size:24px;margin-bottom:6px}
+.next{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.step{border:1px solid var(--line);border-radius:12px;padding:18px;background:#fff;display:flex;flex-direction:column}
+.step .n{font:800 13px Montserrat;color:#fff;background:var(--blue);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;margin-bottom:10px}
+.step:nth-child(2) .n{background:var(--orange)}
+.step:nth-child(3) .n{background:var(--navy)}
+.step h3{font-size:16px;margin-bottom:6px}
+.step p{margin:0 0 14px;color:var(--muted);font-size:15px;flex:1}
+.tiers{list-style:none;padding:0;margin:0 0 14px;font-size:15px}
+.tiers li{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding:5px 0;color:var(--ink)}
+.tiers b{color:var(--navy);white-space:nowrap}
+.privacy{font-size:14px;color:var(--muted);padding:8px 0 4px}
+.privacy h3{font-size:16px;margin-bottom:8px}
+.privacy p{margin:0 0 8px}
+.legal{font-size:13px;color:var(--muted);text-align:center;padding:16px 20px 36px}
+@media (max-width:820px){
+  .res,.next{grid-template-columns:1fr}
+  .res{margin-top:-28px}
+  .form-grid{grid-template-columns:1fr}
+  .top img{width:60px;height:60px}
+  .top .brand small{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Netlify Forms detection form (do not remove): Netlify reads this at deploy time -->
+<form name="k12-toolkit-download" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="name"><input name="email"><input name="organization"><input name="role">
+  <input name="state"><input name="consent"><input name="source"><input name="page"><input name="submitted_at">
+</form>
+
+<header class="top">
+  <div class="wrap">
+    <a href="/"><img src="../assets/ascend-ai-now-logo.png" alt="Ascend AI NOW logo"></a>
+    <div class="brand">Ascend AI NOW&trade;<small>Closing the AI Power Gap&trade;</small></div>
+    <div class="spacer"></div>
+    <a class="cta" href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a Discovery Call</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">DLAC Ignite 2026 &middot; Free K-12 Toolkit</div>
+    <h1>Close the <span>AI Power Gap&trade;</span> in your district</h1>
+    <p class="lead">The deck, a board-ready AI policy template, and a 12-week stakeholder engagement guide. Built for K-12 digital learning leaders by Dr. Alexis S. Smith.</p>
+    <p style="margin:24px 0 0"><a class="btn btn-primary" href="#gate" id="heroBtn">Get the Free Toolkit &rarr;</a></p>
+  </div>
+</section>
+
+<main class="wrap" id="main">
+  <div class="res">
+    <article class="rc">
+      <div class="thumb"><img src="files/ascend-k12-ai-policy-design-template-cover.jpg" alt="Cover of the K-12 AI Policy Design Template" loading="lazy"></div>
+      <div class="body">
+        <div class="tag">Template &middot; 4 pages</div>
+        <h3>K-12 AI Policy Design Template</h3>
+        <p>A board-ready AI policy in 10 sections, with FERPA, the amended COPPA Rule, and state privacy law built in. Fillable checklists.</p>
+        <a class="btn btn-blue dl" href="files/ascend-k12-ai-policy-design-template.pdf" download data-file="policy-template">Download PDF</a>
+        <span class="locked">&#128274; Unlocks with the form below</span>
+      </div>
+    </article>
+    <article class="rc">
+      <div class="thumb"><img src="files/ascend-k12-ai-stakeholder-engagement-guide-cover.jpg" alt="Cover of the K-12 AI Stakeholder Engagement Guide" loading="lazy"></div>
+      <div class="body">
+        <div class="tag">Guide &middot; 3 pages</div>
+        <h3>K-12 AI Stakeholder Engagement Guide</h3>
+        <p>4 phases and 12 weeks from draft to board adoption, with a stakeholder map, committee charter, and family message.</p>
+        <a class="btn btn-blue dl" href="files/ascend-k12-ai-stakeholder-engagement-guide.pdf" download data-file="engagement-guide">Download PDF</a>
+        <span class="locked">&#128274; Unlocks with the form below</span>
+      </div>
+    </article>
+    <article class="rc">
+      <div class="thumb wide"><img src="files/ascend-closing-the-ai-power-gap-dlac-2026-cover.jpg" alt="Title slide of the Closing the AI Power Gap presentation" loading="lazy"></div>
+      <div class="body">
+        <div class="tag">Presentation &middot; 14 slides</div>
+        <h3>Closing the AI Power Gap&trade;</h3>
+        <p>The full DLAC Ignite 2026 session, including the 2-minute readiness check and the 5-part framework, with sources.</p>
+        <a class="btn btn-blue dl" href="files/ascend-closing-the-ai-power-gap-dlac-2026.pdf" download data-file="dlac-deck">Download PDF</a>
+        <span class="locked">&#128274; Unlocks with the form below</span>
+      </div>
+    </article>
+  </div>
+
+  <section class="card gate" id="gate">
+    <h2>Get all 3 resources free</h2>
+    <p class="sub">Tell us where to send updates, and your downloads unlock right away on this page.</p>
+    <form id="tkForm" novalidate>
+      <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+      <div class="form-grid">
+        <label>Full name<input name="name" autocomplete="name" required></label>
+        <label>Work email<input name="email" type="email" autocomplete="email" required></label>
+        <label>District or organization<input name="organization" autocomplete="organization" required></label>
+        <label>Role
+          <select name="role" required>
+            <option value="">Choose your role</option>
+            <option>Superintendent or Assistant Superintendent</option>
+            <option>Chief Technology Officer or Technology Director</option>
+            <option>Director of Digital Learning or Innovation</option>
+            <option>Curriculum and Instruction Leader</option>
+            <option>Principal or Assistant Principal</option>
+            <option>Teacher or Instructional Coach</option>
+            <option>School Board Member</option>
+            <option>Data Privacy, Legal, or Compliance</option>
+            <option>Higher Education</option>
+            <option>Vendor, Nonprofit, or Other</option>
+          </select>
+        </label>
+        <label>State<input name="state" autocomplete="address-level1" placeholder="e.g., Georgia"></label>
+      </div>
+      <label class="consent"><input type="checkbox" name="consent" id="consent"> Send me occasional Artificial Intelligence (AI) governance updates from Ascend AI NOW. I can unsubscribe at any time.</label>
+      <button class="btn btn-primary" type="submit" id="tkBtn">Unlock My Downloads &rarr;</button>
+      <div class="err" id="tkErr" hidden></div>
+      <p class="fine">When you unlock the toolkit, your name, email, organization, role, and state are sent to Ascend AI NOW, LLC, and Dr. Alexis S. Smith may contact you about these resources. See the <a href="#privacy">privacy notice</a>.</p>
+    </form>
+  </section>
+
+  <section class="card done" id="done" hidden>
+    <h2 id="doneTitle">Your toolkit is unlocked</h2>
+    <p class="sub" style="color:var(--muted);margin:0">Use the download buttons above. Here is the fastest path from these templates to an adopted policy.</p>
+    <div class="next">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Find your constraint</h3>
+        <p>Take the free 5-minute AI Governance Readiness Diagnostic. It shows the one stage that caps everything else, so the template targets your real gaps.</p>
+        <a class="btn btn-primary" href="/k12assessment/">Take the Diagnostic</a>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Get an evidence-based review</h3>
+        <ul class="tiers">
+          <li><span>Readiness Snapshot</span><b>$2,500</b></li>
+          <li><span>AI Power Gap&trade; Readiness Assessment</span><b>$5,000</b></li>
+          <li><span>Executive Engagement</span><b>$7,500</b></li>
+        </ul>
+        <a class="btn btn-ghost" href="/k12assessment/">Compare Engagements</a>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Bring it to your cabinet</h3>
+        <p>Book a 30-minute discovery call with Dr. Alexis S. Smith to plan your rollout, board presentation, or fractional Chief AI Officer support.</p>
+        <a class="btn btn-blue" href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a Discovery Call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy" id="privacy">
+    <h3>Privacy notice</h3>
+    <p><b>What we collect.</b> Your name, work email, organization, role, state, and how you found this page, sent to Ascend AI NOW, LLC through our website form service when you unlock the toolkit.</p>
+    <p><b>How we use it.</b> To follow up with you about these resources and related services, and, only if you check the box, to send occasional updates. We do not sell or rent your information.</p>
+    <p style="margin:0"><b>Your choices.</b> Every email includes a way to unsubscribe. To see, correct, or delete your information, email <a href="mailto:assessments@ascendainow.com">assessments@ascendainow.com</a>. We keep these records for up to 24 months, then delete them.</p>
+  </section>
+  <p class="fine" style="margin-top:4px">These resources are educational and are not legal advice. Confirm federal and state requirements with your counsel.</p>
+</main>
+
+<div class="legal">&copy; 2026 Ascend AI NOW, LLC. All rights reserved. The AI Power Gap&trade; and the Ascend AI NOW&trade; Framework for Responsible AI are trademarks of Ascend AI NOW, LLC.</div>
+
+<script>
+(function(){
+"use strict";
+var KEY = "ascend_toolkit_unlocked";
+function $(id){ return document.getElementById(id); }
+function store(get, val){ try { if (get) return localStorage.getItem(KEY); localStorage.setItem(KEY, val); } catch(e) { return null; } }
+function encode(d){ return Object.keys(d).map(function(k){ return encodeURIComponent(k)+"="+encodeURIComponent(d[k]); }).join("&"); }
+function source(){
+  try {
+    var q = new URLSearchParams(location.search);
+    return q.get("src") || q.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "direct");
+  } catch(e) { return "unknown"; }
+}
+function unlock(first){
+  document.body.classList.add("unlocked");
+  $("gate").hidden = true; $("done").hidden = false;
+  $("heroBtn").textContent = "Your downloads are unlocked"; $("heroBtn").href = "#main";
+  if (first) $("doneTitle").textContent = "Thank you, " + first + ". Your toolkit is unlocked.";
+}
+if (store(true)) unlock(store(true) === "1" ? "" : store(true));
+
+$("tkForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var f = this, btn = $("tkBtn"), err = $("tkErr");
+  if (btn.disabled) return;
+  var v = function(n){ return (f.elements.namedItem(n).value || "").trim(); };
+  var name = v("name"), email = v("email"), org = v("organization"), role = v("role");
+  if (!name || !org || !role || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    err.textContent = "Please add your name, a valid work email, your organization, and your role."; err.hidden = false; return;
+  }
+  err.hidden = true;
+  var data = {"form-name":"k12-toolkit-download", "bot-field":v("bot-field"), name:name, email:email, organization:org, role:role,
+              state:v("state"), consent:$("consent").checked ? "yes" : "no", source:source(), page:location.pathname, submitted_at:new Date().toISOString()};
+  btn.disabled = true; btn.textContent = "Unlocking...";
+  var first = name.split(" ")[0];
+  var finish = function(){ store(false, first || "1"); unlock(first); window.scrollTo({top:0, behavior:"smooth"}); };
+  fetch("/", {method:"POST", headers:{"Content-Type":"application/x-www-form-urlencoded"}, body:encode(data)}).then(finish, finish);
+});
+})();
+</script>
+</body>
+</html>
