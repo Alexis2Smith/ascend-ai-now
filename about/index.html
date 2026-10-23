@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Ascend AI NOW | Human Judgment at the Center of AI</title>
+  <meta name="description" content="Ascend AI NOW is an AI governance firm in the Research Triangle, NC. Meet founder Dr. Alexis S. Smith, learn our human-in-the-loop model, and see who leads every engagement.">
+  <link rel="canonical" href="https://ascendainow.com/about/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About Ascend AI NOW | Human Judgment at the Center of AI">
+  <meta property="og:description" content="Specialist AI. Accountable human leadership. Governance at the center. Meet Dr. Alexis S. Smith and the AI Executive Command Center&trade;.">
+  <meta property="og:url" content="https://ascendainow.com/about/">
+  <link rel="stylesheet" href="../assets/fonts/site-fonts.css">
+  <link rel="stylesheet" href="../assets/site-experience.css">
+  <link rel="stylesheet" href="../assets/consent.css">
+  <link rel="stylesheet" href="../assets/brand-system.css">
+  <style>
+    .ab-hero { padding: clamp(56px, 7vw, 96px) 0 clamp(48px, 6vw, 80px); background: linear-gradient(180deg, #FFFFFF 0%, #EAF0FF 100%); }
+    .ab-hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+    .ab-hero .stat-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .ab-hero .stat-row .bs-chip { min-height: 38px; font-size: .9rem; }
+    .ab-portrait { position: relative; max-width: 380px; margin: 0 auto; }
+    .ab-portrait .ring { position: absolute; inset: 6% -2% -2% -2%; border-radius: 50% 50% 24px 24px; border: 2px dashed rgba(65, 105, 225, .45); animation: bsSpin 60s linear infinite; }
+    .ab-portrait img { position: relative; display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 34px rgba(14, 40, 101, .22)); -webkit-mask-image: linear-gradient(180deg, #000 85%, transparent); mask-image: linear-gradient(180deg, #000 85%, transparent); }
+    .ab-portrait .tag { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); white-space: nowrap; padding: 9px 16px; border-radius: 999px; background: var(--bs-ink); color: #fff; font: 700 .85rem/1 var(--font-head); }
+    .timeline { position: relative; display: grid; gap: 18px; margin-top: 8px; }
+    .timeline::before { content: ""; position: absolute; left: 22px; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: linear-gradient(180deg, var(--bs-royal), #6a5cf0, var(--bs-orange)); }
+    .tl { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 18px; align-items: start; }
+    .tl .dot { position: relative; z-index: 1; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: #fff; border: 3px solid var(--bs-royal); font: 800 .72rem/1 var(--font-head); color: var(--bs-ink); }
+    .tl:nth-child(even) .dot { border-color: var(--bs-orange); }
+    .tl .bs-card { padding: 18px 22px; }
+    .tl h3 { margin: 0 0 4px; }
+    .tl p { margin: 0; }
+    .model-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .model-grid .bs-card { padding: 28px 24px; }
+    .model-grid .step { font: 800 2.4rem/1 var(--font-head); color: var(--bs-royal); }
+    .model-grid .bs-card:nth-child(2) .step { color: var(--bs-orange); }
+    .lex { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .lex .bs-card { padding: 28px 24px; }
+    .lex .letter { font: 800 4.5rem/.9 var(--font-head); background: linear-gradient(135deg, var(--bs-royal), #6a5cf0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lex .bs-card:nth-child(2) .letter { background: linear-gradient(135deg, var(--bs-orange), #ff9a3d); -webkit-background-clip: text; background-clip: text; }
+    .grow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: center; }
+    .grow .seats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .grow .seat { aspect-ratio: 1; border-radius: 18px; border: 2px dashed var(--bs-line); display: grid; place-items: center; text-align: center; padding: 10px; font: 700 .85rem/1.3 var(--font-head); color: var(--bs-muted); background: rgba(255, 255, 255, .7); }
+    .grow .seat.filled { border: 2px solid var(--bs-royal); color: var(--bs-ink); background: #fff; box-shadow: var(--bs-shadow); }
+    .grow .seat svg { width: 30px; height: 30px; stroke: var(--bs-royal-deep); display: block; margin: 0 auto 8px; }
+    .ab-emblem { display: grid; justify-items: center; gap: 34px; }
+    .ab-emblem .hitl-emblem { width: min(100%, 320px); margin: 0 auto; }
+    .ab-emblem .hitl-orbit i:nth-child(1) { transform: rotate(0deg) translateX(167px); }
+    .ab-emblem .hitl-orbit i:nth-child(2) { transform: rotate(60deg) translateX(167px); }
+    .ab-emblem .hitl-orbit i:nth-child(3) { transform: rotate(120deg) translateX(167px); }
+    .ab-emblem .hitl-orbit i:nth-child(4) { transform: rotate(180deg) translateX(167px); }
+    .ab-emblem .hitl-orbit i:nth-child(5) { transform: rotate(240deg) translateX(167px); }
+    .ab-emblem .hitl-orbit i:nth-child(6) { transform: rotate(300deg) translateX(167px); }
+    .ab-emblem-cap { margin: 0; font: 700 .95rem/1.3 var(--font-head); color: var(--bs-ink); text-align: center; }
+    .founder { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+    .founder-photo { position: sticky; top: 110px; margin: 0; padding: 12px 12px 0; border-radius: 28px; background: #F8FAFD; border: 1px solid var(--bs-line); box-shadow: 0 24px 60px rgba(14, 40, 101, .12); overflow: hidden; }
+    .founder-photo .ring { position: absolute; inset: 8% 6% auto 6%; aspect-ratio: 1; border-radius: 50%; border: 2px dashed rgba(65, 105, 225, .35); animation: bsSpin 60s linear infinite; }
+    .founder-photo img { position: relative; display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent); mask-image: linear-gradient(180deg, #000 88%, transparent); }
+    .founder-photo figcaption { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); white-space: nowrap; padding: 9px 16px; border-radius: 999px; background: var(--bs-ink); color: #fff; font: 700 .85rem/1 var(--font-head); }
+    .founder-title { margin: 4px 0 18px !important; font: 700 .9rem/1.4 var(--font-head) !important; letter-spacing: .08em; text-transform: uppercase; color: var(--bs-orange-deep) !important; }
+    .founder-bio > p:not([class]) { margin: 0 0 14px; }
+    .founder-bio a { color: var(--bs-royal-deep); font-weight: 700; }
+    .founder-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
+    .founder-ctas { justify-content: flex-start !important; margin-top: 22px; }
+    @media (max-width: 860px) { .founder { grid-template-columns: minmax(0, 1fr); } .founder-photo { position: relative; top: 0; max-width: 380px; margin: 0 auto; } }
+    @media (prefers-reduced-motion: reduce) { .founder-photo .ring { animation: none; } }
+    .founder-sig { display: flex; align-items: center; gap: 16px; margin: 26px 0 0; padding: 16px 0 0; border-top: 1px solid var(--bs-line); }
+    .founder-sig img { width: 96px; height: auto; flex: none; }
+    .founder-sig .sig-name { margin: 0 !important; font: 700 1.5rem/1.1 var(--font-head) !important; color: var(--bs-ink) !important; }
+    .founder-sig .sig-role { margin: 4px 0 0 !important; font: 600 .95rem/1.3 var(--font-body) !important; color: var(--bs-muted) !important; }
+    .cred-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .cred-cols .bs-card { padding: 24px; }
+    .cred-cols ul { margin: 10px 0 0; padding-left: 1.1em; }
+    .cred-cols li { margin: 0 0 8px; }
+    .build-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .build-grid .bs-card { padding: 26px 24px; }
+    @media (max-width: 960px) {
+      .ab-hero-grid, .grow { grid-template-columns: minmax(0, 1fr); }
+      .model-grid, .lex, .cred-cols, .build-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+  <script src="../assets/site-experience.js" defer></script>
+  <script src="../assets/brand-motion.js" defer></script>
+  <script src="../assets/consent.js" data-root="../" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Dr. Alexis S. Smith","jobTitle":"Founder, CEO, and Fractional Chief Artificial Intelligence Officer","worksFor":{"@type":"Organization","name":"Ascend AI NOW, LLC","url":"https://ascendainow.com/"},"description":"Technology executive, AI governance strategist, educator, and Certified Executive Coach with 30 years of experience spanning K-12 education, healthcare, municipal government, and nonprofit sectors.","sameAs":["https://www.linkedin.com/in/alexisssmith","https://orcid.org/0009-0007-0728-0542","https://doi.org/10.5281/zenodo.22017354"]}</script>
+  <meta property="og:image" content="https://ascendainow.com/assets/social/home-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@AscendAINow">
+  <meta name="twitter:title" content="About Ascend AI NOW | Human Judgment at the Center of AI">
+  <meta name="twitter:description" content="Specialist AI. Accountable human leadership. Governance at the center. Meet Dr. Alexis S. Smith and the AI Executive Command Center™.">
+  <meta name="twitter:image" content="https://ascendainow.com/assets/social/home-card.png">
+</head>
+<body class="brand-light brand-content has-interior-nav">
+
+<nav class="experience-nav" data-site-nav aria-label="Primary navigation">
+  <a class="experience-brand" href="../" aria-label="Ascend AI NOW home"><img class="experience-logo-transparent" src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW"></a>
+  <ul class="experience-links" id="primaryNavLinks" data-menu-links>
+    <li><a href="../about/" aria-current="page">About</a></li>
+    <li><a href="../#services">Services</a></li>
+    <li><a href="../framework/">Framework</a></li>
+    <li><a href="../k12assessment/">Assessments</a></li>
+    <li><a href="../institute/">Institute</a></li>
+    <li><a href="../impact/">Impact</a></li>
+    <li><a href="../research/">Research</a></li>
+    <li><a href="../trust/">Trust Center</a></li>
+  </ul>
+  <button class="experience-menu-toggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+  <a class="experience-cta" href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a Strategy Call</a>
+</nav>
+
+<main>
+  <header class="ab-hero bs-sky">
+    <div class="bs-wrap ab-hero-grid">
+      <div>
+        <p class="bs-label">About Ascend AI NOW&trade;</p>
+        <h1>Human judgment at the center of <em>every AI decision</em></h1>
+        <p class="bs-lead">Ascend AI NOW is an AI governance, readiness, and strategic implementation firm based in the Research Triangle, North Carolina, serving clients worldwide. We pair specialist AI with accountable human leadership so institutions can adopt AI with confidence, and without leaving people behind.</p>
+        <div class="stat-row">
+          <span class="bs-chip">Founded 2025</span>
+          <span class="bs-chip">LLC est. 2026</span>
+          <span class="bs-chip">Research Triangle, NC</span>
+          <span class="bs-chip">K&ndash;12</span>
+          <span class="bs-chip">Higher Ed</span>
+          <span class="bs-chip">Nonprofit</span>
+          <span class="bs-chip">Healthcare</span>
+          <span class="bs-chip">Government</span>
+        </div>
+      </div>
+      <div class="ab-emblem">
+        <div class="hitl-portrait hitl-emblem">
+          <span class="hitl-glow" aria-hidden="true"></span>
+          <span class="hitl-ring" aria-hidden="true"></span>
+          <span class="hitl-ring hitl-ring--2" aria-hidden="true"></span>
+          <span class="hitl-orbit" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <svg class="hitl-seal" viewBox="0 0 200 200" role="img" aria-label="Governance seal: a person at the center of a shield">
+            <defs>
+              <linearGradient id="sealG2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4169E1"/><stop offset="1" stop-color="#0E2865"/></linearGradient>
+              <linearGradient id="sealO2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#FF6600"/></linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="78" fill="#FFFFFF" stroke="#DCE5FB" stroke-width="2"/>
+            <path d="M100 38 L148 56 V98 C148 130 126 150 100 162 C74 150 52 130 52 98 V56 Z" fill="url(#sealG2)"/>
+            <circle cx="100" cy="86" r="15" fill="#FFFFFF"/>
+            <path d="M72 132 C76 114 87 106 100 106 C113 106 124 114 128 132 C119 141 110 146 100 150 C90 146 81 141 72 132 Z" fill="#FFFFFF"/>
+            <circle cx="138" cy="138" r="17" fill="url(#sealO2)" stroke="#FFFFFF" stroke-width="4"/>
+            <polyline points="130,138 136,144 147,132" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="ab-emblem-cap">One governed team. Human judgment at the center.</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="bs-section" aria-labelledby="origin-h">
+    <div class="bs-wrap">
+      <div class="bs-head bs-reveal">
+        <p class="bs-label">Where the concept came from</p>
+        <h2 id="origin-h">Every new technology reaches the people with the most first. <em>We exist so AI is different.</em></h2>
+        <p class="bs-lead">The AI Power Gap&trade; is the distance between the institutions that can govern AI well and the people those institutions serve. Our founder saw that gap up close for three decades, long before AI arrived.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl bs-reveal"><span class="dot">2007</span><div class="bs-card"><h3>Rural school district technology leadership</h3><p>Led technology for a rural Alabama school district, where access was never guaranteed and every decision touched students directly.</p></div></div>
+        <div class="tl bs-reveal"><span class="dot">2012</span><div class="bs-card"><h3>Municipal government and public infrastructure</h3><p>Delivered city systems and fiber-to-home projects, learning how technology choices shape whole communities.</p></div></div>
+        <div class="tl bs-reveal"><span class="dot">2016</span><div class="bs-card"><h3>Utility cooperatives across eight states</h3><p>Guided technology programs for more than 30 rural electric cooperatives.</p></div></div>
+        <div class="tl bs-reveal"><span class="dot">2018</span><div class="bs-card"><h3>District Chief Technology Officer</h3><p>Led district technology operations supporting more than 30,000 students and 45,000 devices, and secured more than $2M in federal E-Rate funding.</p></div></div>
+        <div class="tl bs-reveal"><span class="dot">2020</span><div class="bs-card"><h3>Enterprise architecture in healthcare</h3><p>Managed IT architecture for a major health insurer: 37 architects, 45+ workstreams, and an enterprise Microsoft Copilot rollout for 5,000+ users.</p></div></div>
+        <div class="tl bs-reveal"><span class="dot">2025</span><div class="bs-card"><h3>Ascend AI NOW is founded</h3><p>Doctoral research in Digital Stewardship, with a concentration in AI Ethics and Governance, becomes a practice: the AI Power Gap&trade; Framework and the Ascend AI NOW&trade; Framework for Responsible AI.</p></div></div>
+        <div class="tl bs-reveal"><span class="dot">2026</span><div class="bs-card"><h3>The AI Executive Command Center&trade;</h3><p>We build our own operating model the way we advise clients to: specialist AI in defined seats, with a human governance layer over every output.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bs-section bs-alt bs-sky" aria-labelledby="model-h">
+    <div class="bs-wrap">
+      <div class="bs-head bs-reveal">
+        <p class="bs-label">How we work</p>
+        <h2 id="model-h">One team. Every angle. AI-powered. <em>Human-accountable.</em></h2>
+        <p class="bs-lead">Our AI Executive Command Center puts each AI tool in a defined role, then routes every result through accountable people. It is how we deliver faster without lowering the bar.</p>
+      </div>
+      <div class="model-grid">
+        <article class="bs-card bs-reveal"><span class="step">01</span><h3>Specialist AI in defined seats</h3><p>Research, strategy, design, equity review, immersive development, and video each have a dedicated AI specialist with a clear scope.</p></article>
+        <article class="bs-card bs-reveal"><span class="step">02</span><h3>A human governance layer</h3><p>Decision rights, risk management, evidence chains, accountability, and ethics review sit with people, not models.</p></article>
+        <article class="bs-card bs-reveal"><span class="step">03</span><h3>Accountable outcomes</h3><p>Every deliverable is reviewed and signed off by a named human lead. Client data is never used to train AI models.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bs-section" aria-labelledby="grow-h">
+    <div class="bs-wrap grow">
+      <div class="bs-reveal">
+        <p class="bs-label">Built to grow</p>
+        <h2 id="grow-h">The center seat is a role, <em>not a solo act</em></h2>
+        <p>Ascend AI NOW is building a bench of advisors, educators, and technologists. Each one leads from the same human-in-the-loop seat, uses the same governed AI team, and answers to the same standards published in our <a href="../trust/">Trust Center</a>.</p>
+        <p>Interested in collaborating or joining our advisor network?</p>
+        <a class="bs-btn bs-btn--royal" href="mailto:info@ascendainow.com?subject=Advisor%20network%20interest">Start a conversation</a>
+      </div>
+      <div class="seats bs-reveal" aria-label="Advisor seats">
+        <div class="seat filled"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Founder &amp; CEO</span></div>
+        <div class="seat"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Governance advisor</span></div>
+        <div class="seat"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Education lead</span></div>
+        <div class="seat"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Technology architect</span></div>
+        <div class="seat"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Workforce strategist</span></div>
+        <div class="seat"><span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-1a7 7 0 0 1 16 0v1"/></svg>Your seat?</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bs-section bs-alt" aria-labelledby="lex-h">
+    <div class="bs-wrap">
+      <div class="bs-head bs-reveal">
+        <p class="bs-label">What we stand for</p>
+        <h2 id="lex-h">LEX: the values behind every engagement</h2>
+      </div>
+      <div class="lex">
+        <article class="bs-card bs-reveal"><span class="letter">L</span><h3>Literacy</h3><p>AI fluency for every role, not just IT, so people can use, question, and improve the tools around them.</p></article>
+        <article class="bs-card bs-reveal"><span class="letter">E</span><h3>Equity</h3><p>Knowing who benefits from AI and who is exposed, and closing that gap on purpose.</p></article>
+        <article class="bs-card bs-reveal"><span class="letter">X</span><h3>Explainable AI</h3><p>Decisions people can understand, trace, and challenge.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bs-section" aria-labelledby="build-h">
+    <div class="bs-wrap">
+      <div class="bs-head bs-reveal">
+        <p class="bs-label">What we are building</p>
+        <h2 id="build-h">Building in the open</h2>
+        <p class="bs-lead">Alongside client work, we are building AI-enabled prototypes that turn governance into practical tools.</p>
+      </div>
+      <div class="build-grid">
+        <article class="bs-card bs-reveal"><h3>Readiness diagnostics</h3><p>Sector-aware assessments that score the five framework stages and reveal the one constraint holding everything back.</p><a href="../k12assessment/">Try the diagnostic</a></article>
+        <article class="bs-card bs-reveal"><h3>Business optimization discovery</h3><p>Conversation-design prototypes that guide leaders from current-state pain points to prioritized AI opportunities.</p></article>
+        <article class="bs-card bs-reveal"><h3>Impact dashboards</h3><p>Executive views that keep outcomes, risk, people, operations, and trust measurable as AI scales.</p><a href="../framework/#tab-scale">See the Scale stage</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bs-section bs-alt" id="founder" aria-labelledby="founder-h">
+    <div class="bs-wrap founder">
+      <figure class="founder-photo bs-reveal">
+        <img src="../assets/branding/dr-alexis-smith-2026-current.webp" alt="Dr. Alexis S. Smith, Founder and CEO of Ascend AI NOW" width="580" height="850" loading="lazy">
+        <figcaption>Founder &amp; CEO</figcaption>
+      </figure>
+      <div class="founder-bio bs-reveal">
+        <p class="bs-label">Meet the founder</p>
+        <h2 id="founder-h">Dr. Alexis S. Smith</h2>
+        <p class="founder-title">Technology executive &middot; AI governance strategist &middot; Educator</p>
+        <p>Dr. Alexis S. Smith brings 30+ years in technology, with leadership roles since 2007 as a two-time district Chief Technology Officer, an enterprise IT architecture leader, and now Founder and CEO of Ascend AI NOW, LLC. She is an AI governance strategist and educator. Her leadership spans K&ndash;12 education, public safety, municipal government, and healthcare, bridging enterprise technology and responsible AI innovation.</p>
+        <p>A former Chief Technology Officer for Montgomery Public Schools and Bullock County Schools in Alabama, she led district technology operations supporting over 30,000 students and 45,000 devices. She subsequently led enterprise solution architecture at Blue Cross Blue Shield of North Carolina.</p>
+        <p>Dr. Smith serves as a Global Ethical AI Delegate for the USA Chapter of Women in Ethical AI, CoSN Thought Partner and K&ndash;12 CTO Academy Mentor, Fractional Chief AI Officer for MedCore, and Adjunct Professor of Artificial Intelligence at Carolina Christian College. She is a member of Black Women in Artificial Intelligence (BWIAI) and builds AI content-safety solutions using NVIDIA APIs.</p>
+        <p>She created the Ascend AI NOW&trade; Framework for Responsible AI, AI Power Gap&trade; Readiness Index, and AI Governance Velocity Gap&trade; assessment. She publishes <em>Closing the AI Power Gap&trade;</em> and authored <em>The AI Power Gap&trade;: Governance Capacity in Enterprise Adoption</em> (<a href="https://doi.org/10.5281/zenodo.22017354" target="_blank" rel="noopener">DOI: 10.5281/zenodo.22017354</a>).</p>
+        <p>Her work advances equitable, accountable AI adoption, particularly in under-resourced educational communities.</p>
+        <p>Dr. Smith holds a Doctorate in Digital Stewardship (AI Ethics and Governance), is a Certified Executive Coach and TAIMScore&trade; Certified Assessor, and is a 2026 Global Ethical AI Congress Leadership Award honoree and Black Leaders Worldwide Woman to Watch.</p>
+        <div class="founder-chips">
+          <span class="bs-chip">CoSN Thought Partner</span>
+          <span class="bs-chip">CoSN K&ndash;12 CTO Academy Mentor</span>
+          <span class="bs-chip">Global Ethical AI Delegate, WIEAI USA</span>
+          <span class="bs-chip">Member, Black Women in Artificial Intelligence</span>
+          <span class="bs-chip">2026 GEAIC Leadership Award</span>
+          <span class="bs-chip">TAIMScore&trade; Certified Assessor</span>
+          <span class="bs-chip">Certified Executive Coach</span>
+        </div>
+        <div class="founder-sig">
+          <img src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW" width="120" height="120" loading="lazy">
+          <div><p class="sig-name">Dr. Alexis S. Smith</p><p class="sig-role">Founder &amp; CEO, Ascend AI NOW&trade;</p></div>
+        </div>
+        <div class="cmd-ctas founder-ctas">
+          <a class="bs-btn bs-btn--royal" href="mailto:info@ascendainow.com?subject=Speaking%20request%20for%20Dr.%20Alexis%20S.%20Smith">Invite Dr. Smith to speak</a>
+          <a class="bs-btn bs-btn--ghost" href="https://www.linkedin.com/in/alexisssmith" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bs-section final bs-sky" aria-labelledby="ab-cta">
+    <div class="bs-wrap">
+      <div class="bs-card bs-reveal">
+        <p class="bs-label" style="justify-content:center">Work with us</p>
+        <h2 id="ab-cta">Bring your AI questions to <em>the Command Center</em></h2>
+        <div class="cmd-ctas">
+          <a class="bs-btn bs-btn--orange" href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a Strategy Call</a>
+          <a class="bs-btn bs-btn--ghost" href="../k12assessment/">Assess Your AI Readiness</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="bs-wrap">
+    <div>
+      <img src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW">
+      <p>Executive AI governance, readiness, and responsible implementation. Research Triangle, North Carolina. Serving clients worldwide.</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+      <a href="../">Home</a>
+      <a href="../#services">Services</a>
+      <a href="../framework/">Framework</a>
+      <a href="../impact/">Impact</a>
+      <a href="../research/">Research</a>
+    </div>
+    <div>
+      <h4>Tools</h4>
+      <a href="../k12assessment/">Readiness Diagnostic</a>
+      <a href="../roi-calculator.html">ROI Calculator</a>
+      <a href="https://calendly.com/ascendainow/executive_discovery_call" target="_blank" rel="noopener">Book a Strategy Call</a>
+    </div>
+    <div>
+      <h4>Trust Center</h4>
+      <a href="../trust/#privacy">Privacy Policy</a>
+      <a href="../trust/#cookies">Cookie Policy</a>
+      <a href="../trust/#ai">Responsible AI Use</a>
+      <a href="../trust/#terms">Terms of Use</a>
+      <button type="button" data-cookie-settings>Cookie settings</button>
+    </div>
+    <p class="legal">&copy; 2026 Ascend AI NOW, LLC. Ascend AI NOW&trade;, AI Power Gap&trade;, Close the AI Power Gap&trade;, the Ascend AI NOW&trade; Framework for Responsible AI, and the AI Executive Command Center&trade; are trademarks of Ascend AI NOW, LLC.</p>
+  </div>
+</footer>
+</body>
+</html>
