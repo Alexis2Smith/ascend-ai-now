@@ -9,10 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--navy:#0b1340;--blue:#1a4fff;--orange:#ff6a00;--cyan:#19bfd3;--white:#fff;--paper:#f5f7fb;--ink:#17213b;--muted:#64708c;--line:#dce3f0}
+    :root{--navy:#050918;--blue:#286cff;--orange:#ff762c;--cyan:#83caff;--white:#fff;--paper:#f2f5fb;--ink:#111b31;--muted:#64708c;--line:#dce3f0}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--white);color:var(--ink);font:400 16px/1.65 "Nunito Sans",sans-serif}
+    body{margin:0;background:#f2f5fb;color:var(--ink);font:400 16px/1.65 "Nunito Sans",sans-serif}
     a{color:inherit}
     .site-nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:8px clamp(20px,5vw,72px);background:rgba(11,19,64,.97);border-bottom:1px solid rgba(255,255,255,.1)}
     .brand{display:flex;align-items:center;flex:none}
@@ -105,22 +105,27 @@
     @media(max-width:900px){.stage-panel-scale{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.measurement-layout{grid-template-columns:1fr}}
     @media(max-width:760px){.hero{padding-top:48px}h1{font-size:46px}h2{font-size:42px}.stage-statement{font-size:26px}.stage-tabs{grid-template-columns:1fr 1fr}.stage-tab:last-child{grid-column:1/-1}.stage-panel,.stage-panel-scale{grid-template-columns:1fr}.visual-slot{min-height:0}.hotspot{width:34px;height:34px;font-size:11px}.scale-heading h3{font-size:35px}.measure-cta{align-items:flex-start;flex-direction:column}.companion-grid{grid-template-columns:1fr}.footer{align-items:flex-start;flex-direction:column}}
   </style>
+  <link rel="stylesheet" href="../assets/site-experience.css">
+  <script src="../assets/site-experience.js" defer></script>
 </head>
-<body>
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="brand" href="../index.html" aria-label="Ascend AI NOW home"><img src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW"></a>
-    <ul class="nav-links" id="primaryNavLinks">
+<body class="has-interior-nav">
+  <nav class="experience-nav" data-site-nav aria-label="Primary navigation">
+    <a class="experience-brand" href="../index.html" aria-label="Ascend AI NOW home"><img class="experience-logo-transparent" src="../assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW"></a>
+    <ul class="experience-links" id="primaryNavLinks" data-menu-links>
       <li><a href="../index.html#services">Services</a></li>
-      <li><a href="../impact/">Impact</a></li>
+      <li><a href="../framework/" aria-current="page">Framework</a></li>
+      <li><a href="../assessment.html">Assessments</a></li>
+      <li><a href="../k12assessment/">K-12 Diagnostic</a></li>
+      <li><a href="../roi-calculator.html">ROI Calculator</a></li>
       <li><a href="../impact/#academy">Academy</a></li>
       <li><a href="../research/">Research</a></li>
-      <li><a href="../k12assessment/">Assessment</a></li>
+      <li><a href="../impact/">Impact</a></li>
     </ul>
-    <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
-    <a class="nav-cta" href="mailto:info@AscendAINOW.com?subject=Responsible%20AI%20advisory">Executive advisory</a>
+    <button class="experience-menu-toggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+    <a class="experience-cta" href="mailto:info@AscendAINOW.com?subject=Responsible%20AI%20advisory">Executive advisory</a>
   </nav>
 
-  <header class="hero">
+  <header class="hero page-hero">
     <p class="eyebrow">Ascend AI NOW&trade; Framework for Responsible AI</p>
     <h1>Responsibility, designed at every stage</h1>
     <p>A five-stage framework for closing the AI Power Gap&trade; with governance, architecture, deployment, and accountability moving together.</p>
@@ -230,30 +235,15 @@
     (function(){
       var tabs=Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
       var panels=Array.prototype.slice.call(document.querySelectorAll('[role="tabpanel"]'));
-      var navToggle=document.getElementById('navMenuToggle');
-      var primaryNavLinks=document.getElementById('primaryNavLinks');
-      function closeNav(restoreFocus){
-        navToggle.setAttribute('aria-expanded','false');
-        primaryNavLinks.classList.remove('open');
-        if(restoreFocus)navToggle.focus();
-      }
-      navToggle.addEventListener('click',function(){
-        var isOpen=navToggle.getAttribute('aria-expanded')==='true';
-        navToggle.setAttribute('aria-expanded',String(!isOpen));
-        primaryNavLinks.classList.toggle('open',!isOpen);
-      });
-      primaryNavLinks.addEventListener('click',function(event){
-        if(event.target.closest('a'))closeNav(false);
-      });
-      document.addEventListener('keydown',function(event){
-        if(event.key==='Escape'&&navToggle.getAttribute('aria-expanded')==='true')closeNav(true);
-      });
-      function activate(index,moveFocus){
+      function activate(index,moveFocus,updateHash){
         tabs.forEach(function(tab,i){var selected=i===index;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;panels[i].hidden=!selected;});
         if(moveFocus)tabs[index].focus();
+        if(updateHash&&window.location.hash!=='#'+tabs[index].id)window.history.replaceState(null,'','#'+tabs[index].id);
       }
+      var initialTabIndex=tabs.findIndex(function(tab){return tab.id===window.location.hash.slice(1);});
+      if(initialTabIndex>=0)activate(initialTabIndex,false,false);
       tabs.forEach(function(tab,index){
-        tab.addEventListener('click',function(){activate(index,false);});
+        tab.addEventListener('click',function(){activate(index,false,true);});
         tab.addEventListener('keydown',function(event){
           var next=index;
           if(event.key==='ArrowRight')next=(index+1)%tabs.length;
@@ -261,7 +251,7 @@
           else if(event.key==='Home')next=0;
           else if(event.key==='End')next=tabs.length-1;
           else return;
-          event.preventDefault();activate(next,true);
+          event.preventDefault();activate(next,true,true);
         });
       });
       var domainData={

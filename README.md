@@ -29,7 +29,7 @@ ascend-ai-now/
 ├── impact/index.html          # Youth, Workforce & Global Impact
 ├── framework/index.html       # Five-stage interactive framework
 ├── research/index.html        # Research & Insights
-├── assets/                    # URL-free logo derivative and published portrait
+├── assets/                    # Brand assets, shared navigation styles and behavior
 ├── index_old.html             # Older page containing the supplied embedded logo source
 ├── netlify.toml               # Netlify deployment configuration
 └── README.md                  # Project notes and implementation plan
@@ -78,7 +78,7 @@ open index.html
 
 ## Updating Content
 
-Primary site content lives in `index.html`. The official logo is shared from `assets/ascend-ai-now-logo.png`.
+Primary site content lives in `index.html`. The cinematic homepage uses the official logo artwork in `assets/branding/ascend-ai-now-logo-official.png`.
 
 To update:
 1. Edit `index.html` directly
@@ -98,24 +98,27 @@ To update:
 
 ### Completed
 
-- Added the founder-supplied multicolor A, orbit, ASCEND wordmark, and AI NOW artwork as `assets/ascend-ai-now-logo.png`. The source was recovered from the older page's embedded logo; the derivative keeps the original 1024-by-1024 canvas and artwork, masks only the bottom website URL, and retains the source's light-gray background. No transparent master was present in the repository.
-- Applied the logo to the homepage navigation, footer, newsletter, and Research & Insights entry, plus the standalone and K-12 assessment navigation/footer. K-12 assessment reports continue using the header logo.
+- Added the founder-supplied multicolor A, orbit, ASCEND wordmark, and AI NOW artwork as `assets/ascend-ai-now-logo.png`. The source was recovered from the older page's embedded logo; the derivative keeps the original 1024-by-1024 canvas and artwork, masks only the bottom website URL, and retains the source's light-gray background.
+- The cinematic homepage uses the separate horizontal transparent logo artwork at `assets/branding/ascend-ai-now-logo-official.png`; preserve the supplied artwork without recreation or retouching.
+- Integrated the official transparent logo into the cinematic homepage hero and navigation, and applied it to the footer, newsletter, and Research & Insights entry, plus the standalone and K-12 assessment navigation/footer. K-12 assessment reports continue using the header logo.
+- Replaced unsupported executive metric claims with source-backed founder credentials and five-stage framework proof points; refined homepage messaging around executive AI governance, accountability, and human-centered implementation.
 - Added the SkillBanc NOVARA Nigeria project and October 3, 2026 Demo Day appearance. Outcomes are attributed to the project's October 2026 presentation and are not described as independently verified or solely owned by Ascend AI NOW.
 - Added the October 2026 AI Power Gap Intel editorial, “Acknowledged Does Not Equal Controlled,” with deployment-control questions and an explicit caveat about illustrative graphics.
 - Added `/impact/`, `/framework/`, and `/research/` static directory routes, linked from the homepage and each other. The Framework page presents all five approved original graphics without cropping or redesign and has keyboard-operable tabs. Its Scale stage includes five interactive measurement domains, an illustrative executive dashboard, and a Measure AI Impact consultation link.
+- Added shared responsive navigation and cinematic interior-page styling across the homepage, Framework, Services, Assessments, Academy, Research, and Impact destinations. The shared menu supports keyboard dismissal and focus restoration, while motion respects reduced-motion preferences.
+- Added a responsive Academic Foundation feature on Impact, guided by the supplied academic design references and clearly separated from independent Academy instruction and college programs.
+- Added interactive industry exploration and native service-detail disclosures without removing the existing service descriptions. Assessment and calculator forms, scoring, and result behavior remain intact.
 - Added the DAFITC Education Day description, global AI education, E-Rate advocacy context, and collaboration calls to action. Attendance is labeled an estimate; the FCC letter is not described as filed; college instruction and the independent Skool Academy are distinguished.
 - Left assessment logic, forms, Stripe links, email links, and PDF/report generation behavior unchanged. No production deployment was performed.
 
 ### Required Follow-up Assets and Scope
 
-- A clean transparent-background logo master, if the founder has one. Until then, use the URL-free derivative and do not recreate or retouch its artwork.
 - The October 2026 NOVARA Demo Day presentation and approved event/project images or partner marks.
 - The DAFITC AI Governance panel presentation and Education Day source information.
 - Carolina Christian College syllabus and MA 326 teaching presentations.
 - The CoSN E-Rate FCC filing carousel and founder's FCC comment letter. The page does not claim filing without confirmation.
 - The Howard University business optimization interview presentation. It must remain identified as a prototype, not a completed client engagement.
 - The original AI Power Gap Intel graphics and supporting citations/source notes. Do not use illustrative graphics as evidence of incident details.
-- A transparent-background logo master, if available. The current derivative preserves the source's light-gray background.
 - Certifier.io configuration or approved certificate links, if they are expected on the Academy section. No Certifier.io integration is present in this repository.
 - Confirmation of approved public wording and image permissions for partner/project materials before adding those assets.
 

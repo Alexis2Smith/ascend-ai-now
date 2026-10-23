@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ascend AI NOW | Strategic AI Implementation Advisory | Dr. Alexis S. Smith</title>
-  <meta name="description" content="Ascend AI NOW is a strategic AI advisory firm helping healthcare organizations, educational institutions, and service businesses implement AI responsibly. Founded by Dr. Alexis S. Smith">
+  <title>Ascend AI NOW | Executive AI Governance | Dr. Alexis S. Smith</title>
+  <meta name="description" content="Ascend AI NOW helps executive teams align AI governance, readiness, and implementation with accountability, equity, and human-centered design. Founded by Dr. Alexis S. Smith.">
   <meta name="keywords" content="AI governance, AI advisory, fractional CTO, AI implementation, healthcare AI, education technology, E-Rate consulting, responsible AI, workforce enablement, Raleigh NC">
-  <meta property="og:title" content="Ascend AI NOW | Strategic AI Implementation Advisory">
-  <meta property="og:description" content="We help organizations implement AI responsibly — governance frameworks, fractional CTO services, and workforce enablement. Led by Dr. Alexis S. Smith.">
+  <meta property="og:title" content="Ascend AI NOW | Executive AI Governance">
+  <meta property="og:description" content="Executive AI governance and responsible implementation grounded in accountability, equity, and human-centered design. Led by Dr. Alexis S. Smith.">
   <meta property="og:url" content="https://ascendainow.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site-experience.css">
   <style>
     :root {
       --white:       #ffffff;
@@ -86,15 +87,6 @@
     .portrait-wrap { position:relative; width:100%; height:100%; display:flex; align-items:flex-end; justify-content:center; }
     .portrait-bg { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:80%; height:85%; background:linear-gradient(170deg,rgba(26,79,255,0.15) 0%,rgba(26,79,255,0.06) 50%,rgba(11,19,64,0.95) 100%); border-top-left-radius:50% 30%; border-top-right-radius:50% 30%; }
     .portrait-img { position:relative; z-index:3; width:78%; max-width:380px; aspect-ratio:2/3; object-fit:cover; object-position:center 15%; display:block; }
-    .portrait-corner { position:absolute; z-index:4; width:28px; height:28px; }
-    .portrait-corner.tl { top:12%; left:11%; border-top:2px solid var(--orange); border-left:2px solid var(--orange); }
-    .portrait-corner.br { bottom:2px; right:11%; border-bottom:2px solid var(--orange); border-right:2px solid var(--orange); }
-    .stat-float { position:absolute; z-index:5; background:rgba(255,255,255,0.97); backdrop-filter:blur(8px); border:1px solid rgba(26,79,255,0.15); padding:0.9rem 1.2rem; border-radius:2px; box-shadow:0 8px 28px rgba(26,79,255,0.1); }
-    .stat-float.left { left:4%; top:42%; border-left:3px solid var(--orange); }
-    .stat-float.right { right:4%; top:22%; border-left:3px solid var(--royal); }
-    .sf-num { font-family:"Cormorant Garamond",serif; font-size:1.8rem; font-weight:700; color:var(--ink); line-height:1; }
-    .sf-label { font-size:0.56rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-top:0.2rem; }
-
     /* TICKER */
     .ticker { background:var(--royal); padding:0.7rem 0; overflow:hidden; white-space:nowrap; }
     .ticker-inner { display:inline-flex; animation:ticker 28s linear infinite; }
@@ -123,15 +115,12 @@
     .auth-kicker { font-size:0.58rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--royal); margin-bottom:0.6rem; }
     .auth-statement { font-family:"Cormorant Garamond",serif; font-size:clamp(1.4rem,2.5vw,2rem); font-weight:400; line-height:1.55; color:var(--ink); max-width:480px; }
     .auth-statement em { font-style:italic; color:var(--royal); }
-    .auth-stats { display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--line); }
-    .astat { padding:2rem 1.6rem; border-right:1px solid var(--line); border-bottom:1px solid var(--line); position:relative; background:var(--white); transition:background 0.3s; }
-    .astat:nth-child(3n) { border-right:none; }
-    .astat:nth-last-child(-n+3) { border-bottom:none; }
-    .astat:hover { background:var(--blue-pale); }
-    .astat-num { font-family:"Cormorant Garamond",serif; font-size:2.4rem; font-weight:700; color:var(--royal); line-height:1; display:block; }
-    .astat-label { font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-top:0.4rem; display:block; line-height:1.5; }
-    .astat-accent { position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--orange); transition:width 0.5s; }
-    .astat:hover .astat-accent { width:100%; }
+    .authority-proof { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border:1px solid var(--line); }
+    .proof-card { min-height:100%; padding:1.8rem 1.5rem; border-right:1px solid var(--line); background:var(--white); }
+    .proof-card:last-child { border-right:0; }
+    .proof-kicker { display:block; margin-bottom:.65rem; color:var(--orange); font-size:.58rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .proof-card strong { display:block; margin-bottom:.5rem; color:var(--ink); font:600 1.2rem/1.15 "Cormorant Garamond",serif; }
+    .proof-card p { color:var(--text-mid); font-size:.78rem; line-height:1.6; }
 
     /* ABOUT */
     .about { background:var(--off-white); padding:8rem 5rem; overflow:hidden; position:relative; }
@@ -294,15 +283,14 @@
       .hero { grid-template-columns:1fr; min-height:auto; }
       .hero-left { padding:8rem 2rem 3rem; }
       .hero-right { height:400px; }
-      .stat-float { display:none; }
       .portrait-img { max-width:240px; aspect-ratio:3/4; object-position:center 10%; }
       .what-we-do,.authority,.services,.about,.methodology,.newsletter,.final-cta,.engagements,.research { padding:4.5rem 2rem; }
       .wwd-grid,.svc-grid,.svc-grid-row2 { grid-template-columns:1fr; }
       .svc-card { border-right:none; border-bottom:1px solid var(--line); }
       .authority-inner { grid-template-columns:1fr; gap:2.5rem; }
-      .auth-stats { grid-template-columns:repeat(2,1fr); }
-      .astat:nth-child(3n) { border-right:1px solid var(--line); }
-      .astat:nth-child(2n) { border-right:none; }
+      .authority-proof { grid-template-columns:1fr; }
+      .proof-card { border-right:0; border-bottom:1px solid var(--line); }
+      .proof-card:last-child { border-bottom:0; }
       .about-grid { grid-template-columns:1fr; gap:3rem; }
       .method-steps { grid-template-columns:repeat(2,1fr); gap:3rem; }
       .mstep::after { display:none; }
@@ -318,30 +306,239 @@
       .footer-links { justify-content:center; }
       .footer-copy { text-align:center; }
     }
+    /* CINEMATIC DIGITAL HEADQUARTERS */
+    :root{--white:#080d1c;--off-white:#0c1427;--blue-pale:rgba(26,79,255,.11);--ink:#050918;--ink-mid:#17233f;--text:#f4f7ff;--text-mid:#c2cce0;--text-muted:#9ba9c5;--line:rgba(146,176,230,.16);--line-soft:rgba(146,176,230,.08)}
+    html{scroll-padding-top:100px}
+    body.digital-headquarters{background:#050918;color:#f4f7ff}
+    #mainNav{padding:12px clamp(18px,4.5vw,72px);background:rgba(5,9,24,.78);border-bottom:1px solid rgba(151,182,240,.12);backdrop-filter:blur(18px)}
+    #mainNav.scrolled{padding:8px clamp(18px,4.5vw,72px);background:rgba(5,9,24,.96);border-bottom-color:rgba(151,182,240,.18);box-shadow:0 8px 36px rgba(0,0,0,.28)}
+    #mainNav .nav-brand{flex:none}
+    #mainNav .nav-logo{width:150px;height:100px;margin:-8px 0;object-fit:contain;background:transparent;transition:width .35s,height .35s}
+    #mainNav.scrolled .nav-logo{width:132px;height:88px}
+    #mainNav .nav-links{align-items:center;gap:clamp(.8rem,1.7vw,1.8rem)}
+    #mainNav .nav-links a{color:#d5def0;font-size:.66rem;letter-spacing:.09em;white-space:nowrap}
+    #mainNav .nav-links a:hover,#mainNav .nav-links a:focus-visible{color:#fff}
+    #mainNav .nav-cta{border:1px solid rgba(255,126,40,.8);background:linear-gradient(120deg,#ff6a00,#df3e16);white-space:nowrap}
+    #mainNav .nav-menu-toggle{min-height:44px;border-color:rgba(207,222,255,.5);color:#fff;cursor:pointer}
+    .hero{min-height:780px;height:min(100svh,1050px);grid-template-columns:minmax(0,1.04fr) minmax(420px,.96fr);background:#050918;isolation:isolate}
+    .hero::before{top:0;right:auto;left:0;width:100%;height:100%;opacity:.55;background-image:radial-gradient(1px 1px at 12% 18%,rgba(255,255,255,.8),transparent 2px),radial-gradient(1px 1px at 67% 21%,rgba(149,198,255,.7),transparent 2px),radial-gradient(1.5px 1.5px at 82% 73%,rgba(255,171,105,.7),transparent 2px),radial-gradient(1px 1px at 45% 81%,rgba(255,255,255,.6),transparent 2px),radial-gradient(1px 1px at 27% 61%,rgba(118,173,255,.6),transparent 2px);background-size:410px 330px;pointer-events:none;z-index:-1}
+    .hero::after{top:0;right:0;width:72%;height:100%;background:radial-gradient(ellipse at 72% 46%,rgba(20,85,214,.16),transparent 55%),linear-gradient(90deg,#050918 0%,rgba(5,9,24,.74) 36%,rgba(5,9,24,.04) 100%);z-index:-1}
+    .hero-left{justify-content:center;padding:145px 2rem 80px clamp(26px,7.5vw,120px);animation:fadeUp 1s ease .1s both}
+    .hero-eyebrow{margin-bottom:1.2rem}
+    .eyebrow-text{color:#8fcaff}
+    .hero-name{margin-bottom:1rem;color:#d4def3;font:700 .73rem "Nunito Sans",sans-serif;letter-spacing:.19em;text-transform:uppercase}
+    .hero-headline{max-width:760px;margin-bottom:1.25rem;color:#fff;font:700 clamp(3.2rem,6.7vw,6.6rem)/.9 "Cormorant Garamond",serif;letter-spacing:-.035em;text-wrap:balance}
+    .hero-headline em{display:block;color:#ff7a2e;font-style:italic;font-weight:400}
+    .hero-bio{max-width:610px;margin-bottom:1.5rem;color:#c4cee2;font-size:clamp(.94rem,1.25vw,1.08rem)}
+    .hero-bio strong{color:#fff}
+    .hero-pills{margin-bottom:1.6rem}
+    .pill{border-color:rgba(98,159,255,.35);background:rgba(13,51,130,.32);color:#a9d3ff}
+    .hero-btns{align-items:center}
+    .btn-orange,.btn-ghost-white{display:inline-flex;min-height:52px;align-items:center;justify-content:center;padding:.85rem 1.25rem;border-radius:0;font-size:.67rem}
+    .btn-orange{background:linear-gradient(120deg,#ff762c,#e84916);box-shadow:0 10px 36px rgba(242,91,25,.24)}
+    .btn-ghost-white{border-color:rgba(202,219,255,.44);color:#f4f7ff}
+    .hero-right{z-index:0;min-width:0;align-items:center;justify-content:center;overflow:visible;animation:none}
+    .hero-composition{position:relative;width:min(100%,740px);height:min(78vh,760px);min-height:570px;display:grid;place-items:center}
+    .space-scene{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;pointer-events:none}
+    .hero-brandmark{position:absolute;top:8%;left:6%;z-index:2;width:min(84%,570px);height:auto;filter:drop-shadow(0 0 26px rgba(62,154,255,.28));}
+    .earth{position:absolute;top:50%;left:52%;width:min(47vw,610px);aspect-ratio:1;border:1px solid rgba(135,207,255,.8);border-radius:50%;background:radial-gradient(ellipse at 32% 24%,rgba(182,236,255,.98) 0%,rgba(47,159,255,.9) 5%,rgba(13,88,201,.98) 25%,rgba(8,40,111,.99) 51%,#03102b 68%,#020611 72%);box-shadow:inset -32px -9px 60px rgba(0,0,0,.75),inset 13px 8px 35px rgba(128,208,255,.42),0 0 22px rgba(67,166,255,.85),0 0 90px rgba(27,108,255,.46);transform:translate(-48%,-50%)}
+    .earth::before{position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at 28% 31%,rgba(114,218,216,.5) 0 5%,transparent 5.8%),radial-gradient(ellipse at 43% 41%,rgba(85,194,178,.42) 0 8%,transparent 8.7%),radial-gradient(ellipse at 61% 24%,rgba(115,205,181,.45) 0 7%,transparent 7.8%),radial-gradient(ellipse at 70% 58%,rgba(101,195,192,.42) 0 8%,transparent 8.8%),radial-gradient(ellipse at 42% 70%,rgba(89,175,189,.36) 0 9%,transparent 10%),linear-gradient(110deg,transparent 35%,rgba(111,201,255,.2) 49%,transparent 62%);content:"";mask-image:radial-gradient(ellipse at 42% 40%,#000 30%,rgba(0,0,0,.8) 56%,transparent 72%)}
+    .earth::after{position:absolute;inset:-1px;border:1px solid rgba(185,229,255,.55);border-radius:50%;box-shadow:inset 18px 0 18px rgba(139,218,255,.24);content:""}
+    .earth-grid{position:absolute;inset:4%;overflow:hidden;border-radius:50%;background:repeating-linear-gradient(0deg,transparent 0 30px,rgba(131,198,255,.1) 31px,transparent 32px),repeating-linear-gradient(90deg,transparent 0 42px,rgba(131,198,255,.08) 43px,transparent 44px);mask-image:radial-gradient(ellipse at 40% 40%,#000 44%,transparent 70%)}
+    .orbit{position:absolute;top:50%;left:52%;width:min(61vw,790px);aspect-ratio:1.52;border:1px solid rgba(92,158,255,.48);border-radius:50%;transform:translate(-50%,-50%) rotate(-22deg);animation:orbit-drift 24s linear infinite}
+    .orbit::before,.orbit::after{position:absolute;width:8px;height:8px;border-radius:50%;content:""}
+    .orbit::before{top:8%;left:13%;background:#74caff;box-shadow:0 0 16px 4px #3698ff}
+    .orbit::after{right:9%;bottom:18%;background:#ff792f;box-shadow:0 0 16px 4px #ff6a00}
+    .orbit-two{width:min(70vw,900px);aspect-ratio:1.27;border-color:rgba(255,126,60,.26);transform:translate(-50%,-50%) rotate(36deg);animation-direction:reverse;animation-duration:33s}
+    .orbit-two::before{top:50%;left:-4px;width:5px;height:5px}
+    .orbit-two::after{right:21%;bottom:-3px;width:5px;height:5px}
+    .orbit-three{width:min(55vw,700px);aspect-ratio:1.8;border-color:rgba(106,190,255,.22);transform:translate(-50%,-50%) rotate(68deg);animation-duration:42s}
+    .orbit-three::before{top:12%;left:48%;width:4px;height:4px}
+    .orbit-three::after{right:8%;bottom:46%;width:4px;height:4px}
+    .portrait-frame{position:absolute;right:3%;bottom:0;z-index:3;width:clamp(230px,30vw,400px);height:clamp(360px,55vw,680px);display:flex;align-items:flex-end;justify-content:center;overflow:hidden;background:linear-gradient(160deg,transparent 54%,rgba(4,11,28,.3));}
+    .portrait-frame::before{position:absolute;inset:0;background:linear-gradient(180deg,transparent 64%,rgba(3,7,19,.38) 100%);content:"";pointer-events:none;z-index:1}
+    .portrait-img{position:relative;z-index:0;width:100%;height:100%;max-width:none;aspect-ratio:auto;object-fit:contain;object-position:center bottom;display:block;filter:drop-shadow(0 18px 34px rgba(0,0,0,.34))}
+    .portrait-caption{position:absolute;z-index:2;left:14px;bottom:12px;color:#fff;font-size:.58rem;font-weight:800;letter-spacing:.15em;text-shadow:0 1px 8px #000;text-transform:uppercase}
+    .hq-section{position:relative;overflow:hidden;padding:clamp(64px,9vw,120px) clamp(22px,7vw,108px);background:radial-gradient(ellipse at 50% 0%,rgba(27,83,171,.18),transparent 55%),#080e1d;color:#edf3ff}
+    .hq-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto}
+    .hq-eyebrow{margin-bottom:12px;color:#83caff;font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+    .hq-title{max-width:840px;margin-bottom:16px;color:#fff;font:600 clamp(2.5rem,5vw,4.6rem)/.98 "Cormorant Garamond",serif}
+    .hq-lead{max-width:740px;margin-bottom:34px;color:#bdc9df;font-size:1rem;line-height:1.75}
+    .command-center{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);min-height:340px;border:1px solid rgba(130,177,255,.24);background:linear-gradient(118deg,rgba(17,34,67,.94),rgba(8,16,35,.96));box-shadow:0 28px 90px rgba(0,0,0,.28)}
+    .command-screen{position:relative;min-width:0;overflow:hidden;padding:clamp(22px,4vw,48px);background:radial-gradient(ellipse at 49% 50%,rgba(23,101,221,.23),transparent 52%),linear-gradient(145deg,rgba(7,19,44,.2),rgba(4,10,24,.7))}
+    .command-screen::before{position:absolute;inset:0;background-image:linear-gradient(rgba(116,167,249,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(116,167,249,.055) 1px,transparent 1px);background-size:34px 34px;content:"";mask-image:linear-gradient(90deg,#000,transparent 100%)}
+    .command-topline{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:38px;color:#aebedb;font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .command-indicator{display:inline-flex;align-items:center;gap:8px;color:#8de5c2}
+    .command-indicator::before{width:7px;height:7px;border-radius:50%;background:#62e4ac;box-shadow:0 0 12px #62e4ac;content:""}
+    .command-flow{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-items:center}
+    .command-node{min-height:118px;display:flex;flex-direction:column;justify-content:space-between;padding:15px;border:1px solid rgba(133,177,255,.24);background:rgba(9,23,51,.86)}
+    .command-node:nth-child(2){transform:translateY(18px);border-color:rgba(255,130,60,.42)}
+    .command-node:nth-child(3){transform:translateY(36px)}
+    .command-node small{color:#98b4df;font-size:.56rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+    .command-node strong{color:#fff;font:600 clamp(1.1rem,2vw,1.65rem)/1 "Cormorant Garamond",serif}
+    .command-node span{color:#bac7df;font-size:.66rem}
+    .command-side{display:flex;flex-direction:column;justify-content:center;padding:clamp(22px,3.5vw,42px);border-left:1px solid rgba(130,177,255,.18)}
+    .command-side h3{margin-bottom:12px;color:#fff;font:600 2rem/1.05 "Cormorant Garamond",serif}
+    .command-side p{margin-bottom:20px;color:#bac7df;font-size:.83rem}
+    .command-links{display:flex;flex-wrap:wrap;gap:9px}
+    .command-links a{display:inline-flex;min-height:44px;align-items:center;padding:10px 13px;border:1px solid rgba(156,192,255,.34);color:#fff;font-size:.63rem;font-weight:800;letter-spacing:.07em;text-decoration:none;text-transform:uppercase;transition:background .2s,border-color .2s,transform .2s}
+    .command-links a:hover,.command-links a:focus-visible{transform:translateY(-2px);border-color:#ff8a4b;background:rgba(255,106,0,.16)}
+    .demo-disclaimer{margin:18px 0 0;color:#8495b5;font-size:.65rem;line-height:1.5}
+    .pathways-section{background:#0a1121}
+    .pathway-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:34px}
+    .pathway-card{position:relative;min-height:230px;display:flex;flex-direction:column;align-items:flex-start;padding:23px 20px;border:1px solid rgba(143,179,239,.22);background:linear-gradient(155deg,rgba(18,34,65,.94),rgba(7,15,32,.97));color:inherit;text-decoration:none;transition:transform .3s,border-color .3s,box-shadow .3s}
+    .pathway-card::after{position:absolute;right:18px;bottom:18px;color:#ff873f;font-size:1.2rem;content:"↗";transition:transform .25s}
+    .pathway-card:hover,.pathway-card:focus-visible{transform:translateY(-7px);border-color:rgba(255,128,62,.75);box-shadow:0 16px 42px rgba(0,0,0,.28),0 0 24px rgba(30,92,192,.14)}
+    .pathway-card:hover::after,.pathway-card:focus-visible::after{transform:translate(3px,-3px)}
+    .pathway-index{margin-bottom:28px;color:#7cbcff;font:600 1.5rem "Cormorant Garamond",serif}
+    .pathway-card:nth-child(even) .pathway-index{color:#ff9a5c}
+    .pathway-card strong{margin-bottom:8px;color:#fff;font:600 1.5rem/1.08 "Cormorant Garamond",serif}
+    .pathway-card span:last-of-type{max-width:250px;color:#b4c1d9;font-size:.78rem;line-height:1.6}
+    .framework-gateway{background:radial-gradient(ellipse at 50% 30%,rgba(18,81,184,.2),transparent 68%),#050a18}
+    .framework-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:32px 0 24px}
+    .framework-step{position:relative;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(140,180,250,.22);background:rgba(12,22,44,.78);color:#fff;text-decoration:none;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .framework-step:hover,.framework-step:focus-visible{transform:translateY(-5px);border-color:rgba(255,135,68,.8);box-shadow:0 12px 30px rgba(0,0,0,.32)}
+    .framework-step img{display:block;width:100%;aspect-ratio:1;object-fit:contain;background:#f5f5f5}
+    .framework-step span{padding:11px 12px;color:#f4f7ff;font-size:.67rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .framework-action{display:inline-flex;min-height:48px;align-items:center;padding:12px 18px;border:1px solid #5b9cff;color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:background .2s}
+    .framework-action:hover,.framework-action:focus-visible{background:rgba(43,115,239,.2)}
+    .digital-headquarters .ticker{background:linear-gradient(90deg,#123a87,#0b1c43 52%,#713110);border-top:1px solid rgba(130,179,255,.23);border-bottom:1px solid rgba(130,179,255,.23)}
+    .digital-headquarters .what-we-do,.digital-headquarters .authority,.digital-headquarters .about,.digital-headquarters .services,.digital-headquarters .engagements,.digital-headquarters .methodology,.digital-headquarters .newsletter,.digital-headquarters .research,.digital-headquarters .big-quote,.digital-headquarters .final-cta{color:#f2f5fd}
+    .digital-headquarters .what-we-do,.digital-headquarters .methodology,.digital-headquarters .services{background:#080e1b}
+    .digital-headquarters .authority{background:#080e1b}
+    .digital-headquarters .about,.digital-headquarters .engagements,.digital-headquarters .research{background:#0d1528}
+    .digital-headquarters .big-quote{background:#101a30}
+    .digital-headquarters .newsletter{background:linear-gradient(115deg,#103a8c,#0a1836 62%,#18213a)}
+    .digital-headquarters #tools{background:#080e1b!important}
+    .digital-headquarters .final-cta{background:radial-gradient(ellipse at 50% 0,rgba(34,102,221,.18),transparent 60%),#0d1528}
+    .digital-headquarters .wwd-title,.digital-headquarters .auth-statement,.digital-headquarters .about-headline,.digital-headquarters .svc-headline,.digital-headquarters .engagement-title,.digital-headquarters .initiative h3,.digital-headquarters .speaking h3,.digital-headquarters .bq-text,.digital-headquarters .method-headline,.digital-headquarters .research-title,.digital-headquarters #tools h2,.digital-headquarters #tools h3,.digital-headquarters .cta-headline{color:#f6f8ff}
+    .digital-headquarters .wwd-title span,.digital-headquarters .about-headline em,.digital-headquarters .auth-statement em{color:#8fcaff}
+    .digital-headquarters .wwd-sub,.digital-headquarters .wwd-card-desc,.digital-headquarters .auth-kicker,.digital-headquarters .about-body,.digital-headquarters .cred-list li,.digital-headquarters .svc-desc,.digital-headquarters .svc-body,.digital-headquarters .initiative p,.digital-headquarters .speaking p,.digital-headquarters .method-sub,.digital-headquarters .mstep-desc,.digital-headquarters .research-copy,.digital-headquarters .cta-body{color:#b8c4dc}
+    .digital-headquarters .wwd-card,.digital-headquarters .svc-card,.digital-headquarters .proof-card{border-color:rgba(139,174,231,.18);background:rgba(16,27,49,.72)}
+    .digital-headquarters .wwd-card-title,.digital-headquarters .svc-title,.digital-headquarters .mstep-name,.digital-headquarters .proof-card strong{color:#edf3ff}
+    .digital-headquarters .proof-card p{color:#b8c4dc}
+    .digital-headquarters .pullquote{background:rgba(28,54,97,.6);border-color:#438cff}
+    .digital-headquarters .pullquote p,.digital-headquarters .pullquote cite{color:#edf3ff}
+    .digital-headquarters .method-steps{grid-template-columns:repeat(5,minmax(0,1fr))}
+    .digital-headquarters .mstep-circle{background:#101a30;border-color:rgba(139,174,231,.3)}
+    .digital-headquarters .mstep:hover .mstep-circle{background:#1b3159}
+    .digital-headquarters .cta-label,.digital-headquarters .cta-contact,.digital-headquarters .cta-contact a{color:#becbe2}
+    .digital-headquarters .btn-outline{border-color:#8dbbff;color:#eef5ff}
+    .industry-explorer{position:relative;z-index:2;max-width:1200px;margin:0 auto 2rem;padding:1.6rem;border:1px solid rgba(139,174,231,.2);background:linear-gradient(120deg,rgba(19,37,71,.95),rgba(8,16,35,.94))}
+    .industry-explorer h3{margin:0 0 1rem;color:#f6f8ff;font:600 1.5rem "Cormorant Garamond",serif}
+    .industry-options{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1rem}
+    .industry-option{min-height:44px;padding:.6rem .9rem;border:1px solid rgba(153,189,255,.32);background:rgba(255,255,255,.03);color:#dbe7ff;font:800 .64rem "Nunito Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+    .industry-option:hover,.industry-option[aria-pressed="true"]{border-color:#ff8a4b;background:rgba(255,106,0,.16);transform:translateY(-2px)}
+    .industry-focus{min-height:3rem;color:#c1cde3;font-size:.87rem;line-height:1.6}
+    .industry-focus strong{display:block;margin-bottom:.2rem;color:#fff}
+    .svc-card.industry-match{border-color:rgba(255,138,75,.62);box-shadow:inset 0 3px #ff762c,0 12px 30px rgba(0,0,0,.18)}
+    .svc-details{margin-top:1.2rem;border-top:1px solid rgba(139,174,231,.2)}
+    .svc-details summary{display:flex;min-height:44px;align-items:center;justify-content:space-between;gap:12px;color:#a9d3ff;font-size:.67rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+    .svc-details summary::after{color:#ff8a4b;font-size:1.2rem;content:"+"}
+    .svc-details[open] summary::after{content:"−"}
+    .svc-details p{margin:0 0 .4rem;color:#bbc8df;font-size:.8rem;line-height:1.65}
+    .digital-headquarters footer{background:#030712}
+    .digital-headquarters .footer-links a{color:#bdc8dc}
+    .digital-headquarters .footer-copy{color:#9ba8c2}
+    .digital-headquarters .footer-copy strong{color:#e6edfa}
+    .js-enabled .reveal{opacity:0;transform:translateY(20px)}
+    .js-enabled .reveal.visible{opacity:1;transform:translateY(0)}
+    @keyframes orbit-drift{to{transform:translate(-50%,-50%) rotate(338deg)}}
+    @media(max-width:1180px){
+      #mainNav .nav-links{gap:.8rem}
+      #mainNav .nav-links a{font-size:.6rem;letter-spacing:.06em}
+      .hero{grid-template-columns:minmax(0,1fr) minmax(340px,.88fr)}
+      .hero-left{padding-left:clamp(26px,5vw,70px)}
+      .portrait-frame{right:4%}
+      .pathway-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:960px){
+      #mainNav{flex-wrap:wrap;gap:8px 14px}
+      #mainNav .nav-links{top:100%;left:0;right:0;order:3;flex:0 0 100%;padding:8px clamp(18px,5vw,44px) 18px;background:rgba(5,9,24,.98);border-top:1px solid rgba(151,182,240,.14)}
+      #mainNav .nav-links a{padding:11px 0;border-bottom:1px solid rgba(151,182,240,.13);font-size:.68rem}
+      #mainNav .nav-menu-toggle{order:1}
+      #mainNav .nav-cta{order:2;margin-left:auto;padding:.7rem .85rem;font-size:.59rem}
+      .hero{height:auto;min-height:0;grid-template-columns:1fr;overflow:hidden}
+      .hero-left{min-height:680px;padding:155px clamp(24px,7vw,72px) 30px}
+      .hero-right{position:absolute;inset:70px 0 0 36%;height:auto;min-height:600px;opacity:.72}
+      .hero-composition{width:100%;height:650px;min-height:0}
+      .earth{width:min(66vw,560px)}
+      .orbit{width:min(83vw,720px)}
+      .orbit-two{width:min(94vw,840px)}
+      .orbit-three{width:min(76vw,660px)}
+      .portrait-frame{right:8%;width:clamp(190px,30vw,280px);height:clamp(310px,58vw,490px)}
+      .hero-brandmark{top:12%;left:3%;width:min(92%,520px)}
+      .hero::after{width:100%;background:linear-gradient(90deg,#050918 0%,rgba(5,9,24,.91) 31%,rgba(5,9,24,.47) 70%,rgba(5,9,24,.13) 100%)}
+      .command-center{grid-template-columns:1fr}
+      .command-side{border-top:1px solid rgba(130,177,255,.18);border-left:0}
+      .framework-steps{grid-template-columns:repeat(5,minmax(120px,1fr));overflow-x:auto;padding:4px 2px 12px}
+      .framework-step{min-width:120px}
+      .digital-headquarters .method-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem}
+    }
+    @media(max-width:620px){
+      #mainNav .nav-logo{width:104px;height:70px}
+      #mainNav.scrolled .nav-logo{width:96px;height:64px}
+      #mainNav .nav-cta{max-width:148px;padding:.65rem .7rem;font-size:.54rem;text-align:center;white-space:normal}
+      .hero-left{min-height:680px;padding:140px 22px 34px}
+      .hero-name{font-size:.64rem}
+      .hero-headline{max-width:520px;font-size:clamp(3rem,13vw,5.2rem)}
+      .hero-bio{max-width:440px;font-size:.9rem}
+      .hero-pills{max-width:400px}
+      .hero-btns{align-items:stretch;flex-direction:column;max-width:380px}
+      .hero-btns a{width:100%}
+      .hero-right{inset:112px -22% 0 19%;min-height:560px;opacity:.5}
+      .hero-composition{height:540px}
+      .earth{left:55%;width:80vw}
+      .orbit{left:55%;width:105vw}
+      .orbit-two{left:55%;width:118vw}
+      .orbit-three{left:55%;width:98vw}
+      .portrait-frame{right:17%;width:190px;height:320px}
+      .hero-brandmark{top:16%;left:0;width:min(100%,420px)}
+      .hq-section{padding:64px 20px}
+      .hq-title{font-size:2.65rem}
+      .command-screen{padding:20px 15px}
+      .command-topline{align-items:flex-start;flex-direction:column;margin-bottom:22px}
+      .command-flow{grid-template-columns:1fr;gap:8px}
+      .command-node,.command-node:nth-child(2),.command-node:nth-child(3){min-height:86px;transform:none}
+      .command-side{padding:22px 18px}
+      .pathway-grid{grid-template-columns:1fr}
+      .pathway-card{min-height:180px}
+      .framework-steps{grid-template-columns:repeat(5,135px)}
+      .digital-headquarters .what-we-do,.digital-headquarters .authority,.digital-headquarters .services,.digital-headquarters .about,.digital-headquarters .methodology,.digital-headquarters .newsletter,.digital-headquarters .final-cta,.digital-headquarters .engagements,.digital-headquarters .research{padding:4rem 1.25rem}
+      .digital-headquarters #tools{padding:4rem 1.25rem!important}
+      .digital-headquarters .cta-btns{align-items:stretch;flex-direction:column}
+      .digital-headquarters .cta-btns a{width:100%}
+      .digital-headquarters .footer-links{flex-wrap:wrap;gap:1rem}
+      .digital-headquarters .method-steps{grid-template-columns:1fr;gap:2rem}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+      .js-enabled .reveal{opacity:1;transform:none}
+      .ticker-inner{animation:none}
+    }
   </style>
+  <script src="assets/site-experience.js" defer></script>
 </head>
-<body>
+<body class="digital-headquarters">
 
 <!-- NAV -->
-<nav id="mainNav">
-  <a class="nav-brand" href="#home" aria-label="Ascend AI NOW home">
-    <img class="nav-logo" src="assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW">
+<nav id="mainNav" class="experience-nav" data-site-nav aria-label="Primary navigation">
+  <a class="experience-brand" href="#home" aria-label="Ascend AI NOW home">
+    <img class="nav-logo experience-logo-transparent" src="assets/branding/ascend-ai-now-logo-official.png" alt="Ascend AI NOW">
   </a>
-  <ul class="nav-links" id="primaryNavLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#methodology">Methodology</a></li>
+  <ul class="experience-links" id="primaryNavLinks" data-menu-links>
+    <li><a href="#services" aria-current="page">Services</a></li>
     <li><a href="framework/">Framework</a></li>
+    <li><a href="assessment.html">Assessments</a></li>
+    <li><a href="k12assessment/">K-12 Diagnostic</a></li>
+    <li><a href="roi-calculator.html">ROI Calculator</a></li>
+    <li><a href="impact/#academy">Academy</a></li>
+    <li><a href="research/">Research</a></li>
     <li><a href="impact/">Impact</a></li>
-    <li><a href="#engagements">Impact preview</a></li>
-    <li><a href="research/">Research &amp; Insights</a></li>
-    <li><a href="#research">Intel preview</a></li>
-    <li><a href="#newsletter">Newsletter</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#tools" style="color:#ff6a00;font-weight:700">Tools</a></li>
   </ul>
-  <button class="nav-menu-toggle" id="menuToggle" type="button" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
-  <a href="#contact" class="nav-cta">Book a Free Consultation</a>
+  <button class="experience-menu-toggle" id="menuToggle" data-menu-toggle type="button" aria-label="Toggle navigation menu" aria-controls="primaryNavLinks" aria-expanded="false">Menu</button>
+  <a href="mailto:info@AscendAINOW.com?subject=Executive%20AI%20governance%20consultation" class="experience-cta">Executive consultation</a>
 </nav>
 
 <!-- HERO -->
@@ -349,41 +546,37 @@
   <div class="hero-left">
     <div class="hero-eyebrow">
       <div class="eyebrow-line"></div>
-      <div class="eyebrow-text">Strategic AI Advisory Firm &middot; Garner, NC</div>
+      <div class="eyebrow-text">Executive AI Governance &middot; Digital Stewardship</div>
     </div>
     <div class="hero-name">Dr. Alexis S. Smith</div>
     <h1 class="hero-headline">
-      We Turn AI<br>
-      <em>Ambition</em> Into<br>
-      Operational Reality
+      Govern AI with clarity. <em>Lead with purpose.</em>
     </h1>
     <p class="hero-bio">
-      <strong>Ascend AI NOW</strong> is a strategic AI advisory firm. We help <strong>healthcare organizations, educational institutions, and service businesses</strong> implement AI responsibly &mdash; with governance frameworks, risk strategy, and workforce enablement that deliver real results, not just hype.
+      <strong>Ascend AI NOW</strong> helps executive teams align AI strategy, governance, and implementation with accountability, equity, and human-centered design.
     </p>
     <div class="hero-pills">
-      <span class="pill">AI Governance &amp; Risk</span>
-      <span class="pill">Fractional CTO &amp; CAIO</span>
-      <span class="pill">E-Rate Education</span>
-      <span class="pill">Workforce Enablement</span>
+      <span class="pill">Governance &amp; Accountability</span>
+      <span class="pill">Organizational Readiness</span>
+      <span class="pill">Responsible Implementation</span>
     </div>
     <div class="hero-btns">
-      <a href="#contact" class="btn-orange">Book a Free Consultation</a>
-      <a href="#services" class="btn-ghost-white">See How We Help &rarr;</a>
+      <a href="mailto:info@AscendAINOW.com?subject=Executive%20AI%20governance%20consultation" class="btn-orange">Book an Executive Consultation</a>
+      <a href="framework/" class="btn-ghost-white">Explore the Five-Stage Framework</a>
     </div>
   </div>
   <div class="hero-right">
-    <div class="portrait-wrap">
-      <div class="portrait-bg"></div>
-      <div class="portrait-corner tl"></div>
-      <div class="portrait-corner br"></div>
-      <img src="assets/branding/dr-alexis-smith-headshot-2026.png" alt="Dr. Alexis S. Smith, Founder &amp; CEO of Ascend AI NOW" class="portrait-img">
-      <div class="stat-float left">
-        <div class="sf-num">25+</div>
-        <div class="sf-label">Years Enterprise<br>Technology Leadership</div>
+    <div class="hero-composition">
+      <div class="space-scene" aria-hidden="true">
+        <div class="earth"><div class="earth-grid"></div></div>
+        <span class="orbit orbit-one"></span>
+        <span class="orbit orbit-two"></span>
+        <span class="orbit orbit-three"></span>
       </div>
-      <div class="stat-float right">
-        <div class="sf-num">$16M+</div>
-        <div class="sf-label">Technology Budgets<br>Managed</div>
+      <img class="hero-brandmark" src="assets/branding/ascend-ai-now-logo-official.png" alt="" aria-hidden="true">
+      <div class="portrait-wrap portrait-frame">
+        <div class="portrait-bg"></div>
+        <img src="assets/branding/dr-alexis-smith-headshot-2026.png" alt="Dr. Alexis S. Smith, Founder &amp; CEO of Ascend AI NOW" class="portrait-img">
       </div>
     </div>
   </div>
@@ -411,18 +604,93 @@
   </div>
 </div>
 
+<section class="hq-section" id="command-center" aria-labelledby="command-title">
+  <div class="hq-inner reveal">
+    <p class="hq-eyebrow">Ascend AI NOW&trade; &middot; Executive intelligence</p>
+    <h2 class="hq-title" id="command-title">AI Executive Command Center&trade;</h2>
+    <p class="hq-lead">A leadership view for connecting governance decisions, readiness, trusted research, and organizational capability—before AI moves further into the mission.</p>
+    <div class="command-center">
+      <div class="command-screen" aria-label="Illustrative executive AI governance interface">
+        <div class="command-topline"><span>Executive oversight &middot; strategic view</span><span class="command-indicator">Governance in focus</span></div>
+        <div class="command-flow">
+          <div class="command-node"><small>01 &middot; Diagnose</small><strong>Readiness</strong><span>Know the starting point</span></div>
+          <div class="command-node"><small>02 &middot; Govern</small><strong>Accountability</strong><span>Make authority visible</span></div>
+          <div class="command-node"><small>03 &middot; Scale</small><strong>Measured impact</strong><span>Keep outcomes in view</span></div>
+        </div>
+      </div>
+      <div class="command-side">
+        <p class="hq-eyebrow">A connected operating view</p>
+        <h3>Lead with evidence. Scale with accountability.</h3>
+        <p>Explore the interactive five-stage framework, assess readiness, and connect decisions to the evidence and learning your teams need.</p>
+        <div class="command-links">
+          <a href="framework/">Open governance framework</a>
+          <a href="assessment.html">Start assessment</a>
+          <a href="mailto:info@AscendAINOW.com?subject=Measure%20AI%20Impact%20consultation">Measure AI impact</a>
+        </div>
+        <p class="demo-disclaimer">Illustrative executive interface concept. This is not a live operational dashboard or a report of client results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hq-section pathways-section" id="pathways" aria-labelledby="pathways-title">
+  <div class="hq-inner">
+    <p class="hq-eyebrow">Navigate the Digital Headquarters</p>
+    <h2 class="hq-title" id="pathways-title">Four pathways. One accountable AI future.</h2>
+    <p class="hq-lead">Move from executive governance questions to practical assessments, trusted insight, and workforce learning.</p>
+    <div class="pathway-grid">
+      <a class="pathway-card reveal reveal-d1" href="framework/">
+        <span class="pathway-index">01 / GOVERNANCE</span>
+        <strong>Govern with intent</strong>
+        <span>Explore the Diagnose → Govern → Architect → Deploy → Scale framework.</span>
+      </a>
+      <a class="pathway-card reveal reveal-d2" href="assessment.html">
+        <span class="pathway-index">02 / ASSESSMENTS</span>
+        <strong>Understand readiness</strong>
+        <span>Use the existing interactive AI readiness assessment and ROI calculator.</span>
+      </a>
+      <a class="pathway-card reveal reveal-d3" href="research/">
+        <span class="pathway-index">03 / RESEARCH</span>
+        <strong>Ground decisions in evidence</strong>
+        <span>Explore research and executive perspectives on responsible AI.</span>
+      </a>
+      <a class="pathway-card reveal reveal-d4" href="impact/#academy">
+        <span class="pathway-index">04 / ACADEMY</span>
+        <strong>Build capability</strong>
+        <span>Find independent Academy and certification learning pathways.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="hq-section framework-gateway" id="framework" aria-labelledby="framework-title">
+  <div class="hq-inner reveal">
+    <p class="hq-eyebrow">Ascend AI NOW&trade; Framework for Responsible AI</p>
+    <h2 class="hq-title" id="framework-title">Five stages. One continuous line of accountability.</h2>
+    <p class="hq-lead">Enter any stage to continue in the interactive framework. The approved original graphics are presented without alteration.</p>
+    <div class="framework-steps" aria-label="Interactive framework stage links">
+      <a class="framework-step" href="framework/#tab-diagnose"><img src="assets/framework/diagnose.png" alt="Diagnose framework artwork"><span>01 &middot; Diagnose</span></a>
+      <a class="framework-step" href="framework/#tab-govern"><img src="assets/framework/govern.png" alt="Govern and Governance Compass artwork"><span>02 &middot; Govern</span></a>
+      <a class="framework-step" href="framework/#tab-architect"><img src="assets/framework/architect.png" alt="Architect framework artwork"><span>03 &middot; Architect</span></a>
+      <a class="framework-step" href="framework/#tab-deploy"><img src="assets/framework/deploy.png" alt="Deploy framework artwork"><span>04 &middot; Deploy</span></a>
+      <a class="framework-step" href="framework/#tab-scale"><img src="assets/framework/scale.png" alt="Scale and measurable impact framework artwork"><span>05 &middot; Scale</span></a>
+    </div>
+    <a class="framework-action" href="framework/">Enter the interactive framework &rarr;</a>
+  </div>
+</section>
+
 <!-- WHAT WE DO -->
 <section class="what-we-do">
   <div class="wwd-inner">
     <div class="wwd-top">
       <h2 class="wwd-title">What <span>Ascend AI NOW</span> Does</h2>
-      <p class="wwd-sub">We are a strategic AI implementation advisory firm. We guide organizations through every phase of AI adoption &mdash; from governance and infrastructure to workforce readiness &mdash; so technology investments actually deliver.</p>
+      <p class="wwd-sub">We are an executive AI governance and advisory firm. We help organizations connect governance, infrastructure, and workforce readiness to their mission and operating context.</p>
     </div>
     <div class="wwd-grid">
       <div class="wwd-card reveal reveal-d1">
         <span class="wwd-icon">&#127963;</span>
         <div class="wwd-card-title">AI Governance &amp; Risk</div>
-        <p class="wwd-card-desc">We build the policies, frameworks, and compliance structures your organization needs before deploying AI &mdash; protecting you from liability, bias, and regulatory risk in healthcare, education, and government sectors.</p>
+        <p class="wwd-card-desc">We help leaders shape policies, governance frameworks, and compliance practices that address accountability, bias, and regulatory considerations before AI is deployed.</p>
       </div>
       <div class="wwd-card reveal reveal-d2">
         <span class="wwd-icon">&#9881;</span>
@@ -432,50 +700,35 @@
       <div class="wwd-card reveal reveal-d3">
         <span class="wwd-icon">&#127891;</span>
         <div class="wwd-card-title">Workforce &amp; Education Technology</div>
-        <p class="wwd-card-desc">We enable your teams to work confidently alongside AI, and help K&ndash;12 districts and higher education institutions navigate E-Rate funding, edtech strategy, and AI-readiness planning.</p>
+        <p class="wwd-card-desc">We support workforce learning and help K&ndash;12 districts and higher education institutions navigate E-Rate funding, education technology strategy, and AI-readiness planning.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AUTHORITY STATS -->
+<!-- FOUNDER CREDENTIALS -->
 <section class="authority">
   <div class="authority-inner">
     <div>
       <div class="auth-kicker">The Authority Behind the Work</div>
-      <div class="auth-statement">Three decades of enterprise leadership. One <em>unwavering</em> commitment to equitable AI.</div>
+      <div class="auth-statement">Executive technology leadership grounded in <em>digital stewardship</em>, AI ethics, and governance.</div>
     </div>
-    <div class="auth-stats">
-      <div class="astat reveal reveal-d1">
-        <span class="astat-num" data-value="25" data-suffix="+">25+</span>
-        <span class="astat-label">Years Enterprise<br>Technology Leadership</span>
-        <div class="astat-accent"></div>
-      </div>
-      <div class="astat reveal reveal-d2">
-        <span class="astat-num" data-value="45" data-suffix="K+">45K+</span>
-        <span class="astat-label">Users Served Across<br>Digital Transformations</span>
-        <div class="astat-accent"></div>
-      </div>
-      <div class="astat reveal reveal-d3">
-        <span class="astat-num" data-value="61" data-suffix="">61</span>
-        <span class="astat-label">Schools Led as<br>CTO at MPS</span>
-        <div class="astat-accent"></div>
-      </div>
-      <div class="astat reveal reveal-d1">
-        <span class="astat-num" data-value="5" data-suffix="+">5+</span>
-        <span class="astat-label">Sectors: Healthcare &middot; Education<br>Government &middot; Utilities &middot; Nonprofit</span>
-        <div class="astat-accent"></div>
-      </div>
-      <div class="astat reveal reveal-d2">
-        <span class="astat-num" data-value="16" data-prefix="$" data-suffix="M+">$16M+</span>
-        <span class="astat-label">Cumulative Technology<br>Budgets Managed</span>
-        <div class="astat-accent"></div>
-      </div>
-      <div class="astat reveal reveal-d3">
-        <span class="astat-num" data-value="2" data-prefix="$" data-suffix="M+">$2M+</span>
-        <span class="astat-label">Federal &amp; State Grant<br>Funding Secured</span>
-        <div class="astat-accent"></div>
-      </div>
+    <div class="authority-proof">
+      <article class="proof-card reveal reveal-d1">
+        <span class="proof-kicker">Academic foundation</span>
+        <strong>Doctorate in Digital Stewardship</strong>
+        <p>AI Ethics and Governance, grounded in accountability and equitable adoption.</p>
+      </article>
+      <article class="proof-card reveal reveal-d2">
+        <span class="proof-kicker">Cross-sector experience</span>
+        <strong>Technology leadership across complex organizations</strong>
+        <p>Experience spanning public sector, utilities, healthcare, and education.</p>
+      </article>
+      <article class="proof-card reveal reveal-d3">
+        <span class="proof-kicker">Responsible AI method</span>
+        <strong>Diagnose &middot; Govern &middot; Architect &middot; Deploy &middot; Scale</strong>
+        <p>A five-stage framework connecting readiness, accountability, system design, deployment, and impact.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -485,26 +738,26 @@
   <div class="about-grid">
     <div class="about-left reveal">
       <div class="sec-label">About Dr. Smith</div>
-      <h2 class="about-headline">She Does Not Simply Adapt to Change &mdash; <em>She Architects It</em></h2>
+      <h2 class="about-headline">A Leadership Practice Rooted in <em>Digital Stewardship</em></h2>
       <ul class="cred-list">
         <li>Doctorate in Digital Stewardship, AI Ethics and Governance, Carolina Christian College (2026)</li>
         <li>M.S. &mdash; Information Systems Management, University of Phoenix</li>
         <li>B.S. &mdash; Criminal Justice, Alabama State University (HBCU, proud alumna)</li>
         <li>Diamond Life Member, Zeta Phi Beta Sorority, Inc.</li>
-        <li>International Executive Board &mdash; Graduate Director, Zeta Phi Beta (125,000+ members)</li>
+        <li>International Executive Board &mdash; Graduate Director, Zeta Phi Beta</li>
         <li>Board Member, Zeta Phi Beta National Educational Foundation</li>
         <li>Former Board Chair, TechNOW at Blue Cross Blue Shield of NC</li>
         <li>Fractional CAIO &mdash; MedcoreHub</li>
       </ul>
     </div>
     <div class="about-right reveal reveal-d2">
-      <p class="about-body">Dr. Alexis S. Smith is a transformational technology executive with more than 25 years of orchestrating breakthrough digital transformations for public sector agencies, utilities, healthcare enterprises, and educational institutions. She has consistently converted complex technological challenges into competitive advantages.</p>
-      <p class="about-body">As Founder and CEO of Ascend AI NOW, LLC, Dr. Smith leads a forward-thinking AI governance and technology consulting firm dedicated to <strong>ethical and equitable AI adoption</strong> across healthcare, education, and nonprofit sectors. Her work is anchored in the proprietary <strong>Digital Stewardship Framework&trade;</strong> &mdash; a model that bridges cutting-edge innovation with accountability, equity, and human-centered design.</p>
+      <p class="about-body">Dr. Alexis S. Smith is a technology executive whose experience spans public sector agencies, utilities, healthcare enterprises, and educational institutions. Her work focuses on translating complex technology decisions into accountable, mission-aligned action.</p>
+      <p class="about-body">As Founder and CEO of Ascend AI NOW, LLC, Dr. Smith leads an AI governance and technology advisory firm focused on <strong>ethical and equitable AI adoption</strong>. Her work is anchored in the proprietary <strong>Digital Stewardship Framework&trade;</strong>, connecting innovation with accountability and human-centered design.</p>
       <div class="pullquote">
         <p>&ldquo;I am unmistakably, undeniably, and unapologetically me.&rdquo;</p>
         <cite>&mdash; Dr. Alexis S. Smith, Founder &amp; CEO</cite>
       </div>
-      <p class="about-body">As the authoritative voice behind <strong>Dr. Lex Talks Tech</strong> and publisher of <em>The AI Power Gap&trade;</em> LinkedIn newsletter, Dr. Smith stands at the forefront of AI ethics, governance strategy, and enterprise digital transformation &mdash; championing holistic transformation that advances both institutional excellence and positive societal impact.</p>
+      <p class="about-body">Through <strong>Dr. Lex Talks Tech</strong> and <em>The AI Power Gap&trade;</em> LinkedIn newsletter, Dr. Smith shares perspectives on AI ethics, governance strategy, and enterprise digital transformation.</p>
     </div>
   </div>
 </section>
@@ -516,40 +769,55 @@
       <div class="sec-label">Core Services</div>
       <h2 class="svc-headline">Strategic Advisory Built for <span>Your Industry</span></h2>
     </div>
-    <p class="svc-desc">Every engagement follows the proprietary <strong>Diagnose-Design-Build-Scale</strong> methodology &mdash; delivering measurable outcomes, not just recommendations. All engagements begin with a complimentary strategy consultation.</p>
+    <p class="svc-desc">Advisory engagements support accountable decisions from strategy and governance through implementation. Begin with an executive consultation to discuss your organization's context.</p>
+  </div>
+  <div class="industry-explorer" data-reveal>
+    <h3>Explore advisory through your operating context</h3>
+    <div class="industry-options" role="group" aria-label="Explore services by industry">
+      <button class="industry-option" type="button" data-industry="healthcare" aria-pressed="true" aria-controls="industryFocus">Healthcare</button>
+      <button class="industry-option" type="button" data-industry="education" aria-pressed="false" aria-controls="industryFocus">Education</button>
+      <button class="industry-option" type="button" data-industry="government" aria-pressed="false" aria-controls="industryFocus">Government</button>
+      <button class="industry-option" type="button" data-industry="mission" aria-pressed="false" aria-controls="industryFocus">Mission-driven organizations</button>
+    </div>
+    <p class="industry-focus" id="industryFocus" aria-live="polite"><strong>Healthcare</strong>Explore governance and risk advisory, executive technology leadership, and architecture support in the context of your organization's needs.</p>
   </div>
   <div class="svc-grid">
-    <div class="svc-card reveal reveal-d1">
+    <div class="svc-card reveal reveal-d1" data-service-industries="healthcare education government mission">
       <div class="svc-num">01</div>
       <div class="svc-title">AI Governance &amp; Risk Advisory</div>
       <p class="svc-body">End-to-end AI governance frameworks, risk assessments, policy development, and compliance readiness rooted in the Digital Stewardship Framework&trade;. Designed for healthcare, education, and regulated industries.</p>
       <div class="svc-tags"><span class="stag">Risk Frameworks</span><span class="stag">Policy Development</span><span class="stag">HIPAA Alignment</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Scope governance policies, risk review, compliance readiness, oversight, and escalation around the organization's AI uses and operating context.</p></details>
     </div>
-    <div class="svc-card reveal reveal-d2">
+    <div class="svc-card reveal reveal-d2" data-service-industries="healthcare education government mission">
       <div class="svc-num">02</div>
       <div class="svc-title">Fractional CTO &amp; CAIO Services</div>
       <p class="svc-body">Executive-level technology and AI leadership on a flexible engagement model. Strategic roadmaps, vendor evaluation, architecture oversight, and board-level advisory without the full-time overhead.</p>
       <div class="svc-tags"><span class="stag">Tech Roadmaps</span><span class="stag">Vendor Advisory</span><span class="stag">Board Reporting</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Support executive teams with strategic roadmaps, vendor evaluation, architecture oversight, and board-level AI guidance.</p></details>
     </div>
-    <div class="svc-card reveal reveal-d3">
+    <div class="svc-card reveal reveal-d3" data-service-industries="healthcare education government">
       <div class="svc-num">03</div>
       <div class="svc-title">Enterprise Technology Architecture</div>
-      <p class="svc-body">Design and modernization of AI-ready infrastructure. Drawing on multi-million-dollar architecture leadership at Blue Cross Blue Shield of NC, we build systems that scale securely and integrate intelligently.</p>
+      <p class="svc-body">Technology architecture and modernization informed by Dr. Smith's experience at Blue Cross Blue Shield of NC, with attention to security, integration, and organizational context.</p>
       <div class="svc-tags"><span class="stag">Infrastructure Design</span><span class="stag">AI Integration</span><span class="stag">Cloud Strategy</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Consider infrastructure, data flows, integrations, security, and human workflows when planning technology architecture and modernization.</p></details>
     </div>
   </div>
   <div class="svc-grid-row2">
-    <div class="svc-card reveal reveal-d1">
+    <div class="svc-card reveal reveal-d1" data-service-industries="healthcare education government mission">
       <div class="svc-num">04</div>
       <div class="svc-title">Workforce Enablement &amp; Change Management</div>
-      <p class="svc-body">Change management and workforce enablement strategies that transform AI anxiety into adoption &mdash; driving measurable productivity, cultural alignment, and lasting organizational capability at every level.</p>
+      <p class="svc-body">Change management and workforce enablement that support informed AI adoption, organizational learning, and sustained capability.</p>
       <div class="svc-tags"><span class="stag">Adoption Strategy</span><span class="stag">Training Design</span><span class="stag">Culture Alignment</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Connect workforce learning, communications, and adoption planning to roles, responsibilities, and organizational readiness.</p></details>
     </div>
-    <div class="svc-card reveal reveal-d2">
+    <div class="svc-card reveal reveal-d2" data-service-industries="education government">
       <div class="svc-num">05</div>
       <div class="svc-title">E-Rate &amp; Education Technology Strategy</div>
-      <p class="svc-body">Navigate E-Rate funding, technology procurement, and AI-readiness for K&ndash;12 districts and higher education. From CIPA compliance to district-wide digital transformation, grounded in real CTO leadership across 61 schools.</p>
+      <p class="svc-body">Navigate E-Rate funding, technology procurement, and AI-readiness for K&ndash;12 districts and higher education, informed by Dr. Smith's education technology leadership.</p>
       <div class="svc-tags"><span class="stag">E-Rate Compliance</span><span class="stag">K&ndash;12 Strategy</span><span class="stag">EdTech Planning</span></div>
+      <details class="svc-details"><summary>Explore service focus</summary><p>Discuss E-Rate funding, technology procurement, and education technology strategy in relation to school and district priorities.</p></details>
     </div>
   </div>
 </section>
@@ -590,29 +858,34 @@
   <div class="method-inner">
     <div class="method-head reveal">
       <div class="sec-label" style="justify-content:center;">Proprietary Methodology</div>
-      <h2 class="method-headline">Diagnose &middot; Design &middot; Build &middot; Scale</h2>
-      <p class="method-sub">A four-phase framework engineered to eliminate guesswork and deliver measurable AI transformation &mdash; every single time.</p>
+      <h2 class="method-headline">Diagnose &middot; Govern &middot; Architect &middot; Deploy &middot; Scale</h2>
+      <p class="method-sub">The five-stage Ascend AI NOW&trade; Framework for Responsible AI connects readiness, accountability, system design, deployment, and measurable impact.</p>
     </div>
     <div class="method-steps">
       <div class="mstep reveal reveal-d1">
         <div class="mstep-circle"><span class="mstep-letter">D</span></div>
         <div class="mstep-name">Diagnose</div>
-        <p class="mstep-desc">AI readiness assessment, gap analysis, risk profiling, and stakeholder alignment across your organization.</p>
+        <p class="mstep-desc">Map AI use, readiness, needs, and constraints before expanding adoption.</p>
       </div>
       <div class="mstep reveal reveal-d2">
-        <div class="mstep-circle"><span class="mstep-letter">D</span></div>
-        <div class="mstep-name">Design</div>
-        <p class="mstep-desc">Strategic roadmap development, governance architecture, and technology selection tailored to your mission.</p>
+        <div class="mstep-circle"><span class="mstep-letter">G</span></div>
+        <div class="mstep-name">Govern</div>
+        <p class="mstep-desc">Set decision rights, accountability, oversight, and affected-voice participation.</p>
       </div>
       <div class="mstep reveal reveal-d3">
-        <div class="mstep-circle"><span class="mstep-letter">B</span></div>
-        <div class="mstep-name">Build</div>
-        <p class="mstep-desc">Infrastructure implementation, policy deployment, workforce enablement, and change management in parallel.</p>
+        <div class="mstep-circle"><span class="mstep-letter">A</span></div>
+        <div class="mstep-name">Architect</div>
+        <p class="mstep-desc">Design data, platforms, integrations, controls, and human workflows with responsibility in view.</p>
       </div>
       <div class="mstep reveal reveal-d4">
+        <div class="mstep-circle"><span class="mstep-letter">D</span></div>
+        <div class="mstep-name">Deploy</div>
+        <p class="mstep-desc">Build AI literacy, informed choice, oversight, and clear paths to question a result.</p>
+      </div>
+      <div class="mstep reveal">
         <div class="mstep-circle"><span class="mstep-letter">S</span></div>
         <div class="mstep-name">Scale</div>
-        <p class="mstep-desc">Operationalize AI across the enterprise with ongoing advisory support, KPI tracking, and continuous governance refinement.</p>
+        <p class="mstep-desc">Expand as monitoring, accountable outcomes, response, and evidence keep pace.</p>
       </div>
     </div>
   </div>
@@ -714,7 +987,7 @@
 <section class="final-cta" id="contact">
   <div class="cta-label">Begin Your Transformation</div>
   <h2 class="cta-headline">Your AI Transformation Starts with <em>One Conversation</em></h2>
-  <p class="cta-body">Whether you are closing compliance gaps, building AI-ready infrastructure, or leading a district-wide technology transformation &mdash; Ascend AI NOW delivers the executive-level guidance to get it right the first time.</p>
+  <p class="cta-body">Bring your governance, infrastructure, or workforce priorities into a focused conversation about responsible AI strategy and implementation.</p>
   <div class="cta-btns">
     <a href="mailto:info@AscendAINOW.com" class="btn-royal">Book a Free Consultation</a>
     <a href="#services" class="btn-outline">Explore Services</a>
@@ -751,22 +1024,6 @@
 </footer>
 
 <script>
-  // Nav scroll
-  var navEl = document.getElementById('mainNav');
-  var menuToggle = document.getElementById('menuToggle');
-  var navLinks = document.getElementById('primaryNavLinks');
-  function closeMenu(){ menuToggle.setAttribute('aria-expanded','false'); navLinks.classList.remove('open'); }
-  menuToggle.addEventListener('click', function(){
-    var isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!isOpen));
-    navLinks.classList.toggle('open', !isOpen);
-  });
-  navLinks.addEventListener('click', function(event){ if (event.target.closest('a')) closeMenu(); });
-  document.addEventListener('keydown', function(event){ if (event.key === 'Escape') closeMenu(); });
-  window.addEventListener('scroll', function() {
-    navEl.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
   // Scroll reveals
   var reveals = document.querySelectorAll('.reveal');
   var revealObs = new IntersectionObserver(function(entries) {
@@ -779,26 +1036,31 @@
   }, { threshold: 0.12 });
   reveals.forEach(function(el) { revealObs.observe(el); });
 
-  // Animated counters
-  var statObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (!e.isIntersecting) return;
-      statObs.unobserve(e.target);
-      var numEl = e.target.querySelector('.astat-num');
-      if (!numEl) return;
-      var target = parseInt(numEl.dataset.value || '0', 10);
-      var prefix = numEl.dataset.prefix || '';
-      var suffix = numEl.dataset.suffix || '';
-      if (!target) return;
-      var count = 0;
-      var timer = setInterval(function() {
-        count += Math.ceil(target / 55);
-        if (count >= target) { count = target; clearInterval(timer); }
-        numEl.textContent = prefix + count + suffix;
-      }, 22);
+  var industryCopy = {
+    healthcare: {title:'Healthcare',copy:"Explore governance and risk advisory, executive technology leadership, and architecture support in the context of your organization's needs."},
+    education: {title:'Education',copy:'Explore governance, workforce learning, education technology strategy, and E-Rate planning for schools and higher education.'},
+    government: {title:'Government',copy:'Explore AI governance, executive oversight, technology architecture, and workforce readiness in public-sector contexts.'},
+    mission: {title:'Mission-driven organizations',copy:'Explore governance, advisory, and workforce enablement grounded in mission, accountability, and organizational capacity.'}
+  };
+  var industryButtons = document.querySelectorAll('[data-industry]');
+  var serviceCards = document.querySelectorAll('[data-service-industries]');
+  industryButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      var industry = button.dataset.industry;
+      var focus = industryCopy[industry];
+      if (!focus) return;
+      industryButtons.forEach(function(item) {
+        item.setAttribute('aria-pressed', String(item === button));
+      });
+      serviceCards.forEach(function(card) {
+        card.classList.toggle('industry-match', card.dataset.serviceIndustries.split(' ').includes(industry));
+      });
+      var focusPanel = document.getElementById('industryFocus');
+      focusPanel.innerHTML = '<strong>' + focus.title + '</strong>' + focus.copy;
     });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.astat').forEach(function(el) { statObs.observe(el); });
+  });
+  document.querySelector('.industry-option[aria-pressed="true"]').click();
+
 </script>
 </body>
 </html>
